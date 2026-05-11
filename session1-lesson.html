@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Session 1 Lesson – Your Foundation | AI Chief of Staff</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #000000;
+      --card: #141414;
+      --card-alt: #1a1a1a;
+      --border: #262626;
+      --volt: #CCFF00;
+      --white: #FFFFFF;
+      --gray: #888888;
+      --gray-light: #aaaaaa;
+    }
+
+    html { background: var(--black); color: var(--white); }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--black);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      border-bottom: 1px solid var(--border);
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+    nav .brand { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; color: var(--white); text-decoration: none; }
+    nav .back { font-size: 13px; color: var(--gray); text-decoration: none; letter-spacing: 0.03em; transition: color .2s; }
+    nav .back:hover { color: var(--volt); }
+
+    /* ── CONTAINER ── */
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── HERO ── */
+    .hero { padding: 72px 0 56px; }
+    .hero .meta { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--volt); margin-bottom: 20px; }
+    .hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(38px, 6vw, 58px); font-weight: 700; line-height: 1.1; color: var(--white); margin-bottom: 24px; }
+    .hero .subtitle { font-size: 18px; color: var(--gray-light); line-height: 1.65; max-width: 580px; }
+    hr.divider { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--volt);
+      margin-bottom: 28px;
+    }
+
+    /* ── CALLOUT CARD ── */
+    .callout {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 56px;
+      flex-wrap: wrap;
+    }
+    .callout .callout-text .label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--volt); margin-bottom: 4px; }
+    .callout .callout-text p { font-size: 14px; color: var(--gray-light); }
+    .callout a.btn {
+      background: var(--volt);
+      color: var(--black);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity .2s;
+    }
+    .callout a.btn:hover { opacity: .85; }
+
+    /* ── BIG INTRO BLOCK ── */
+    .intro-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px;
+      margin-bottom: 32px;
+    }
+    .intro-block h2 { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--white); margin-bottom: 16px; }
+    .intro-block p { font-size: 15px; color: var(--gray-light); line-height: 1.75; margin-bottom: 14px; }
+    .intro-block p:last-child { margin-bottom: 0; }
+    .intro-block strong { color: var(--white); }
+
+    /* ── COMPARISON TABLE ── */
+    .comparison { margin: 40px 0; }
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .comparison-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+      margin-bottom: 0;
+    }
+    .comp-col {
+      padding: 20px 24px;
+      border-right: 1px solid var(--border);
+    }
+    .comp-col:last-child { border-right: none; }
+    .comp-col.header-col {
+      background: var(--card-alt);
+      border-bottom: 1px solid var(--border);
+    }
+    .comp-col.data-col { background: var(--card); }
+    .comp-col.data-col.highlight { background: #0d1a00; }
+    .comp-col h4 { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .comp-col .tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-top: 4px;
+    }
+    .tag.theirs { background: #1f1f1f; color: var(--gray); }
+    .tag.ours { background: rgba(204,255,0,0.12); color: var(--volt); }
+    .comp-cell {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-top: 1px solid var(--border);
+    }
+    .comp-cell .cell {
+      padding: 16px 24px;
+      border-right: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--gray-light);
+      line-height: 1.5;
+    }
+    .comp-cell .cell:first-child { color: var(--gray); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .comp-cell .cell:last-child { border-right: none; background: #0d1a00; color: var(--white); }
+    .comp-cell .cell .volt { color: var(--volt); font-weight: 600; }
+    .comp-cell .cell .red { color: #ff5555; }
+
+    /* ── LESSON FLOW STEPS ── */
+    .flow-steps { display: flex; flex-direction: column; gap: 0; }
+    .flow-step {
+      display: flex;
+      gap: 24px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .flow-step:last-child { border-bottom: none; }
+    .step-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--volt);
+      margin-top: 2px;
+    }
+    .step-body h3 { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .step-body .timing { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--volt); margin-bottom: 8px; }
+    .step-body p { font-size: 14px; color: var(--gray-light); line-height: 1.65; }
+
+    /* ── INSTALL STEPS (copy/paste blocks) ── */
+    .install-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .install-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .install-header .title { font-size: 13px; font-weight: 700; color: var(--white); }
+    .install-header .step-badge {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--volt);
+      background: rgba(204,255,0,0.08);
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+    .install-body { padding: 20px; }
+    .install-body p { font-size: 14px; color: var(--gray-light); line-height: 1.65; margin-bottom: 14px; }
+    .install-body p:last-child { margin-bottom: 0; }
+    .install-body a { color: var(--volt); text-decoration: none; }
+    .install-body a:hover { text-decoration: underline; }
+    .install-body strong { color: var(--white); }
+
+    code {
+      background: #1e1e1e;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-size: 13px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      color: var(--volt);
+    }
+
+    pre {
+      background: #0a0a0a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      overflow-x: auto;
+      margin: 12px 0;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #e2e2e2;
+    }
+    pre .comment { color: #555; }
+    pre .cmd { color: var(--volt); }
+
+    /* ── CHECKLIST ── */
+    .checklist { list-style: none; }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--gray-light);
+      line-height: 1.5;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li .check {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .checklist li .check svg { display: none; }
+    .checklist li strong { color: var(--white); }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight-box {
+      background: rgba(204,255,0,0.05);
+      border: 1px solid rgba(204,255,0,0.2);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin: 28px 0;
+    }
+    .highlight-box p { font-size: 15px; color: var(--gray-light); line-height: 1.7; }
+    .highlight-box strong { color: var(--volt); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 100px;
+      padding: 40px 0;
+    }
+    .footer-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    footer p { font-size: 13px; color: var(--gray); }
+    footer a { color: var(--volt); text-decoration: none; font-size: 13px; font-weight: 600; }
+
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      .hero { padding: 48px 0 40px; }
+      .comp-cell .cell, .comp-col { padding: 12px 14px; }
+      .intro-block { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="brand" href="https://russperry.github.io/cos-course/">AI Chief of Staff</a>
+  <a class="back" href="https://russperry.github.io/cos-course/week1.html">← Session 1</a>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="meta">Session 1 &nbsp;·&nbsp; Tonight's Lesson &nbsp;·&nbsp; Tuesday, May 5</div>
+    <h1>Why We're Building This — Not Buying It</h1>
+    <p class="subtitle">Before we touch a single command, you need to understand the philosophy. This is the most important 30 minutes of the entire course.</p>
+  </section>
+
+  <!-- MEET CALLOUT -->
+  <div class="callout">
+    <div class="callout-text">
+      <div class="label">Live Tonight</div>
+      <p>Google Meet · 7:00 – 9:00 PM MST · Goes live at 6:45</p>
+    </div>
+    <a href="https://meet.google.com/twm-rwzw-jsr" class="btn">Join the Call →</a>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- SECTION 1: BUILD VS BUY -->
+  <section>
+    <div class="section-label">Part 1 of Tonight · 30 Minutes</div>
+    <div class="intro-block">
+      <h2>Build vs. Buy — And Why This Wins</h2>
+      <p>You've seen the ads. ChatGPT. Notion AI. Superhuman. "Let AI handle your inbox!" There are a hundred tools promising to be your AI assistant. Most of them are <strong>renting you a black box</strong> you'll never own.</p>
+      <p>What we're building here is different. This isn't a SaaS subscription you'll cancel in six months when the novelty wears off. This is <strong>infrastructure</strong> — your infrastructure — that runs on your machine, learns your context, and compounds in value every single week.</p>
+      <p>Tonight we're going to show you exactly why that matters, and then we're going to build it together.</p>
+    </div>
+
+    <!-- COMPARISON -->
+    <div class="comparison">
+      <div class="comparison-row">
+        <!-- Header Row -->
+        <div class="comp-col header-col"><h4>&nbsp;</h4></div>
+        <div class="comp-col header-col">
+          <h4>Off-the-Shelf AI Tools</h4>
+          <span class="tag theirs">ChatGPT, Notion AI, etc.</span>
+        </div>
+        <div class="comp-col header-col">
+          <h4>What We're Building</h4>
+          <span class="tag ours">Your AI COS Stack</span>
+        </div>
+
+        <!-- Row: Cost -->
+        <div class="comp-cell">
+          <div class="cell">Monthly Cost</div>
+          <div class="cell"><span class="red">$20–$200+/mo</span> per tool. Stacks fast.</div>
+          <div class="cell"><span class="volt">~$20/mo</span> (Claude Pro). That's it.</div>
+        </div>
+
+        <!-- Row: Data -->
+        <div class="comp-cell">
+          <div class="cell">Your Data</div>
+          <div class="cell">Lives on their servers. Trains their models.</div>
+          <div class="cell"><span class="volt">Runs locally.</span> Your data never leaves your machine.</div>
+        </div>
+
+        <!-- Row: Context -->
+        <div class="comp-cell">
+          <div class="cell">Business Context</div>
+          <div class="cell">You re-explain yourself every session. No memory.</div>
+          <div class="cell"><span class="volt">CONTEXT.md.</span> Your COS knows your business, goals, and voice permanently.</div>
+        </div>
+
+        <!-- Row: Integrations -->
+        <div class="comp-cell">
+          <div class="cell">Integrations</div>
+          <div class="cell">Whatever they decide to build. You wait.</div>
+          <div class="cell"><span class="volt">You build what you need.</span> Gmail, Calendar, Slack, Stripe — any API.</div>
+        </div>
+
+        <!-- Row: Ownership -->
+        <div class="comp-cell">
+          <div class="cell">Who Owns It</div>
+          <div class="cell">They do. They can raise prices, shut down, or pivot tomorrow.</div>
+          <div class="cell"><span class="volt">You do.</span> Fully. Forever.</div>
+        </div>
+
+        <!-- Row: Skill -->
+        <div class="comp-cell">
+          <div class="cell">What You Learn</div>
+          <div class="cell">How to use their UI. Skills that expire when they redesign.</div>
+          <div class="cell"><span class="volt">How AI systems actually work.</span> Skills that compound for the next 20 years.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <p>The tools change every six months. <strong>The underlying mental model doesn't.</strong> Once you understand how to wire context, memory, and automation into an AI system — you can build anything on any stack, forever. That's the real investment you're making tonight.</p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SECTION 2: HOW THE COURSE WORKS -->
+  <section>
+    <div class="section-label">How Every Session Works</div>
+    <div class="intro-block">
+      <h2>The Cooking Show Model</h2>
+      <p>Every session follows the same structure. Think of it like a cooking show:</p>
+      <p><strong>First, I show you the finished dish.</strong> You see exactly what we're building before we touch anything. No surprises, no mystery.</p>
+      <p><strong>Then we cook together.</strong> I walk through each step live. You follow along on your own machine. By the end of the session, you have the finished product running — not a tutorial you watched, but something you actually built.</p>
+      <p>That's it. Every time. Rinse, repeat across 4 sessions.</p>
+    </div>
+
+    <div class="section-label" style="margin-top: 32px;">Tonight's Flow</div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="timing">7:00 PM · 30 min</div>
+          <h3>The Mental Model</h3>
+          <p>Build vs. buy. Why this stack. What a real AI COS does vs. what the ads promise. What we're building across all 4 sessions and what you'll have by May 17.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="timing">7:30 PM · 20 min</div>
+          <h3>Install Ghostty + Hermes</h3>
+          <p>Get your terminal up. Connect Claude Pro. Run your first prompt. This is the moment it gets real — you'll feel the difference immediately.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="timing">7:50 PM · 20 min</div>
+          <h3>Build Your CONTEXT.md</h3>
+          <p>This is your COS's brain. We write it together — your business, your voice, your priorities. This file is what separates a generic AI from <em>your</em> AI.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="timing">8:10 PM · 15 min</div>
+          <h3>Wire Gmail + Calendar</h3>
+          <p>Connect your inbox and calendar to Hermes. One-time setup. This is where the automation starts — your COS can now read, sort, and respond to email.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="timing">8:25 PM · 20 min</div>
+          <h3>Deploy Triage + Morning Brief</h3>
+          <p>Set your 3-tier email sort running on autopilot. Wire your morning summary to your phone. By the time you wake up tomorrow, your COS is already working.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <div class="timing">8:45 PM · 15 min</div>
+          <h3>Live Test + Open Support</h3>
+          <p>Your COS sends a real email — live, in the session, in front of everyone. Then open floor: questions, troubleshooting, celebration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SECTION 3: STEP BY STEP BUILDS -->
+  <section>
+    <div class="section-label">Step-by-Step Build Guide</div>
+    <p style="font-size:15px; color:var(--gray-light); margin-bottom:36px; line-height:1.7;">Follow along during the session. Every command is copy-paste ready. You don't need to memorize anything — just run what's here.</p>
+
+    <!-- STEP 1: Tabby -->
+    <div class="install-block">
+      <div class="install-header">
+        <span class="title">Step 1 — Install Ghostty Terminal</span>
+        <span class="step-badge">Tool Setup</span>
+      </div>
+      <div class="install-body">
+        <p>Ghostty is your terminal — the window into your COS. If that word scares you, good. It won't by the end of tonight.</p>
+        <p>1. Go to <a href="https://ghostty.org" target="_blank">ghostty.org</a> and download for your OS.<br/>
+           2. Install it like any other app.<br/>
+           3. Open it. You'll see a command prompt. That's it. You're in.</p>
+        <p><strong>What is a terminal?</strong> It's just a text-based way to talk to your computer. Instead of clicking buttons, you type instructions. Your COS lives here.</p>
+      </div>
+    </div>
+
+    <!-- STEP 2: Hermes -->
+    <div class="install-block">
+      <div class="install-header">
+        <span class="title">Step 2 — Install Hermes Agent</span>
+        <span class="step-badge">Core Install</span>
+      </div>
+      <div class="install-body">
+        <p>Hermes is the runtime — the operating system your AI COS lives inside. One command installs everything.</p>
+        <p>In Tabby, paste this and press Enter:</p>
+        <pre><span class="cmd">curl -fsSL https://hermes-agent.nousresearch.com/install.sh | sh</span></pre>
+        <p>It'll run for about 60 seconds. When it finishes, type:</p>
+        <pre><span class="cmd">hermes --version</span></pre>
+        <p>If you see a version number, you're good. <strong>That's your COS runtime installed.</strong></p>
+      </div>
+    </div>
+
+    <!-- STEP 3: Claude -->
+    <div class="install-block">
+      <div class="install-header">
+        <span class="title">Step 3 — Connect Claude Pro</span>
+        <span class="step-badge">AI Brain</span>
+      </div>
+      <div class="install-body">
+        <p>Claude Pro is the brain. ~$20/month. The only ongoing cost in this entire stack.</p>
+        <p>You need an API key. Go to <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>, create an account, and generate a key.</p>
+        <p>Then in Ghostty:</p>
+        <pre><span class="cmd">hermes config set model.provider anthropic
+hermes config set model.default claude-sonnet-4-5
+hermes config set ANTHROPIC_API_KEY sk-ant...HERE</span></pre>
+        <p>Test it:</p>
+        <pre><span class="cmd">hermes "Say hello and tell me you're my new Chief of Staff"</span></pre>
+        <p><strong>When it replies — that's your COS saying hello for the first time.</strong></p>
+      </div>
+    </div>
+
+    <!-- STEP 4: CONTEXT.md -->
+    <div class="install-block">
+      <div class="install-header">
+        <span class="title">Step 4 — Write Your CONTEXT.md</span>
+        <span class="step-badge">The Brain File</span>
+      </div>
+      <div class="install-body">
+        <p>This is the most important file you'll ever write for your COS. It's what makes it <em>yours</em> — not a generic AI, but a system that knows your business, your voice, and your priorities.</p>
+        <p>Create the file:</p>
+        <pre><span class="cmd">mkdir -p ~/my-cos && nano ~/my-cos/CONTEXT.md</span></pre>
+        <p>Paste this template and fill it in during the session:</p>
+        <pre><span class="comment"># My Name — Context for My AI Chief of Staff
+
+## Who I Am
+[Your name, role, company, what you do in 2-3 sentences]
+
+## My Business
+[What you sell, who you sell it to, current focus / biggest priorities]
+
+## My Voice
+[How you write emails. Casual or formal? Short or long? Sign off with?]
+
+## My Top 3 Priorities Right Now
+1. [Priority 1]
+2. [Priority 2]
+3. [Priority 3]
+
+## Tools I Use Daily
+[Email, calendar, Slack, CRM — whatever matters]</span></pre>
+        <p>Save with <code>Ctrl+X</code>, then <code>Y</code>, then <code>Enter</code>.</p>
+        <p><strong>Now tell Hermes where to find it:</strong></p>
+        <pre><span class="cmd">hermes config set context_file ~/my-cos/CONTEXT.md</span></pre>
+      </div>
+    </div>
+
+    <!-- STEP 5: Gmail -->
+    <div class="install-block">
+      <div class="install-header">
+        <span class="title">Step 5 — Wire Gmail + Google Calendar</span>
+        <span class="step-badge">First Integration</span>
+      </div>
+      <div class="install-body">
+        <p>This is where it gets real. We're giving your COS access to your inbox and calendar — the two places where most of your work actually happens.</p>
+        <pre><span class="cmd">hermes setup google-workspace</span></pre>
+        <p>This walks you through a one-time OAuth flow. You'll see a URL — open it in your browser, authorize, paste the code back. Takes about 3 minutes.</p>
+        <p>Test it:</p>
+        <pre><span class="cmd">hermes "How many unread emails do I have right now?"</span></pre>
+        <p>When it answers correctly — <strong>your COS is inside your inbox.</strong></p>
+      </div>
+    </div>
+
+    <!-- STEP 6: Triage -->
+    <div class="install-block">
+      <div class="install-header">
+        <span class="title">Step 6 — Deploy Email Triage + Morning Brief</span>
+        <span class="step-badge">Automation Live</span>
+      </div>
+      <div class="install-body">
+        <p>The payoff. Your COS sorts your email into 3 tiers every 30 minutes, and sends you a morning summary to your phone. This alone is worth the entire course.</p>
+        <p><strong>3-Tier Triage:</strong></p>
+        <p>
+          <strong>Tier 1 – Respond Now:</strong> Board, investors, direct reports with escalations, revenue-critical.<br/>
+          <strong>Tier 2 – Handle Today:</strong> Team leads, active projects, scheduling, customer feedback.<br/>
+          <strong>Tier 3 – FYI/Archive:</strong> Newsletters, notifications, cold outreach.
+        </p>
+        <pre><span class="cmd">hermes "Set up an automated email triage that runs every 30 minutes. Sort into 3 tiers: Tier 1 (respond now - board, investors, escalations), Tier 2 (handle today - team, projects, customers), Tier 3 (archive - newsletters, notifications). Label each email with its tier."</span></pre>
+        <p><strong>Morning Brief to your phone:</strong></p>
+        <pre><span class="cmd">hermes "Set up a daily morning brief at 7 AM that summarizes: unread Tier 1 and Tier 2 emails, today's calendar, and my top 3 priorities from CONTEXT.md. Send it to [your-telegram-or-email]."</span></pre>
+        <p>Tomorrow morning, your phone gets a brief before you've had your first cup of coffee. <strong>That's your COS working while you sleep.</strong></p>
+      </div>
+    </div>
+
+    <!-- STEP 7: Live Test -->
+    <div class="install-block">
+      <div class="install-header">
+        <span class="title">Step 7 — Live Test: Your COS Sends an Email</span>
+        <span class="step-badge">The Moment</span>
+      </div>
+      <div class="install-body">
+        <p>The finale. We'll pick a real email from your inbox and have your COS draft and send a reply — live, in front of the class.</p>
+        <pre><span class="cmd">hermes "Find an email in my inbox that needs a reply. Draft a response in my voice, show it to me first, and when I say 'send' — send it."</span></pre>
+        <p>When that email goes out — <strong>you've crossed the line.</strong> You're not just using AI. You have a Chief of Staff.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- TONIGHT'S DELIVERABLES -->
+  <section>
+    <div class="section-label">You Leave Tonight With</div>
+    <ul class="checklist">
+      <li><div class="check"></div><span><strong>Ghostty terminal</strong> installed and comfortable</span></li>
+      <li><div class="check"></div><span><strong>Hermes Agent</strong> running on your machine</span></li>
+      <li><div class="check"></div><span><strong>Claude Pro</strong> connected as your COS brain</span></li>
+      <li><div class="check"></div><span><strong>CONTEXT.md</strong> written in your voice</span></li>
+      <li><div class="check"></div><span><strong>Gmail + Calendar</strong> wired in</span></li>
+      <li><div class="check"></div><span><strong>3-tier triage</strong> running every 30 minutes automatically</span></li>
+      <li><div class="check"></div><span><strong>Morning brief</strong> scheduled to hit your phone daily</span></li>
+      <li><div class="check"></div><span><strong>First email sent</strong> by your COS — live</span></li>
+    </ul>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- HOMEWORK -->
+  <section>
+    <div class="section-label">Homework — Before May 10</div>
+    <div class="intro-block">
+      <h2>Do Nothing. That's the Assignment.</h2>
+      <p>Between now and Session 2, <strong>let your COS run.</strong> Don't tinker. Don't rebuild. Just watch it work.</p>
+      <p>Watch your morning summary hit your phone every day. Notice what the triage catches. Pay attention to where it's right and where it surprises you.</p>
+      <p><strong>One task:</strong> Write down 3 things you currently handle yourself that you'd love to hand off to your COS. Bring that list to Session 2. That list becomes our build agenda.</p>
+    </div>
+  </section>
+
+</div><!-- /wrap -->
+
+<footer>
+  <div class="footer-inner">
+    <p>AI Chief of Staff · Cohort 1 · May 2026</p>
+    <a href="https://russperry.github.io/cos-course/week2.html">Session 2 – May 10 →</a>
+  </div>
+</footer>
+
+</body>
+</html>
