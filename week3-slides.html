@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 3 – The Intelligence Layer | AI Chief of Staff</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0B0C0B;--volt:#D5FF02;--white:#F5F5F3;--gray:#999;--dim:#666;
+  --dark-card:#141514;--border:#1E1F1E;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+}
+html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var(--sans)}
+.deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+.scale-wrap{width:1920px;height:1080px;position:relative;transform-origin:center center}
+.slide{
+  position:absolute;inset:0;background:var(--black);display:none;
+  padding:80px 100px;flex-direction:column;justify-content:center;
+}
+.slide.active{display:flex}
+
+/* ── NAV ── */
+.nav{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:16px;z-index:999;
+  background:rgba(11,12,11,.85);border:1px solid var(--border);
+  border-radius:40px;padding:10px 20px;backdrop-filter:blur(12px)}
+.nav button{background:none;border:none;cursor:pointer;color:var(--gray);
+  font-size:20px;padding:4px 8px;transition:color .2s}
+.nav button:hover{color:var(--volt)}
+.nav-count{font-family:var(--sans);font-size:13px;color:var(--dim);min-width:52px;text-align:center}
+.nav-hint{font-size:11px;color:var(--dim);letter-spacing:.05em}
+
+/* ── SHARED ── */
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--volt);margin-bottom:20px}
+.serif{font-family:var(--serif)}
+.volt{color:var(--volt)}
+.dim{color:var(--dim)}
+.gray{color:var(--gray)}
+.card{background:var(--dark-card);border:1px solid var(--border);border-radius:14px;padding:32px}
+.card-volt{border-color:rgba(213,255,2,.25)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:20px}
+
+/* ── SECTION DIVIDER ── */
+.section-slide{justify-content:center;align-items:flex-start}
+.section-slide .part{font-size:13px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--volt);margin-bottom:24px}
+.section-slide h1{font-family:var(--serif);font-size:96px;line-height:1.0;
+  letter-spacing:-.03em;color:var(--white);margin-bottom:28px}
+.section-slide .sub{font-size:22px;color:var(--gray);max-width:680px;line-height:1.6}
+
+/* ── SLIDE 1 TITLE ── */
+.title-slide h1{font-family:var(--serif);font-size:84px;line-height:1.0;
+  letter-spacing:-.03em;color:var(--white);margin-bottom:24px}
+.title-slide .tagline{font-size:24px;color:var(--gray);max-width:760px;line-height:1.6;margin-bottom:40px}
+.title-slide .meta{font-size:15px;color:var(--dim)}
+.byline{position:absolute;bottom:80px;right:100px;
+  display:flex;align-items:center;gap:10px;
+  font-size:15px;color:var(--dim)}
+.byline::before{content:'';width:8px;height:8px;background:var(--volt);
+  border-radius:50%;display:inline-block}
+
+/* ── CONTENT SLIDES ── */
+.slide-title{font-size:48px;font-family:var(--serif);color:var(--white);
+  letter-spacing:-.02em;margin-bottom:48px;line-height:1.1}
+
+/* CHECKLIST */
+.checklist{list-style:none;display:flex;flex-direction:column;gap:0}
+.check-row{display:flex;align-items:flex-start;gap:20px;
+  padding:24px 0;border-bottom:1px solid var(--border);font-size:22px;color:var(--gray);line-height:1.5}
+.check-row:first-child{border-top:1px solid var(--border)}
+.check-icon{color:var(--volt);font-size:22px;font-weight:700;flex-shrink:0;padding-top:2px}
+.check-row.active-row{color:var(--white)}
+.check-row.active-row .check-icon{color:var(--volt)}
+
+/* TWO-COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.col-head{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  margin-bottom:24px}
+.col-volt{color:var(--volt)}
+.col-white{color:var(--white)}
+.bullet-list{list-style:none;display:flex;flex-direction:column;gap:18px}
+.bullet-list li{font-size:20px;color:var(--gray);display:flex;align-items:flex-start;gap:14px;line-height:1.5}
+.bullet-list li::before{content:'–';color:var(--volt);flex-shrink:0;font-weight:600}
+
+/* STEP LIST */
+.step-list{list-style:none;display:flex;flex-direction:column;gap:4px}
+.step-row{display:grid;grid-template-columns:60px 1fr;
+  padding:22px 0;border-bottom:1px solid var(--border);align-items:center}
+.step-row:first-child{border-top:1px solid var(--border)}
+.step-num{font-size:32px;font-weight:700;color:var(--volt);font-family:var(--serif)}
+.step-text{font-size:21px;color:var(--white)}
+.cta-box{background:rgba(213,255,2,.07);border:1px solid rgba(213,255,2,.2);
+  border-radius:10px;padding:20px 28px;margin-top:32px;
+  font-size:18px;color:var(--volt);font-weight:600}
+
+/* HOMEWORK CARD */
+.hw-card{background:var(--dark-card);border:1px solid rgba(213,255,2,.2);
+  border-radius:16px;padding:40px 48px;max-width:980px}
+.hw-card p{font-size:22px;color:var(--gray);line-height:1.7;margin-bottom:16px}
+.hw-card p:last-child{margin-bottom:0}
+.hw-card strong{color:var(--white);font-weight:500}
+
+/* OPEN FLOOR */
+.open-col h3{font-family:var(--serif);font-size:32px;color:var(--white);margin-bottom:12px}
+.open-col p{font-size:18px;color:var(--gray);line-height:1.6}
+.wa-link{display:inline-block;margin-top:32px;font-size:17px;font-weight:600;
+  color:var(--black);background:var(--volt);padding:14px 28px;border-radius:8px}
+
+/* VOLT CALLOUT */
+.volt-big{font-size:72px;font-family:var(--serif);color:var(--volt);line-height:1.1;margin-bottom:16px}
+
+/* CODE / TERMINAL */
+.terminal{background:#08090A;border:1px solid var(--border);border-radius:12px;
+  padding:28px 32px;font-family:'SF Mono','Menlo','Monaco',monospace;
+  font-size:16px;color:var(--gray);line-height:1.7;white-space:pre;overflow:hidden}
+.terminal .t-label{font-size:11px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--dim);margin-bottom:14px;font-family:var(--sans)}
+.terminal .t-volt{color:var(--volt)}
+.terminal .t-white{color:var(--white)}
+
+/* KEYBOARD HINT */
+.keyboard-hint{position:absolute;bottom:80px;left:100px;
+  font-size:13px;color:var(--dim);display:flex;gap:20px}
+.key{display:inline-block;border:1px solid var(--border);border-radius:5px;
+  padding:3px 8px;font-size:12px;color:var(--dim);margin:0 2px}
+</style>
+</head>
+<body>
+
+<div class="deck">
+<div class="scale-wrap" id="scaleWrap">
+
+<!-- SLIDE 1: TITLE -->
+<div class="slide title-slide active" data-slide="1">
+  <div class="eyebrow">Session 3 &nbsp;·&nbsp; AI Chief of Staff Cohort 1</div>
+  <h1>The Intelligence<br>Layer</h1>
+  <p class="tagline">A scheduler manages your calendar. A COS knows the context behind every meeting.</p>
+  <p class="meta">Monday, May 11 &nbsp;·&nbsp; 7:00 – 9:00 PM MST</p>
+  <div class="keyboard-hint">
+    <span><span class="key">←</span><span class="key">→</span> navigate</span>
+    <span><span class="key">F</span> fullscreen</span>
+  </div>
+  <div class="byline">Russ Perry</div>
+</div>
+
+<!-- SLIDE 2: WHERE WE ARE -->
+<div class="slide" data-slide="2">
+  <div class="eyebrow">Progress Check</div>
+  <div class="slide-title">Where We Are</div>
+  <ul class="checklist">
+    <li class="check-row"><span class="check-icon">✓</span> COS installed &amp; running on your machine</li>
+    <li class="check-row"><span class="check-icon">✓</span> Email triage automated</li>
+    <li class="check-row"><span class="check-icon">✓</span> Voice agent live – your COS has a phone number</li>
+    <li class="check-row active-row"><span class="check-icon">→</span> Tonight: The Intelligence Layer</li>
+  </ul>
+</div>
+
+<!-- SLIDE 3: THE GAP -->
+<div class="slide" data-slide="3">
+  <div class="eyebrow">The Gap</div>
+  <div class="slide-title" style="max-width:1100px">Your assistant knows your calendar.<br>Your COS knows <span class="volt">why</span> it matters.</div>
+  <div class="two-col" style="margin-top:8px">
+    <div>
+      <div class="col-head col-white">A Calendar Tells You</div>
+      <ul class="bullet-list" style="--volt:#F5F5F3">
+        <li>What time the meeting is</li>
+        <li>Who's on the invite</li>
+        <li>Where it's happening</li>
+        <li>How long it'll take</li>
+      </ul>
+    </div>
+    <div>
+      <div class="col-head col-volt">A COS Tells You</div>
+      <ul class="bullet-list">
+        <li>Who they actually are</li>
+        <li>Why this meeting exists</li>
+        <li>What you said last time</li>
+        <li>What to say this time</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: WHAT CONTEXT ACTUALLY MEANS -->
+<div class="slide" data-slide="4">
+  <div class="eyebrow">The Real Definition</div>
+  <div class="slide-title">What Context Actually Means</div>
+  <p style="font-size:22px;color:var(--gray);margin-bottom:40px;max-width:900px;line-height:1.6">Before any meeting, your COS should be able to answer four questions without you asking:</p>
+  <div class="grid4">
+    <div class="card card-volt">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Who They Are</div>
+      <p style="font-size:17px;color:var(--gray);line-height:1.6">Role, company, how you met, where they sit in your world</p>
+    </div>
+    <div class="card card-volt">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Last Time You Talked</div>
+      <p style="font-size:17px;color:var(--gray);line-height:1.6">When, about what, what was promised, what was open</p>
+    </div>
+    <div class="card card-volt">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">What They Care About</div>
+      <p style="font-size:17px;color:var(--gray);line-height:1.6">Priorities, sensitivities, what moves the needle for them</p>
+    </div>
+    <div class="card card-volt">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">What You Want</div>
+      <p style="font-size:17px;color:var(--gray);line-height:1.6">The single outcome you need from this meeting</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: THE CONTACTS SYSTEM -->
+<div class="slide" data-slide="5">
+  <div class="eyebrow">The Foundation</div>
+  <div class="slide-title">The Contacts System</div>
+  <div class="two-col" style="gap:60px">
+    <div>
+      <ul class="bullet-list">
+        <li>One markdown file per person</li>
+        <li>Lives in <span class="volt">~/contacts/</span> on your machine</li>
+        <li>Your COS reads it before every interaction</li>
+        <li>Simple, portable, future-proof – just text files</li>
+        <li>You own it forever, no SaaS lock-in</li>
+      </ul>
+    </div>
+    <div>
+      <div class="terminal">
+<span class="t-label">~/contacts/</span>
+<span class="t-volt">~/contacts/</span>
+├── <span class="t-white">sarah-chen.md</span>
+├── <span class="t-white">marcus-bailey.md</span>
+├── <span class="t-white">jenna-rodriguez.md</span>
+├── <span class="t-white">david-kim.md</span>
+└── <span class="t-white">_index.md</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: WHAT GOES IN A CONTACT FILE -->
+<div class="slide" data-slide="6">
+  <div class="eyebrow">Structure</div>
+  <div class="slide-title">What Goes In a Contact File</div>
+  <div class="two-col" style="gap:60px">
+    <div>
+      <ul class="bullet-list">
+        <li><strong style="color:var(--white)">Name</strong> – full name + how they're addressed</li>
+        <li><strong style="color:var(--white)">Role + Company</strong> – what they do, where</li>
+        <li><strong style="color:var(--white)">Relationship notes</strong> – how you met, why they matter</li>
+        <li><strong style="color:var(--white)">Last interaction</strong> – when, what, what's open</li>
+        <li><strong style="color:var(--white)">What they care about</strong> – priorities, hot buttons</li>
+        <li><strong style="color:var(--white)">How they communicate</strong> – direct, formal, slow, fast</li>
+      </ul>
+    </div>
+    <div>
+      <div class="terminal">
+<span class="t-label">sarah-chen.md</span>
+<span class="t-volt"># Sarah Chen</span>
+<span class="t-white">Role:</span> VP Marketing, Northstar
+<span class="t-white">Met:</span> SaaStr 2024
+<span class="t-white">Cares about:</span> ROI per channel,
+   straight talk, no fluff
+<span class="t-white">Comms:</span> short, direct, no emoji
+<span class="t-white">Last:</span> Apr 22 – pitched Q3 retainer,
+   she asked for case studies
+<span class="t-white">Open:</span> send 2 case studies + pricing</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: LIVE BUILD - FIRST CONTACT FILE -->
+<div class="slide" data-slide="7">
+  <div class="eyebrow">Live Build · Part 1</div>
+  <div class="slide-title">Your First Contact File</div>
+  <ol class="step-list">
+    <li class="step-row"><span class="step-num">1</span><span class="step-text">Open Ghostty – we're working in the terminal</span></li>
+    <li class="step-row"><span class="step-num">2</span><span class="step-text">Create the folder: <span class="volt">mkdir ~/contacts</span></span></li>
+    <li class="step-row"><span class="step-num">3</span><span class="step-text">Create your first file – pick someone you'll see this week</span></li>
+    <li class="step-row"><span class="step-num">4</span><span class="step-text">Wire it to your COS: tell it where contacts live and when to read them</span></li>
+  </ol>
+  <div class="cta-box">Pick one real person on your calendar this week – we're building this for them.</div>
+</div>
+
+<!-- SLIDE 8: THE MEETING PREP CARD -->
+<div class="slide" data-slide="8">
+  <div class="eyebrow">The Output</div>
+  <div class="slide-title">The Meeting Prep Card</div>
+  <p style="font-size:22px;color:var(--gray);margin-bottom:40px;max-width:1000px;line-height:1.6">An auto-generated briefing that lands on your phone 30 minutes before every calendar event. Five sections, scannable in 60 seconds.</p>
+  <div class="grid4" style="grid-template-columns:1fr 1fr 1fr 1fr 1fr">
+    <div class="card">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Who</div>
+      <p style="font-size:16px;color:var(--gray);line-height:1.6">Name, role, company in one line</p>
+    </div>
+    <div class="card">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Their Context</div>
+      <p style="font-size:16px;color:var(--gray);line-height:1.6">Pulled straight from the contact file</p>
+    </div>
+    <div class="card">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Your Goal</div>
+      <p style="font-size:16px;color:var(--gray);line-height:1.6">The one outcome that matters most</p>
+    </div>
+    <div class="card">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Talking Points</div>
+      <p style="font-size:16px;color:var(--gray);line-height:1.6">3-5 lines tailored to this person</p>
+    </div>
+    <div class="card">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Open Items</div>
+      <p style="font-size:16px;color:var(--gray);line-height:1.6">Loose threads from last interaction</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 9: LIVE BUILD - MEETING PREP COMMAND -->
+<div class="slide" data-slide="9">
+  <div class="eyebrow">Live Build · Part 2</div>
+  <div class="slide-title">The <span class="volt">prep</span> Command</div>
+  <ol class="step-list">
+    <li class="step-row"><span class="step-num">1</span><span class="step-text">Reads your calendar for the next event</span></li>
+    <li class="step-row"><span class="step-num">2</span><span class="step-text">Finds the matching contact file by name or email</span></li>
+    <li class="step-row"><span class="step-num">3</span><span class="step-text">Generates the prep card from contact + meeting context</span></li>
+    <li class="step-row"><span class="step-num">4</span><span class="step-text">Drops it on cron: runs 30 minutes before every event</span></li>
+  </ol>
+  <div class="cta-box">One command. Runs forever. Every meeting gets a briefing.</div>
+</div>
+
+<!-- SLIDE 10: WHAT GOOD PREP LOOKS LIKE -->
+<div class="slide" data-slide="10">
+  <div class="eyebrow">Example Output</div>
+  <div class="slide-title">What Good Prep Looks Like</div>
+  <div class="terminal" style="max-width:1400px;font-size:17px">
+<span class="t-label">prep card · 2:30 PM coffee with Sarah Chen</span>
+<span class="t-volt">WHO</span>
+  Sarah Chen · VP Marketing, Northstar · met SaaStr '24
+
+<span class="t-volt">CONTEXT</span>
+  Direct communicator, allergic to fluff. Cares about ROI per channel.
+  Last talked Apr 22 – pitched Q3 retainer, she asked for case studies.
+
+<span class="t-volt">YOUR GOAL</span>
+  Get a verbal yes on the retainer or a clear no.
+
+<span class="t-volt">TALKING POINTS</span>
+  – Open with the 2 case studies you sent (did she read them?)
+  – Walk the projected ROI on Q3 spend
+  – Ask what would need to be true for her to sign this week
+
+<span class="t-volt">OPEN ITEMS</span>
+  – Pricing tier confirmation
+  – Start date – she mentioned July 1 originally</div>
+</div>
+
+<!-- SLIDE 11: WEEKLY STRATEGIC NARRATIVE -->
+<div class="slide" data-slide="11">
+  <div class="eyebrow">The Compounding Layer</div>
+  <div class="slide-title">The Weekly Strategic Narrative</div>
+  <div class="two-col" style="gap:60px">
+    <div>
+      <p style="font-size:21px;color:var(--gray);line-height:1.7;margin-bottom:28px">Every Friday at 4 PM, your COS synthesizes the entire week and delivers it to your phone.</p>
+      <ul class="bullet-list">
+        <li>What got done this week</li>
+        <li>What's still open and who owes what</li>
+        <li>What actually matters next week</li>
+        <li>Patterns it noticed across meetings, emails, calls</li>
+      </ul>
+    </div>
+    <div class="card card-volt" style="padding:36px">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:16px">Friday 4:00 PM</div>
+      <p style="font-size:46px;font-family:var(--serif);color:var(--white);line-height:1.1;margin-bottom:20px">One message.<br>Your whole week.</p>
+      <p style="font-size:17px;color:var(--gray);line-height:1.6">Delivered to Telegram. Read it on the way home. Walk into Monday knowing exactly what matters.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 12: LIVE BUILD - WEEKLY NARRATIVE -->
+<div class="slide" data-slide="12">
+  <div class="eyebrow">Live Build · Part 3</div>
+  <div class="slide-title">The Friday Narrative</div>
+  <ol class="step-list">
+    <li class="step-row"><span class="step-num">1</span><span class="step-text">Write the synthesis prompt – what to look at, what to surface</span></li>
+    <li class="step-row"><span class="step-num">2</span><span class="step-text">Set the cron job: <span class="volt">0 16 * * 5</span> – every Friday at 4 PM</span></li>
+    <li class="step-row"><span class="step-num">3</span><span class="step-text">Wire output to Telegram so it lands on your phone</span></li>
+    <li class="step-row"><span class="step-num">4</span><span class="step-text">Test it now – fire a manual run so you see Friday's report tonight</span></li>
+  </ol>
+  <div class="cta-box">By the time we hit slide 16, this is running on your machine.</div>
+</div>
+
+<!-- SLIDE 13: INTELLIGENCE COMPOUNDS -->
+<div class="slide" data-slide="13">
+  <div class="eyebrow">Why This Matters</div>
+  <div class="slide-title">Intelligence Compounds</div>
+  <div style="display:flex;flex-direction:column;gap:32px;max-width:1100px">
+    <p style="font-size:32px;font-family:var(--serif);color:var(--white);line-height:1.3">The longer this runs, the smarter it gets.</p>
+    <div class="two-col" style="gap:48px">
+      <div class="card">
+        <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Every Contact File</div>
+        <p style="font-size:18px;color:var(--gray);line-height:1.6">= sharper prep cards. The system gets more personal with every person you add.</p>
+      </div>
+      <div class="card">
+        <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Every Week It Runs</div>
+        <p style="font-size:18px;color:var(--gray);line-height:1.6">= better pattern recognition. It starts to see what you keep saying yes to – and what's actually moving the business.</p>
+      </div>
+    </div>
+    <p style="font-size:20px;color:var(--gray);line-height:1.6">A scheduler is the same on day 1 and day 1,000. This gets exponentially more useful.</p>
+  </div>
+</div>
+
+<!-- SLIDE 14: COMMON MISTAKES -->
+<div class="slide" data-slide="14">
+  <div class="eyebrow">Avoid These</div>
+  <div class="slide-title">Common Mistakes</div>
+  <div class="grid4" style="grid-template-columns:1fr 1fr 1fr">
+    <div class="card">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:14px">Contact Files Too Long</div>
+      <p style="font-size:17px;color:var(--gray);line-height:1.6">If you can't scan it in 10 seconds, your COS is wasting tokens. Keep it tight – the goal is signal, not biography.</p>
+    </div>
+    <div class="card">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:14px">Prep Cards Too Generic</div>
+      <p style="font-size:17px;color:var(--gray);line-height:1.6">If the card could be about anyone, it's broken. Force it to use the actual contact file – names, history, specifics.</p>
+    </div>
+    <div class="card">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:14px">Not Testing It Live</div>
+      <p style="font-size:17px;color:var(--gray);line-height:1.6">Don't trust it until you've used it on a real meeting. Run it tonight, even on a low-stakes call.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 15: LIVE TEST -->
+<div class="slide section-slide" data-slide="15">
+  <div class="part">Live Test</div>
+  <h1>Run prep on a real<br>meeting – right now.</h1>
+  <p class="sub">Pick something on your calendar tomorrow. Generate the card. Show it in WhatsApp. We fix it live if it breaks.</p>
+</div>
+
+<!-- SLIDE 16: WHAT YOU BUILT TONIGHT -->
+<div class="slide" data-slide="16">
+  <div class="eyebrow">Recap</div>
+  <div class="slide-title">What You Built Tonight</div>
+  <ul class="checklist">
+    <li class="check-row"><span class="check-icon">✓</span> A contacts system – one file per person, in <span class="volt">~/contacts/</span></li>
+    <li class="check-row"><span class="check-icon">✓</span> The <span class="volt">prep</span> command – generates a briefing for every meeting</li>
+    <li class="check-row"><span class="check-icon">✓</span> The weekly strategic narrative – Fridays at 4 PM, straight to your phone</li>
+    <li class="check-row"><span class="check-icon">✓</span> All three running on cron – they work whether you remember them or not</li>
+  </ul>
+</div>
+
+<!-- SLIDE 17: HOMEWORK -->
+<div class="slide" data-slide="17">
+  <div class="eyebrow">Before Session 4</div>
+  <div class="slide-title" style="margin-bottom:36px">Homework</div>
+  <div class="hw-card">
+    <p><strong>1.</strong> Add <strong>5 more contact files</strong> before May 17 – the people you'll actually meet with next week.</p>
+    <p><strong>2.</strong> Let <strong>prep run on at least one real meeting</strong>. Note what was useful and what was noise.</p>
+    <p><strong>3.</strong> Start thinking about <strong>your custom command for Session 4</strong> – the one thing only your business needs.</p>
+    <p style="color:var(--volt);font-weight:500">Session 4: Saturday, May 17 &nbsp;·&nbsp; 7:00 – 9:00 PM MST &nbsp;·&nbsp; Make It Yours</p>
+  </div>
+</div>
+
+<!-- SLIDE 18: THE BIGGER PICTURE -->
+<div class="slide" data-slide="18">
+  <div class="eyebrow">Zoom Out</div>
+  <div class="slide-title">The Bigger Picture</div>
+  <p style="font-size:22px;color:var(--gray);margin-bottom:40px;max-width:1000px;line-height:1.6">This was always a 4-session arc. Each one builds on the last.</p>
+  <div class="grid4">
+    <div class="card">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:10px">Session 1</div>
+      <div style="font-size:24px;font-family:var(--serif);color:var(--white);margin-bottom:10px">Installed</div>
+      <p style="font-size:15px;color:var(--gray);line-height:1.5">COS running. Email triaged. Foundation in.</p>
+    </div>
+    <div class="card">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:10px">Session 2</div>
+      <div style="font-size:24px;font-family:var(--serif);color:var(--white);margin-bottom:10px">Voice</div>
+      <p style="font-size:15px;color:var(--gray);line-height:1.5">Phone number live. Inbound + outbound.</p>
+    </div>
+    <div class="card card-volt">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:10px">Session 3 · Tonight</div>
+      <div style="font-size:24px;font-family:var(--serif);color:var(--white);margin-bottom:10px">Intelligence</div>
+      <p style="font-size:15px;color:var(--gray);line-height:1.5">Context. Prep. Weekly synthesis.</p>
+    </div>
+    <div class="card">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:10px">Session 4</div>
+      <div style="font-size:24px;font-family:var(--serif);color:var(--white);margin-bottom:10px">Yours</div>
+      <p style="font-size:15px;color:var(--gray);line-height:1.5">The custom command only your business needs.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 19: Q&A / OPEN SUPPORT -->
+<div class="slide" data-slide="19">
+  <div class="eyebrow">Open Floor</div>
+  <div class="slide-title" style="font-size:68px;margin-bottom:48px">Q&amp;A · Open Support</div>
+  <div class="grid2" style="gap:40px;max-width:1200px">
+    <div>
+      <div class="open-col">
+        <h3>What didn't work?</h3>
+        <p>Stuck on the cron job? Prep card looking generic? Contacts not loading? Bring it up – we fix it now while everyone's here.</p>
+      </div>
+    </div>
+    <div>
+      <div class="open-col">
+        <h3>What gaps do you see?</h3>
+        <p>What's missing from your COS that you wish it could do? Session 4 is custom – start telling me what to build for you.</p>
+      </div>
+    </div>
+  </div>
+  <a class="wa-link" href="https://chat.whatsapp.com/H2JRBHiJRalDDIzchrfoG1?mode=gi_t" target="_blank">Join the WhatsApp Group ↗</a>
+</div>
+
+<!-- SLIDE 20: END CARD -->
+<div class="slide section-slide" data-slide="20" style="justify-content:center;align-items:center;text-align:center">
+  <div class="part" style="margin-bottom:24px">End of Session 3</div>
+  <h1 style="font-size:128px;text-align:center">See you<br>May 17.</h1>
+  <p class="sub" style="text-align:center;margin:0 auto">Session 4 – Make It Yours. Bring the command only your business needs.</p>
+  <p style="margin-top:48px;font-size:18px;color:var(--volt);font-weight:600;letter-spacing:.08em">russperry.co</p>
+</div>
+
+</div><!-- /scale-wrap -->
+</div><!-- /deck -->
+
+<!-- NAV -->
+<div class="nav">
+  <button onclick="prev()" title="Previous">&#8592;</button>
+  <span class="nav-count" id="navCount">1 / 20</span>
+  <button onclick="next()" title="Next">&#8594;</button>
+  <span class="nav-hint">← → keys &nbsp;·&nbsp; F fullscreen</span>
+</div>
+
+<script>
+const TOTAL = 20;
+let current = parseInt(localStorage.getItem('s3slide') || '1');
+
+function go(n) {
+  n = Math.max(1, Math.min(TOTAL, n));
+  document.querySelector('.slide.active')?.classList.remove('active');
+  document.querySelector(`[data-slide="${n}"]`)?.classList.add('active');
+  document.getElementById('navCount').textContent = n + ' / ' + TOTAL;
+  current = n;
+  localStorage.setItem('s3slide', n);
+}
+function next() { go(current + 1); }
+function prev() { go(current - 1); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); next(); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prev(); }
+  if (e.key === 'f' || e.key === 'F') {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+    else document.exitFullscreen?.();
+  }
+});
+
+document.addEventListener('click', e => {
+  if (e.target.closest('.nav') || e.target.closest('a') || e.target.closest('button')) return;
+  next();
+});
+
+function scale() {
+  const wrap = document.getElementById('scaleWrap');
+  const s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+  wrap.style.transform = `scale(${s})`;
+}
+window.addEventListener('resize', scale);
+scale();
+go(current);
+</script>
+</body>
+</html>
