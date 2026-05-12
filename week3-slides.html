@@ -98,6 +98,14 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
   border-radius:10px;padding:20px 28px;margin-top:32px;
   font-size:18px;color:var(--volt);font-weight:600}
 
+/* PROMPT BLOCK */
+.prompt-block{background:#08090A;border:1px solid rgba(213,255,2,.2);border-radius:12px;
+  padding:32px 36px;font-size:18px;color:var(--gray);line-height:1.8;max-width:1400px}
+.prompt-block .p-label{font-size:11px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--volt);margin-bottom:16px;font-family:var(--sans)}
+.prompt-block .p-line{color:var(--white)}
+.prompt-block .p-fill{color:rgba(213,255,2,.5)}
+
 /* HOMEWORK CARD */
 .hw-card{background:var(--dark-card);border:1px solid rgba(213,255,2,.2);
   border-radius:16px;padding:40px 48px;max-width:980px}
@@ -110,18 +118,6 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 .open-col p{font-size:18px;color:var(--gray);line-height:1.6}
 .wa-link{display:inline-block;margin-top:32px;font-size:17px;font-weight:600;
   color:var(--black);background:var(--volt);padding:14px 28px;border-radius:8px}
-
-/* VOLT CALLOUT */
-.volt-big{font-size:72px;font-family:var(--serif);color:var(--volt);line-height:1.1;margin-bottom:16px}
-
-/* CODE / TERMINAL */
-.terminal{background:#08090A;border:1px solid var(--border);border-radius:12px;
-  padding:28px 32px;font-family:'SF Mono','Menlo','Monaco',monospace;
-  font-size:16px;color:var(--gray);line-height:1.7;white-space:pre;overflow:hidden}
-.terminal .t-label{font-size:11px;font-weight:600;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--dim);margin-bottom:14px;font-family:var(--sans)}
-.terminal .t-volt{color:var(--volt)}
-.terminal .t-white{color:var(--white)}
 
 /* KEYBOARD HINT */
 .keyboard-hint{position:absolute;bottom:80px;left:100px;
@@ -140,7 +136,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
   <div class="eyebrow">Session 3 &nbsp;·&nbsp; AI Chief of Staff Cohort 1</div>
   <h1>The Intelligence<br>Layer</h1>
   <p class="tagline">A scheduler manages your calendar. A COS knows the context behind every meeting.</p>
-  <p class="meta">Monday, May 11 &nbsp;·&nbsp; 7:00 – 9:00 PM MST</p>
+  <p class="meta">Tonight &nbsp;·&nbsp; 7:00 – 9:00 PM MST</p>
   <div class="keyboard-hint">
     <span><span class="key">←</span><span class="key">→</span> navigate</span>
     <span><span class="key">F</span> fullscreen</span>
@@ -160,8 +156,34 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
   </ul>
 </div>
 
-<!-- SLIDE 3: THE GAP -->
+<!-- SLIDE 3: THE SHIFT -->
 <div class="slide" data-slide="3">
+  <div class="eyebrow">The Shift</div>
+  <div class="slide-title" style="max-width:1200px">Sessions 1 &amp; 2, you were building.<br>Tonight, you tell your COS <span class="volt">what to build.</span></div>
+  <div class="two-col" style="margin-top:16px">
+    <div>
+      <div class="col-head col-white" style="margin-bottom:20px">Before</div>
+      <ul class="bullet-list">
+        <li>You set up the tools</li>
+        <li>You wrote the commands</li>
+        <li>You configured the workflows</li>
+        <li>You were doing the work</li>
+      </ul>
+    </div>
+    <div>
+      <div class="col-head col-volt" style="margin-bottom:20px">Now</div>
+      <ul class="bullet-list">
+        <li>You define the goal</li>
+        <li>Your COS builds the system</li>
+        <li>Your COS wires it up and tests it</li>
+        <li>You review the output</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: THE GAP -->
+<div class="slide" data-slide="4">
   <div class="eyebrow">The Gap</div>
   <div class="slide-title" style="max-width:1100px">Your assistant knows your calendar.<br>Your COS knows <span class="volt">why</span> it matters.</div>
   <div class="two-col" style="margin-top:8px">
@@ -186,8 +208,8 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
   </div>
 </div>
 
-<!-- SLIDE 4: WHAT CONTEXT ACTUALLY MEANS -->
-<div class="slide" data-slide="4">
+<!-- SLIDE 5: WHAT CONTEXT ACTUALLY MEANS -->
+<div class="slide" data-slide="5">
   <div class="eyebrow">The Real Definition</div>
   <div class="slide-title">What Context Actually Means</div>
   <p style="font-size:22px;color:var(--gray);margin-bottom:40px;max-width:900px;line-height:1.6">Before any meeting, your COS should be able to answer four questions without you asking:</p>
@@ -211,75 +233,43 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
   </div>
 </div>
 
-<!-- SLIDE 5: THE CONTACTS SYSTEM -->
-<div class="slide" data-slide="5">
+<!-- SLIDE 6: THE CONTACTS SYSTEM -->
+<div class="slide" data-slide="6">
   <div class="eyebrow">The Foundation</div>
   <div class="slide-title">The Contacts System</div>
   <div class="two-col" style="gap:60px">
     <div>
+      <p style="font-size:21px;color:var(--gray);line-height:1.7;margin-bottom:32px">One markdown file per person. Your COS reads it before every interaction. Simple, portable, no SaaS lock-in — you own it forever.</p>
       <ul class="bullet-list">
-        <li>One markdown file per person</li>
-        <li>Lives in <span class="volt">~/contacts/</span> on your machine</li>
-        <li>Your COS reads it before every interaction</li>
-        <li>Simple, portable, future-proof – just text files</li>
-        <li>You own it forever, no SaaS lock-in</li>
+        <li>Role, company, how you met</li>
+        <li>What they care about, how they communicate</li>
+        <li>Last interaction + what's still open</li>
+        <li>Anything your COS should always know</li>
       </ul>
     </div>
-    <div>
-      <div class="terminal">
-<span class="t-label">~/contacts/</span>
-<span class="t-volt">~/contacts/</span>
-├── <span class="t-white">sarah-chen.md</span>
-├── <span class="t-white">marcus-bailey.md</span>
-├── <span class="t-white">jenna-rodriguez.md</span>
-├── <span class="t-white">david-kim.md</span>
-└── <span class="t-white">_index.md</span></div>
+    <div class="card card-volt" style="padding:36px">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:20px">Example: sarah-chen.md</div>
+      <p style="font-size:18px;color:var(--white);margin-bottom:6px;font-family:var(--serif);font-size:22px">Sarah Chen</p>
+      <p style="font-size:16px;color:var(--gray);line-height:1.7">VP Marketing, Northstar &nbsp;·&nbsp; met SaaStr '24<br>Cares about ROI per channel, zero fluff<br>Last: Apr 22 – pitched Q3 retainer, she asked for case studies<br><span style="color:var(--volt)">Open: send 2 case studies + pricing</span></p>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 6: WHAT GOES IN A CONTACT FILE -->
-<div class="slide" data-slide="6">
-  <div class="eyebrow">Structure</div>
-  <div class="slide-title">What Goes In a Contact File</div>
-  <div class="two-col" style="gap:60px">
-    <div>
-      <ul class="bullet-list">
-        <li><strong style="color:var(--white)">Name</strong> – full name + how they're addressed</li>
-        <li><strong style="color:var(--white)">Role + Company</strong> – what they do, where</li>
-        <li><strong style="color:var(--white)">Relationship notes</strong> – how you met, why they matter</li>
-        <li><strong style="color:var(--white)">Last interaction</strong> – when, what, what's open</li>
-        <li><strong style="color:var(--white)">What they care about</strong> – priorities, hot buttons</li>
-        <li><strong style="color:var(--white)">How they communicate</strong> – direct, formal, slow, fast</li>
-      </ul>
-    </div>
-    <div>
-      <div class="terminal">
-<span class="t-label">sarah-chen.md</span>
-<span class="t-volt"># Sarah Chen</span>
-<span class="t-white">Role:</span> VP Marketing, Northstar
-<span class="t-white">Met:</span> SaaStr 2024
-<span class="t-white">Cares about:</span> ROI per channel,
-   straight talk, no fluff
-<span class="t-white">Comms:</span> short, direct, no emoji
-<span class="t-white">Last:</span> Apr 22 – pitched Q3 retainer,
-   she asked for case studies
-<span class="t-white">Open:</span> send 2 case studies + pricing</div>
-    </div>
-  </div>
-</div>
-
-<!-- SLIDE 7: LIVE BUILD - FIRST CONTACT FILE -->
+<!-- SLIDE 7: PROMPT 1 — FIRST CONTACT FILE -->
 <div class="slide" data-slide="7">
-  <div class="eyebrow">Live Build · Part 1</div>
-  <div class="slide-title">Your First Contact File</div>
-  <ol class="step-list">
-    <li class="step-row"><span class="step-num">1</span><span class="step-text">Open Ghostty – we're working in the terminal</span></li>
-    <li class="step-row"><span class="step-num">2</span><span class="step-text">Create the folder: <span class="volt">mkdir ~/contacts</span></span></li>
-    <li class="step-row"><span class="step-num">3</span><span class="step-text">Create your first file – pick someone you'll see this week</span></li>
-    <li class="step-row"><span class="step-num">4</span><span class="step-text">Wire it to your COS: tell it where contacts live and when to read them</span></li>
-  </ol>
-  <div class="cta-box">Pick one real person on your calendar this week – we're building this for them.</div>
+  <div class="eyebrow">Prompt 1 · Send This to Your COS</div>
+  <div class="slide-title">Build Your First Contact File</div>
+  <div class="prompt-block">
+    <div class="p-label">Copy → fill the brackets → send</div>
+    <span class="p-line">Create a contact file for someone in my network.</span><br><br>
+    <span class="p-line">Name: </span><span class="p-fill">[FULL NAME]</span><br>
+    <span class="p-line">Role: </span><span class="p-fill">[TITLE]</span><br>
+    <span class="p-line">Company: </span><span class="p-fill">[COMPANY]</span><br>
+    <span class="p-line">How I know them: </span><span class="p-fill">[RELATIONSHIP / WHERE WE MET]</span><br>
+    <span class="p-line">What matters: </span><span class="p-fill">[WHAT MY COS SHOULD ALWAYS KNOW BEFORE THIS PERSON COMES UP]</span><br><br>
+    <span class="p-line">Pull anything you already know from my email and calendar. Save it to contacts/ and flag any gaps.</span>
+  </div>
+  <div class="cta-box">Pick one real person on your calendar this week. That's your first file.</div>
 </div>
 
 <!-- SLIDE 8: THE MEETING PREP CARD -->
@@ -302,7 +292,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
     </div>
     <div class="card">
       <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Talking Points</div>
-      <p style="font-size:16px;color:var(--gray);line-height:1.6">3-5 lines tailored to this person</p>
+      <p style="font-size:16px;color:var(--gray);line-height:1.6">3–5 lines tailored to this person</p>
     </div>
     <div class="card">
       <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Open Items</div>
@@ -311,82 +301,108 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
   </div>
 </div>
 
-<!-- SLIDE 9: LIVE BUILD - MEETING PREP COMMAND -->
+<!-- SLIDE 9: WHAT GOOD PREP LOOKS LIKE -->
 <div class="slide" data-slide="9">
-  <div class="eyebrow">Live Build · Part 2</div>
-  <div class="slide-title">The <span class="volt">prep</span> Command</div>
-  <ol class="step-list">
-    <li class="step-row"><span class="step-num">1</span><span class="step-text">Reads your calendar for the next event</span></li>
-    <li class="step-row"><span class="step-num">2</span><span class="step-text">Finds the matching contact file by name or email</span></li>
-    <li class="step-row"><span class="step-num">3</span><span class="step-text">Generates the prep card from contact + meeting context</span></li>
-    <li class="step-row"><span class="step-num">4</span><span class="step-text">Drops it on cron: runs 30 minutes before every event</span></li>
-  </ol>
-  <div class="cta-box">One command. Runs forever. Every meeting gets a briefing.</div>
-</div>
-
-<!-- SLIDE 10: WHAT GOOD PREP LOOKS LIKE -->
-<div class="slide" data-slide="10">
   <div class="eyebrow">Example Output</div>
   <div class="slide-title">What Good Prep Looks Like</div>
-  <div class="terminal" style="max-width:1400px;font-size:17px">
-<span class="t-label">prep card · 2:30 PM coffee with Sarah Chen</span>
-<span class="t-volt">WHO</span>
-  Sarah Chen · VP Marketing, Northstar · met SaaStr '24
-
-<span class="t-volt">CONTEXT</span>
-  Direct communicator, allergic to fluff. Cares about ROI per channel.
-  Last talked Apr 22 – pitched Q3 retainer, she asked for case studies.
-
-<span class="t-volt">YOUR GOAL</span>
-  Get a verbal yes on the retainer or a clear no.
-
-<span class="t-volt">TALKING POINTS</span>
-  – Open with the 2 case studies you sent (did she read them?)
-  – Walk the projected ROI on Q3 spend
-  – Ask what would need to be true for her to sign this week
-
-<span class="t-volt">OPEN ITEMS</span>
-  – Pricing tier confirmation
-  – Start date – she mentioned July 1 originally</div>
+  <div style="background:#08090A;border:1px solid var(--border);border-radius:12px;padding:32px 36px;max-width:1400px;font-size:17px;color:var(--gray);line-height:1.8;font-family:'SF Mono','Menlo','Monaco',monospace">
+<span style="color:var(--dim);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;font-family:var(--sans)">prep card · 2:30 PM coffee with Sarah Chen</span>
+<br><br><span style="color:var(--volt)">WHO</span>
+<br>  Sarah Chen · VP Marketing, Northstar · met SaaStr '24
+<br><br><span style="color:var(--volt)">CONTEXT</span>
+<br>  Direct communicator, allergic to fluff. Cares about ROI per channel.
+<br>  Last talked Apr 22 – pitched Q3 retainer, she asked for case studies.
+<br><br><span style="color:var(--volt)">YOUR GOAL</span>
+<br>  Get a verbal yes on the retainer or a clear no.
+<br><br><span style="color:var(--volt)">TALKING POINTS</span>
+<br>  – Open with the 2 case studies you sent (did she read them?)
+<br>  – Walk the projected ROI on Q3 spend
+<br>  – Ask what would need to be true for her to sign this week
+<br><br><span style="color:var(--volt)">OPEN ITEMS</span>
+<br>  – Pricing tier confirmation &nbsp;&nbsp;– Start date (she mentioned July 1)</div>
 </div>
 
-<!-- SLIDE 11: WEEKLY STRATEGIC NARRATIVE -->
-<div class="slide" data-slide="11">
+<!-- SLIDE 10: PROMPT 2 — BUILD THE PREP COMMAND -->
+<div class="slide" data-slide="10">
+  <div class="eyebrow">Prompt 2 · Send This to Your COS</div>
+  <div class="slide-title">Build the <span class="volt">prep</span> Command</div>
+  <div class="prompt-block">
+    <div class="p-label">Copy → send → your COS builds and schedules it</div>
+    <span class="p-line">Build me a command called "prep". When I type "prep":</span><br>
+    <span class="p-line">1. Read my Google Calendar – find my next meeting or the one I specify</span><br>
+    <span class="p-line">2. Match attendees to files in contacts/</span><br>
+    <span class="p-line">3. Pull last 30 days of email with those attendees</span><br>
+    <span class="p-line">4. Generate a briefing card: who, context, my goal, talking points, open items</span><br>
+    <span class="p-line">5. Send it to my Telegram, 5 bullets max</span><br><br>
+    <span class="p-line">Also schedule it to run automatically 30 minutes before every calendar event. Skip focus blocks and personal events. If an attendee has no contact file, note it in the card.</span><br><br>
+    <span class="p-line">Confirm when it's live and show me an example.</span>
+  </div>
+</div>
+
+<!-- SLIDE 11: PROMPT 3 — RUN IT LIVE -->
+<div class="slide section-slide" data-slide="11">
+  <div class="part">Live Run · Prompt 3</div>
+  <h1>Now run prep<br>on a real meeting.</h1>
+  <p class="sub">Send your COS: <span style="color:var(--volt);font-style:normal">"prep – [meeting title or 'my next meeting']. Generate the card and send it to my Telegram now."</span></p>
+  <p class="sub" style="margin-top:24px;font-size:18px">Show it in the group. We fix it live if it breaks.</p>
+</div>
+
+<!-- SLIDE 12: PROMPT 4 — BULK CONTACTS -->
+<div class="slide" data-slide="12">
+  <div class="eyebrow">Prompt 4 · Send This to Your COS</div>
+  <div class="slide-title">Add Your Key People</div>
+  <div class="prompt-block">
+    <div class="p-label">Fill in your list → send → your COS creates all the files</div>
+    <span class="p-line">I want to add multiple people to my contacts system at once.</span><br><br>
+    <span class="p-line">Here's the list:</span><br>
+    <span class="p-fill">1. [NAME] – [ROLE, COMPANY, SHORT CONTEXT]</span><br>
+    <span class="p-fill">2. [NAME] – [ROLE, COMPANY, SHORT CONTEXT]</span><br>
+    <span class="p-fill">3. [NAME] – [ROLE, COMPANY, SHORT CONTEXT]</span><br>
+    <span class="p-fill">4. [NAME] – [ROLE, COMPANY, SHORT CONTEXT]</span><br>
+    <span class="p-fill">5. [NAME] – [ROLE, COMPANY, SHORT CONTEXT]</span><br><br>
+    <span class="p-line">Create a contacts/[first-last].md file for each one. Pull anything you already know from my email and calendar. Flag anything you're unsure about.</span>
+  </div>
+  <div class="cta-box">5 files. 5 real people you'll actually see next week.</div>
+</div>
+
+<!-- SLIDE 13: WEEKLY NARRATIVE -->
+<div class="slide" data-slide="13">
   <div class="eyebrow">The Compounding Layer</div>
   <div class="slide-title">The Weekly Strategic Narrative</div>
   <div class="two-col" style="gap:60px">
     <div>
       <p style="font-size:21px;color:var(--gray);line-height:1.7;margin-bottom:28px">Every Friday at 4 PM, your COS synthesizes the entire week and delivers it to your phone.</p>
       <ul class="bullet-list">
-        <li>What got done this week</li>
-        <li>What's still open and who owes what</li>
-        <li>What actually matters next week</li>
-        <li>Patterns it noticed across meetings, emails, calls</li>
+        <li>Top 3 storylines – not a list dump</li>
+        <li>What moved forward and what stalled</li>
+        <li>Top 3 priorities for next week</li>
+        <li>One thing you should not let slip</li>
       </ul>
     </div>
     <div class="card card-volt" style="padding:36px">
-      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:16px">Friday 4:00 PM</div>
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:16px">Friday 4:00 PM · auto-delivered</div>
       <p style="font-size:46px;font-family:var(--serif);color:var(--white);line-height:1.1;margin-bottom:20px">One message.<br>Your whole week.</p>
-      <p style="font-size:17px;color:var(--gray);line-height:1.6">Delivered to Telegram. Read it on the way home. Walk into Monday knowing exactly what matters.</p>
+      <p style="font-size:17px;color:var(--gray);line-height:1.6">Under 300 words. Written like a sharp chief of staff. Walk into Monday knowing exactly what matters.</p>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 12: LIVE BUILD - WEEKLY NARRATIVE -->
-<div class="slide" data-slide="12">
-  <div class="eyebrow">Live Build · Part 3</div>
-  <div class="slide-title">The Friday Narrative</div>
-  <ol class="step-list">
-    <li class="step-row"><span class="step-num">1</span><span class="step-text">Write the synthesis prompt – what to look at, what to surface</span></li>
-    <li class="step-row"><span class="step-num">2</span><span class="step-text">Set the cron job: <span class="volt">0 16 * * 5</span> – every Friday at 4 PM</span></li>
-    <li class="step-row"><span class="step-num">3</span><span class="step-text">Wire output to Telegram so it lands on your phone</span></li>
-    <li class="step-row"><span class="step-num">4</span><span class="step-text">Test it now – fire a manual run so you see Friday's report tonight</span></li>
-  </ol>
-  <div class="cta-box">By the time we hit slide 16, this is running on your machine.</div>
+<!-- SLIDE 14: PROMPT 5 — WEEKLY NARRATIVE -->
+<div class="slide" data-slide="14">
+  <div class="eyebrow">Prompt 5 · Send This to Your COS</div>
+  <div class="slide-title">Build the Friday Narrative</div>
+  <div class="prompt-block">
+    <div class="p-label">Copy → send → your COS sets it up and fires a test run</div>
+    <span class="p-line">Set up a weekly synthesis that runs every Friday at 4 PM and delivers a briefing to my Telegram.</span><br><br>
+    <span class="p-line">Pull from: Google Calendar, sent and received email, contact file updates, tasks and commitments.</span><br><br>
+    <span class="p-line">Cover: top 3 storylines, what moved vs. stalled, top 3 priorities for next week, one thing I should not let slip.</span><br><br>
+    <span class="p-line">Under 300 words. Sharp chief of staff tone. No fluff.</span><br><br>
+    <span class="p-line">Set it up, confirm when it's live, and fire a test run right now so I can see what Friday's report looks like tonight.</span>
+  </div>
 </div>
 
-<!-- SLIDE 13: INTELLIGENCE COMPOUNDS -->
-<div class="slide" data-slide="13">
+<!-- SLIDE 15: INTELLIGENCE COMPOUNDS -->
+<div class="slide" data-slide="15">
   <div class="eyebrow">Why This Matters</div>
   <div class="slide-title">Intelligence Compounds</div>
   <div style="display:flex;flex-direction:column;gap:32px;max-width:1100px">
@@ -405,8 +421,24 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
   </div>
 </div>
 
-<!-- SLIDE 14: COMMON MISTAKES -->
-<div class="slide" data-slide="14">
+<!-- SLIDE 16: PROMPT 6 — END-TO-END TEST -->
+<div class="slide" data-slide="16">
+  <div class="eyebrow">Prompt 6 · The Final Test</div>
+  <div class="slide-title">Run the Full Intelligence Layer</div>
+  <div class="prompt-block">
+    <div class="p-label">End-to-end test – send this when everything is set up</div>
+    <span class="p-line">Run a full test of my intelligence layer.</span><br><br>
+    <span class="p-line">1. Find my next calendar event with a real attendee</span><br>
+    <span class="p-line">2. Pull the matching contact file from contacts/</span><br>
+    <span class="p-line">3. Generate the meeting prep card</span><br>
+    <span class="p-line">4. Send it to my Telegram</span><br><br>
+    <span class="p-line">Report back: what worked, what was missing, and what I should fix before my next real meeting.</span>
+  </div>
+  <div class="cta-box">This is the test. If the card lands on your phone, it's working.</div>
+</div>
+
+<!-- SLIDE 17: COMMON MISTAKES -->
+<div class="slide" data-slide="17">
   <div class="eyebrow">Avoid These</div>
   <div class="slide-title">Common Mistakes</div>
   <div class="grid4" style="grid-template-columns:1fr 1fr 1fr">
@@ -416,51 +448,44 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
     </div>
     <div class="card">
       <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:14px">Prep Cards Too Generic</div>
-      <p style="font-size:17px;color:var(--gray);line-height:1.6">If the card could be about anyone, it's broken. Force it to use the actual contact file – names, history, specifics.</p>
+      <p style="font-size:17px;color:var(--gray);line-height:1.6">If the card could be about anyone, it's broken. Force your COS to use the actual contact file – names, history, specifics.</p>
     </div>
     <div class="card">
-      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:14px">Not Testing It Live</div>
-      <p style="font-size:17px;color:var(--gray);line-height:1.6">Don't trust it until you've used it on a real meeting. Run it tonight, even on a low-stakes call.</p>
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:14px">Not Testing Live</div>
+      <p style="font-size:17px;color:var(--gray);line-height:1.6">Don't trust it until you've used it on a real meeting. Run it tonight on something on your calendar this week.</p>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 15: LIVE TEST -->
-<div class="slide section-slide" data-slide="15">
-  <div class="part">Live Test</div>
-  <h1>Run prep on a real<br>meeting – right now.</h1>
-  <p class="sub">Pick something on your calendar tomorrow. Generate the card. Show it in WhatsApp. We fix it live if it breaks.</p>
-</div>
-
-<!-- SLIDE 16: WHAT YOU BUILT TONIGHT -->
-<div class="slide" data-slide="16">
+<!-- SLIDE 18: WHAT YOU BUILT TONIGHT -->
+<div class="slide" data-slide="18">
   <div class="eyebrow">Recap</div>
   <div class="slide-title">What You Built Tonight</div>
   <ul class="checklist">
-    <li class="check-row"><span class="check-icon">✓</span> A contacts system – one file per person, in <span class="volt">~/contacts/</span></li>
-    <li class="check-row"><span class="check-icon">✓</span> The <span class="volt">prep</span> command – generates a briefing for every meeting</li>
-    <li class="check-row"><span class="check-icon">✓</span> The weekly strategic narrative – Fridays at 4 PM, straight to your phone</li>
-    <li class="check-row"><span class="check-icon">✓</span> All three running on cron – they work whether you remember them or not</li>
+    <li class="check-row"><span class="check-icon">✓</span> A contacts system – one file per person, your COS reads it before every interaction</li>
+    <li class="check-row"><span class="check-icon">✓</span> The <span class="volt">prep</span> command – auto-briefing for every meeting, 30 min before it starts</li>
+    <li class="check-row"><span class="check-icon">✓</span> The weekly narrative – Fridays at 4 PM, your whole week in under 300 words</li>
+    <li class="check-row"><span class="check-icon">✓</span> You didn't build any of it manually – you told your COS what to build and it built it</li>
   </ul>
 </div>
 
-<!-- SLIDE 17: HOMEWORK -->
-<div class="slide" data-slide="17">
+<!-- SLIDE 19: HOMEWORK -->
+<div class="slide" data-slide="19">
   <div class="eyebrow">Before Session 4</div>
   <div class="slide-title" style="margin-bottom:36px">Homework</div>
   <div class="hw-card">
-    <p><strong>1.</strong> Add <strong>5 more contact files</strong> before May 17 – the people you'll actually meet with next week.</p>
-    <p><strong>2.</strong> Let <strong>prep run on at least one real meeting</strong>. Note what was useful and what was noise.</p>
-    <p><strong>3.</strong> Start thinking about <strong>your custom command for Session 4</strong> – the one thing only your business needs.</p>
-    <p style="color:var(--volt);font-weight:500">Session 4: Saturday, May 17 &nbsp;·&nbsp; 7:00 – 9:00 PM MST &nbsp;·&nbsp; Make It Yours</p>
+    <p><strong>1.</strong> Add <strong>5 more contact files</strong> before next session – the people you'll actually meet with next week. Use Prompt 4.</p>
+    <p><strong>2.</strong> Let <strong>prep run on at least one real meeting</strong>. Note what was useful and what was noise. Refine the prompt.</p>
+    <p><strong>3.</strong> Start thinking about <strong>your custom command for Session 4</strong> – the one thing only your business needs. Bring it ready to build.</p>
+    <p style="color:var(--volt);font-weight:500">Session 4 – Make It Yours &nbsp;·&nbsp; Bring the command only your business needs.</p>
   </div>
 </div>
 
-<!-- SLIDE 18: THE BIGGER PICTURE -->
-<div class="slide" data-slide="18">
+<!-- SLIDE 20: THE ARC -->
+<div class="slide" data-slide="20">
   <div class="eyebrow">Zoom Out</div>
-  <div class="slide-title">The Bigger Picture</div>
-  <p style="font-size:22px;color:var(--gray);margin-bottom:40px;max-width:1000px;line-height:1.6">This was always a 4-session arc. Each one builds on the last.</p>
+  <div class="slide-title">The 4-Session Arc</div>
+  <p style="font-size:22px;color:var(--gray);margin-bottom:40px;max-width:1000px;line-height:1.6">Each session builds on the last. Each one hands you more control.</p>
   <div class="grid4">
     <div class="card">
       <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:10px">Session 1</div>
@@ -475,7 +500,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
     <div class="card card-volt">
       <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:10px">Session 3 · Tonight</div>
       <div style="font-size:24px;font-family:var(--serif);color:var(--white);margin-bottom:10px">Intelligence</div>
-      <p style="font-size:15px;color:var(--gray);line-height:1.5">Context. Prep. Weekly synthesis.</p>
+      <p style="font-size:15px;color:var(--gray);line-height:1.5">Context. Prep. Weekly synthesis. Built by your COS.</p>
     </div>
     <div class="card">
       <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:10px">Session 4</div>
@@ -485,31 +510,31 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
   </div>
 </div>
 
-<!-- SLIDE 19: Q&A / OPEN SUPPORT -->
-<div class="slide" data-slide="19">
+<!-- SLIDE 21: Q&A / OPEN SUPPORT -->
+<div class="slide" data-slide="21">
   <div class="eyebrow">Open Floor</div>
   <div class="slide-title" style="font-size:68px;margin-bottom:48px">Q&amp;A · Open Support</div>
   <div class="grid2" style="gap:40px;max-width:1200px">
     <div>
       <div class="open-col">
         <h3>What didn't work?</h3>
-        <p>Stuck on the cron job? Prep card looking generic? Contacts not loading? Bring it up – we fix it now while everyone's here.</p>
+        <p>Prep card looking generic? Contact files not loading? Weekly narrative not firing? Bring it up – we fix it now while everyone's here.</p>
       </div>
     </div>
     <div>
       <div class="open-col">
-        <h3>What gaps do you see?</h3>
-        <p>What's missing from your COS that you wish it could do? Session 4 is custom – start telling me what to build for you.</p>
+        <h3>What do you want to build?</h3>
+        <p>Session 4 is custom – start thinking about the one command only your business needs. What would make your COS 10x more useful?</p>
       </div>
     </div>
   </div>
   <a class="wa-link" href="https://chat.whatsapp.com/H2JRBHiJRalDDIzchrfoG1?mode=gi_t" target="_blank">Join the WhatsApp Group ↗</a>
 </div>
 
-<!-- SLIDE 20: END CARD -->
-<div class="slide section-slide" data-slide="20" style="justify-content:center;align-items:center;text-align:center">
+<!-- SLIDE 22: END CARD -->
+<div class="slide section-slide" data-slide="22" style="justify-content:center;align-items:center;text-align:center">
   <div class="part" style="margin-bottom:24px">End of Session 3</div>
-  <h1 style="font-size:128px;text-align:center">See you<br>May 17.</h1>
+  <h1 style="font-size:128px;text-align:center">See you<br>next week.</h1>
   <p class="sub" style="text-align:center;margin:0 auto">Session 4 – Make It Yours. Bring the command only your business needs.</p>
   <p style="margin-top:48px;font-size:18px;color:var(--volt);font-weight:600;letter-spacing:.08em">russperry.co</p>
 </div>
@@ -520,13 +545,13 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 <!-- NAV -->
 <div class="nav">
   <button onclick="prev()" title="Previous">&#8592;</button>
-  <span class="nav-count" id="navCount">1 / 20</span>
+  <span class="nav-count" id="navCount">1 / 22</span>
   <button onclick="next()" title="Next">&#8594;</button>
   <span class="nav-hint">← → keys &nbsp;·&nbsp; F fullscreen</span>
 </div>
 
 <script>
-const TOTAL = 20;
+const TOTAL = 22;
 let current = parseInt(localStorage.getItem('s3slide') || '1');
 
 function go(n) {
