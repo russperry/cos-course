@@ -156,8 +156,96 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
   </ul>
 </div>
 
-<!-- SLIDE 3: THE SHIFT -->
+<!-- SLIDE 3: EFFORT vs IMPACT CHART -->
 <div class="slide" data-slide="3">
+  <div class="eyebrow">The Curve</div>
+  <div class="slide-title" style="margin-bottom:40px">This Is What Learning AI Actually Looks Like</div>
+  <div style="display:flex;gap:72px;align-items:center;justify-content:flex-start;width:100%">
+
+    <!-- SVG CHART -->
+    <svg width="860" height="480" viewBox="0 0 860 480" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+      <!-- grid lines -->
+      <line x1="80" y1="40" x2="80" y2="400" stroke="#1E1F1E" stroke-width="1"/>
+      <line x1="80" y1="400" x2="820" y2="400" stroke="#1E1F1E" stroke-width="1"/>
+      <!-- horizontal guides -->
+      <line x1="80" y1="40" x2="820" y2="40" stroke="#1E1F1E" stroke-width="1" stroke-dasharray="4 6"/>
+      <line x1="80" y1="220" x2="820" y2="220" stroke="#1E1F1E" stroke-width="1" stroke-dasharray="4 6"/>
+
+      <!-- Y labels -->
+      <text x="68" y="44" font-family="Inter,sans-serif" font-size="13" fill="#555" text-anchor="end">High</text>
+      <text x="68" y="224" font-family="Inter,sans-serif" font-size="13" fill="#555" text-anchor="end"></text>
+      <text x="68" y="404" font-family="Inter,sans-serif" font-size="13" fill="#555" text-anchor="end">Low</text>
+
+      <!-- X axis week markers -->
+      <!-- Week markers at x: 160, 340, 570, 780 -->
+      <line x1="160" y1="396" x2="160" y2="404" stroke="#555" stroke-width="1"/>
+      <line x1="340" y1="396" x2="340" y2="404" stroke="#555" stroke-width="1"/>
+      <line x1="570" y1="396" x2="570" y2="404" stroke="#555" stroke-width="1"/>
+      <line x1="780" y1="396" x2="780" y2="404" stroke="#555" stroke-width="1"/>
+
+      <text x="160" y="425" font-family="Inter,sans-serif" font-size="13" fill="#666" text-anchor="middle">Week 1</text>
+      <text x="340" y="425" font-family="Inter,sans-serif" font-size="13" fill="#666" text-anchor="middle">Weeks 2–3</text>
+      <text x="570" y="425" font-family="Inter,sans-serif" font-size="13" fill="#666" text-anchor="middle">Week 4+</text>
+      <text x="780" y="425" font-family="Inter,sans-serif" font-size="13" fill="#666" text-anchor="middle">Week 8+</text>
+
+      <!-- X axis label -->
+      <text x="450" y="460" font-family="Inter,sans-serif" font-size="13" fill="#555" text-anchor="middle" letter-spacing="0.08em">TIME AND EXPERIENCE WITH AI</text>
+
+      <!-- EFFORT CURVE — starts high, curves down (grey) -->
+      <!-- Bezier: from (160,70) curving to (780,380) -->
+      <path d="M 160 75 C 300 80, 460 220, 780 375"
+        stroke="#666" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+      <!-- IMPACT CURVE — starts low, curves up (volt) -->
+      <!-- Bezier: from (160,375) curving to (780,70) -->
+      <path d="M 160 375 C 300 370, 460 220, 780 72"
+        stroke="#D5FF02" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+
+      <!-- CROSSOVER POINT approx at x=480, y=222 -->
+      <circle cx="475" cy="222" r="9" fill="#0B0C0B" stroke="#F5F5F3" stroke-width="3"/>
+
+      <!-- Crossover label -->
+      <text x="475" y="200" font-family="Inter,sans-serif" font-size="12" fill="#888" text-anchor="middle" letter-spacing="0.12em">CROSSOVER</text>
+      <line x1="475" y1="204" x2="475" y2="213" stroke="#555" stroke-width="1"/>
+
+      <!-- EFFORT label -->
+      <text x="170" y="60" font-family="Inter,sans-serif" font-size="13" fill="#777" letter-spacing="0.10em">EFFORT</text>
+      <!-- Friction sub-label -->
+      <text x="163" y="100" font-family="Inter,sans-serif" font-size="11" fill="#444" letter-spacing="0.08em">Friction</text>
+
+      <!-- IMPACT label -->
+      <text x="730" y="58" font-family="Inter,sans-serif" font-size="13" fill="#D5FF02" letter-spacing="0.10em">IMPACT</text>
+      <!-- Force multiplier -->
+      <text x="695" y="78" font-family="Inter,sans-serif" font-size="11" fill="#999" letter-spacing="0.06em">Force multiplier</text>
+
+      <!-- Fluency label near week 3 mark on volt curve -->
+      <text x="340" y="290" font-family="Inter,sans-serif" font-size="11" fill="#D5FF02" opacity="0.6" letter-spacing="0.08em">Fluency</text>
+    </svg>
+
+    <!-- RIGHT PANEL -->
+    <div style="display:flex;flex-direction:column;gap:28px;max-width:420px">
+      <div style="border-left:2px solid #1E1F1E;padding-left:24px">
+        <div style="font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#555;margin-bottom:8px">Week 1</div>
+        <p style="font-size:18px;color:#888;line-height:1.6">High friction. Setup mode. Learning the vocabulary. Everything takes longer than it should.</p>
+      </div>
+      <div style="border-left:2px solid #1E1F1E;padding-left:24px">
+        <div style="font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#777;margin-bottom:8px">Weeks 2–4</div>
+        <p style="font-size:18px;color:#888;line-height:1.6">Fluency builds. Commands click. Output starts to feel like leverage instead of effort.</p>
+      </div>
+      <div style="border-left:2px solid rgba(213,255,2,.35);padding-left:24px">
+        <div style="font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--volt);margin-bottom:8px">Week 4+ → Crossover</div>
+        <p style="font-size:18px;color:#aaa;line-height:1.6">Impact outpaces effort. Your COS starts doing things that would have taken you hours. <span style="color:var(--volt)">This is the compound point.</span></p>
+      </div>
+      <div style="border-left:2px solid rgba(213,255,2,.6);padding-left:24px">
+        <div style="font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--volt);margin-bottom:8px">Week 8+</div>
+        <p style="font-size:18px;color:var(--white);line-height:1.6">Force multiplier. You've built systems. Your COS runs without you babysitting it.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: THE SHIFT -->
+<div class="slide" data-slide="4">
   <div class="eyebrow">The Shift</div>
   <div class="slide-title" style="max-width:1200px">Sessions 1 &amp; 2, you were building.<br>Tonight, you tell your COS <span class="volt">what to build.</span></div>
   <div class="two-col" style="margin-top:16px">
@@ -183,7 +271,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 </div>
 
 <!-- SLIDE 4: THE GAP -->
-<div class="slide" data-slide="4">
+<div class="slide" data-slide="5">
   <div class="eyebrow">The Gap</div>
   <div class="slide-title" style="max-width:1100px">Your assistant knows your calendar.<br>Your COS knows <span class="volt">why</span> it matters.</div>
   <div class="two-col" style="margin-top:8px">
@@ -209,7 +297,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 </div>
 
 <!-- SLIDE 5: WHAT CONTEXT ACTUALLY MEANS -->
-<div class="slide" data-slide="5">
+<div class="slide" data-slide="6">
   <div class="eyebrow">The Real Definition</div>
   <div class="slide-title">What Context Actually Means</div>
   <p style="font-size:22px;color:var(--gray);margin-bottom:40px;max-width:900px;line-height:1.6">Before any meeting, your COS should be able to answer four questions without you asking:</p>
@@ -234,7 +322,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 </div>
 
 <!-- SLIDE 6: THE CONTACTS SYSTEM -->
-<div class="slide" data-slide="6">
+<div class="slide" data-slide="7">
   <div class="eyebrow">The Foundation</div>
   <div class="slide-title">The Contacts System</div>
   <div class="two-col" style="gap:60px">
@@ -256,7 +344,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 </div>
 
 <!-- SLIDE 7: PROMPT 1 — FIRST CONTACT FILE -->
-<div class="slide" data-slide="7">
+<div class="slide" data-slide="8">
   <div class="eyebrow">Prompt 1 · Send This to Your COS</div>
   <div class="slide-title">Build Your First Contact File</div>
   <div class="prompt-block">
@@ -273,7 +361,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 </div>
 
 <!-- SLIDE 8: THE MEETING PREP CARD -->
-<div class="slide" data-slide="8">
+<div class="slide" data-slide="9">
   <div class="eyebrow">The Output</div>
   <div class="slide-title">The Meeting Prep Card</div>
   <p style="font-size:22px;color:var(--gray);margin-bottom:40px;max-width:1000px;line-height:1.6">An auto-generated briefing that lands on your phone 30 minutes before every calendar event. Five sections, scannable in 60 seconds.</p>
@@ -302,7 +390,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 </div>
 
 <!-- SLIDE 9: WHAT GOOD PREP LOOKS LIKE -->
-<div class="slide" data-slide="9">
+<div class="slide" data-slide="10">
   <div class="eyebrow">Example Output</div>
   <div class="slide-title">What Good Prep Looks Like</div>
   <div style="background:#08090A;border:1px solid var(--border);border-radius:12px;padding:32px 36px;max-width:1400px;font-size:17px;color:var(--gray);line-height:1.8;font-family:'SF Mono','Menlo','Monaco',monospace">
@@ -323,7 +411,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 </div>
 
 <!-- SLIDE 10: PROMPT 2 — BUILD THE PREP COMMAND -->
-<div class="slide" data-slide="10">
+<div class="slide" data-slide="11">
   <div class="eyebrow">Prompt 2 · Send This to Your COS</div>
   <div class="slide-title">Build the <span class="volt">prep</span> Command</div>
   <div class="prompt-block">
@@ -340,7 +428,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 </div>
 
 <!-- SLIDE 11: PROMPT 3 — RUN IT LIVE -->
-<div class="slide section-slide" data-slide="11">
+<div class="slide section-slide" data-slide="12">
   <div class="part">Live Run · Prompt 3</div>
   <h1>Now run prep<br>on a real meeting.</h1>
   <p class="sub">Send your COS: <span style="color:var(--volt);font-style:normal">"prep – [meeting title or 'my next meeting']. Generate the card and send it to my Telegram now."</span></p>
@@ -348,7 +436,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 </div>
 
 <!-- SLIDE 12: PROMPT 4 — BULK CONTACTS -->
-<div class="slide" data-slide="12">
+<div class="slide" data-slide="13">
   <div class="eyebrow">Prompt 4 · Send This to Your COS</div>
   <div class="slide-title">Add Your Key People</div>
   <div class="prompt-block">
@@ -366,7 +454,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 </div>
 
 <!-- SLIDE 13: WEEKLY NARRATIVE -->
-<div class="slide" data-slide="13">
+<div class="slide" data-slide="14">
   <div class="eyebrow">The Compounding Layer</div>
   <div class="slide-title">The Weekly Strategic Narrative</div>
   <div class="two-col" style="gap:60px">
@@ -388,7 +476,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 </div>
 
 <!-- SLIDE 14: PROMPT 5 — WEEKLY NARRATIVE -->
-<div class="slide" data-slide="14">
+<div class="slide" data-slide="15">
   <div class="eyebrow">Prompt 5 · Send This to Your COS</div>
   <div class="slide-title">Build the Friday Narrative</div>
   <div class="prompt-block">
@@ -402,7 +490,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 </div>
 
 <!-- SLIDE 15: INTELLIGENCE COMPOUNDS -->
-<div class="slide" data-slide="15">
+<div class="slide" data-slide="16">
   <div class="eyebrow">Why This Matters</div>
   <div class="slide-title">Intelligence Compounds</div>
   <div style="display:flex;flex-direction:column;gap:32px;max-width:1100px">
@@ -422,7 +510,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 </div>
 
 <!-- SLIDE 16: PROMPT 6 — END-TO-END TEST -->
-<div class="slide" data-slide="16">
+<div class="slide" data-slide="17">
   <div class="eyebrow">Prompt 6 · The Final Test</div>
   <div class="slide-title">Run the Full Intelligence Layer</div>
   <div class="prompt-block">
@@ -438,7 +526,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 </div>
 
 <!-- SLIDE 17: COMMON MISTAKES -->
-<div class="slide" data-slide="17">
+<div class="slide" data-slide="18">
   <div class="eyebrow">Avoid These</div>
   <div class="slide-title">Common Mistakes</div>
   <div class="grid4" style="grid-template-columns:1fr 1fr 1fr">
@@ -458,7 +546,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 </div>
 
 <!-- SLIDE 18: WHAT YOU BUILT TONIGHT -->
-<div class="slide" data-slide="18">
+<div class="slide" data-slide="19">
   <div class="eyebrow">Recap</div>
   <div class="slide-title">What You Built Tonight</div>
   <ul class="checklist">
@@ -470,7 +558,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 </div>
 
 <!-- SLIDE 19: HOMEWORK -->
-<div class="slide" data-slide="19">
+<div class="slide" data-slide="20">
   <div class="eyebrow">Before Session 4</div>
   <div class="slide-title" style="margin-bottom:36px">Homework</div>
   <div class="hw-card">
@@ -482,7 +570,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 </div>
 
 <!-- SLIDE 20: THE ARC -->
-<div class="slide" data-slide="20">
+<div class="slide" data-slide="21">
   <div class="eyebrow">Zoom Out</div>
   <div class="slide-title">The 4-Session Arc</div>
   <p style="font-size:22px;color:var(--gray);margin-bottom:40px;max-width:1000px;line-height:1.6">Each session builds on the last. Each one hands you more control.</p>
@@ -511,7 +599,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 </div>
 
 <!-- SLIDE 21: Q&A / OPEN SUPPORT -->
-<div class="slide" data-slide="21">
+<div class="slide" data-slide="22">
   <div class="eyebrow">Open Floor</div>
   <div class="slide-title" style="font-size:68px;margin-bottom:48px">Q&amp;A · Open Support</div>
   <div class="grid2" style="gap:40px;max-width:1200px">
@@ -532,7 +620,7 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 </div>
 
 <!-- SLIDE 22: END CARD -->
-<div class="slide section-slide" data-slide="22" style="justify-content:center;align-items:center;text-align:center">
+<div class="slide section-slide" data-slide="23" style="justify-content:center;align-items:center;text-align:center">
   <div class="part" style="margin-bottom:24px">End of Session 3</div>
   <h1 style="font-size:128px;text-align:center">See you<br>next week.</h1>
   <p class="sub" style="text-align:center;margin:0 auto">Session 4 – Make It Yours. Bring the command only your business needs.</p>
@@ -545,13 +633,13 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
 <!-- NAV -->
 <div class="nav">
   <button onclick="prev()" title="Previous">&#8592;</button>
-  <span class="nav-count" id="navCount">1 / 22</span>
+  <span class="nav-count" id="navCount">1 / 23</span>
   <button onclick="next()" title="Next">&#8594;</button>
   <span class="nav-hint">← → keys &nbsp;·&nbsp; F fullscreen</span>
 </div>
 
 <script>
-const TOTAL = 22;
+const TOTAL = 23;
 let current = parseInt(localStorage.getItem('s3slide') || '1');
 
 function go(n) {
