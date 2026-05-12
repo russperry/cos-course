@@ -129,6 +129,34 @@ Report back: what worked, what was missing (no contact file, no recent email, et
 
 ---
 
+### Prompt 7 – Build a Smart Contact Lookup Skill
+
+This is the upgrade that prevents your COS from ever guessing an email address. Three-layer lookup: your contact files → Google Contacts → Gmail history. If it can't find a verified address, it stops and tells you instead of inventing one.
+
+```
+Build me a contacts lookup system with three layers.
+
+Layer 1 – Contact files
+Search my contacts/ folder for a markdown file matching the person's name. Return the file contents if found.
+
+Layer 2 – Google Contacts
+If no contact file exists, search my Google Contacts (via the People API) for the person by name. Return their email and phone if found.
+
+Layer 3 – Gmail history
+If still no verified email, search my Gmail sent and received headers for any message from or to that person by name. Extract the email address they actually send from — not an address I sent to (which may be wrong). Return what you find.
+
+Guardrail
+Before composing any external email or outbound message, run all three layers in order. If none return a verified email, tell me: "I don't have a verified email for [name] — want me to create a contact file?" Never guess or infer an email address from a website or company name.
+
+Save this as a skill called "contacts-lookup" so it's available in every future session.
+
+Test it now on someone I've emailed recently. Show me the result from each layer and which one found the verified address.
+```
+
+**Why this matters:** The default COS behavior is to infer an email from context ("they work at acme.com so probably name@acme.com"). That breaks. Gmail history is the most reliable source — if you've ever exchanged a single email with someone, their real sending address is in your headers.
+
+---
+
 *Fill in every [BRACKET] before sending. The more context you give, the better the output.*
 
 *Session 4 next week – Make It Yours. Come with one thing you want to build that isn't on the curriculum.*
