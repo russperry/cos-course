@@ -198,12 +198,12 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var
       <path d="M 190 375 C 340 368, 510 225, 800 76"
         stroke="#D5FF02" stroke-width="3.5" fill="none" stroke-linecap="round"/>
 
-      <!-- CROSSOVER dot — approx intersection ~x=510 y=225 -->
-      <circle cx="505" cy="224" r="9" fill="#0B0C0B" stroke="#F0F0EE" stroke-width="3"/>
-
-      <!-- CROSSOVER label — above the dot, clear of curves -->
-      <text x="505" y="200" font-family="Inter,sans-serif" font-size="12" fill="#888" text-anchor="middle" letter-spacing="0.14em">CROSSOVER</text>
-      <line x1="505" y1="203" x2="505" y2="214" stroke="#555" stroke-width="1"/>
+      <!-- CROSSOVER pill badge — no dot, just a pill label floating above the intersection zone -->
+      <!-- Pill background: centered at x=505, baseline ~y=195, height 26, width ~130 -->
+      <rect x="440" y="168" width="130" height="26" rx="13" fill="#111" stroke="#333" stroke-width="1.5"/>
+      <text x="505" y="186" font-family="Inter,sans-serif" font-size="11" fill="#999" text-anchor="middle" letter-spacing="0.16em">CROSSOVER</text>
+      <!-- Subtle tick down from pill to the crossing region -->
+      <line x1="505" y1="195" x2="505" y2="218" stroke="#333" stroke-width="1" stroke-dasharray="3 3"/>
 
       <!-- EFFORT label — top-left, clear above curve start -->
       <text x="196" y="58" font-family="Inter,sans-serif" font-size="13" fill="#777" letter-spacing="0.12em">EFFORT</text>
