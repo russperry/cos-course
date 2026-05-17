@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 4 Notes & Recap | AI Chief of Staff</title>
+<meta name="theme-color" content="#0B0C0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0B0C0B;--volt:#D5FF02;--white:#F5F5F3;--gray:#999;--dim:#666;
+  --dark-card:#141514;--border:#1E1F1E;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+  --max-w:720px;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--black);color:var(--white);font-family:var(--sans);font-weight:300;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--volt);color:var(--black)}
+a{color:var(--volt);text-decoration:none;transition:opacity .2s}
+a:hover{opacity:.8}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+.portal-header{border-bottom:1px solid var(--border);padding:20px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;background:rgba(11,12,11,.95);backdrop-filter:blur(12px)}
+.portal-wordmark{font-family:var(--serif);font-size:19px;letter-spacing:-.02em;color:var(--white)}
+.back-link{font-size:14px;color:var(--dim);display:flex;align-items:center;gap:6px}
+.back-link:hover{color:var(--white);opacity:1}
+.hero{padding:64px 0 48px}
+.session-meta{font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--volt);margin-bottom:16px}
+.hero h1{font-family:var(--serif);font-size:clamp(32px,5vw,50px);line-height:1.1;letter-spacing:-.03em;color:var(--white);margin-bottom:14px}
+.hero-sub{font-size:17px;color:var(--gray);line-height:1.6;max-width:560px}
+hr{border:none;border-top:1px solid var(--border);margin:48px 0}
+.block{margin-bottom:52px}
+.block-label{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--volt);margin-bottom:18px}
+.block h2{font-family:var(--serif);font-size:26px;letter-spacing:-.02em;color:var(--white);margin-bottom:18px;line-height:1.2}
+.block h3{font-size:17px;font-weight:600;color:var(--white);margin-bottom:10px;margin-top:28px}
+.block p{font-size:16px;color:var(--gray);line-height:1.7;margin-bottom:14px}
+.block p:last-child{margin-bottom:0}
+.block strong{color:var(--white);font-weight:500}
+.outline-section{margin-bottom:40px}
+.outline-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(213,255,2,.1);border:1px solid rgba(213,255,2,.2);font-size:12px;font-weight:700;color:var(--volt);flex-shrink:0;margin-top:2px}
+.outline-header{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+.outline-header h3{margin:0;font-size:18px;font-weight:600;color:var(--white)}
+.outline-body{padding-left:42px}
+.outline-body p{font-size:15px;color:var(--gray);line-height:1.7;margin-bottom:10px}
+ul.notes-list{list-style:none;display:flex;flex-direction:column;gap:8px;padding-left:42px;margin-bottom:16px}
+ul.notes-list li{font-size:15px;color:var(--gray);line-height:1.6;position:relative;padding-left:16px}
+ul.notes-list li::before{content:'—';position:absolute;left:0;color:var(--dim);font-size:13px;top:1px}
+ul.notes-list li strong{color:var(--white);font-weight:500}
+.tip-card{background:rgba(213,255,2,.04);border:1px solid rgba(213,255,2,.15);border-radius:10px;padding:18px 22px;margin:16px 0}
+.tip-card .tip-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--volt);margin-bottom:6px}
+.tip-card p{font-size:15px;color:var(--gray);line-height:1.65;margin:0}
+.warn-card{background:rgba(255,180,0,.04);border:1px solid rgba(255,180,0,.2);border-radius:10px;padding:18px 22px;margin:16px 0}
+.warn-card .warn-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#ffb400;margin-bottom:6px}
+.warn-card p{font-size:15px;color:var(--gray);line-height:1.65;margin:0}
+code{background:#1a1b1a;border:1px solid var(--border);border-radius:4px;padding:2px 7px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;color:var(--volt)}
+pre{background:#0a0a0a;border:1px solid var(--border);border-radius:8px;padding:16px 20px;overflow-x:auto;margin:14px 0;font-family:'SF Mono','Fira Code',monospace;font-size:13px;line-height:1.6;color:#d4d4d4}
+.homework-card{background:var(--dark-card);border:1px solid rgba(213,255,2,.15);border-radius:12px;padding:28px 32px}
+.homework-card p{color:var(--gray);font-size:16px;line-height:1.7;margin-bottom:14px}
+.homework-card p:last-child{margin-bottom:0}
+.homework-card strong{color:var(--white);font-weight:500}
+.win-card{background:var(--dark-card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-bottom:14px}
+.win-card .win-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+.win-card p{font-size:15px;color:var(--gray);line-height:1.65;margin:0}
+.idea-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:16px 0}
+.idea-card{background:var(--dark-card);border:1px solid var(--border);border-radius:10px;padding:18px 20px}
+.idea-card .idea-name{font-size:14px;font-weight:600;color:var(--white);margin-bottom:6px}
+.idea-card p{font-size:14px;color:var(--gray);line-height:1.55;margin:0}
+.session-nav{border-top:1px solid var(--border);padding:40px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.nav-next{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.nav-label{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.nav-title{font-family:var(--serif);font-size:18px;color:var(--white)}
+.nav-btn{font-size:14px;color:var(--volt);font-weight:500}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+@media(max-width:600px){
+  .session-nav{flex-direction:column;gap:20px;align-items:flex-start}
+  .nav-next{align-items:flex-start}
+  ul.notes-list,.outline-body{padding-left:20px}
+}
+</style>
+</head>
+<body>
+
+<header class="portal-header">
+  <div class="portal-wordmark">AI Chief of Staff</div>
+  <a class="back-link" href="week4.html">← Session 4</a>
+</header>
+
+<main>
+<div class="container">
+
+  <section class="hero reveal">
+    <div class="session-meta">Session 4 &nbsp;·&nbsp; Notes & Recap</div>
+    <h1>Full Autonomy</h1>
+    <p class="hero-sub">The final session. Maintenance mindset, extending without code, Claude Code, the live test, and what to build next once your COS is real.</p>
+  </section>
+
+  <hr>
+
+  <!-- SECTION 1: MAINTENANCE MINDSET -->
+  <section class="block reveal">
+    <div class="block-label">Principle 1</div>
+
+    <div class="outline-section">
+      <div class="outline-header"><div class="outline-num">1</div><h3>The Maintenance Mindset</h3></div>
+      <div class="outline-body">
+        <p>Your COS will break. That's normal. The skill is fixing fast, not avoiding failure. Wrong and fast beats right and perfect, every time.</p>
+        <div class="tip-card">
+          <div class="tip-label">Real talk</div>
+          <p>Russ's COS had broken calls, misclassified emails, missed contacts. None of it mattered – because each fix made the system smarter the next time around.</p>
+        </div>
+        <ul class="notes-list">
+          <li><strong>When something breaks, fix it the same day.</strong> Small bugs compound into trust issues. Trust issues are how people abandon their COS.</li>
+          <li><strong>When it works, leave it alone.</strong> Don't rebuild what isn't broken. Don't optimize what already does its job.</li>
+          <li><strong>Every fix is a teaching moment.</strong> The fix doesn't just patch one bug – it adds context to how the system thinks.</li>
+        </ul>
+        <div class="warn-card">
+          <div class="warn-label">The trap</div>
+          <p>Treating your COS like consumer software you expect to be perfect. It isn't. It's a system you co-evolve with. If you wait for it to be flawless before relying on it, you'll never rely on it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- SECTION 2: EXTEND WITHOUT CODING -->
+  <section class="block reveal">
+    <div class="block-label">Principle 2</div>
+
+    <div class="outline-section">
+      <div class="outline-header"><div class="outline-num">2</div><h3>How to Extend Your COS Without Coding</h3></div>
+      <div class="outline-body">
+        <p>You don't need to know how to code. You need to know how to describe what you want. There are three modes you'll use over and over.</p>
+        <ul class="notes-list">
+          <li><strong>New skill / command:</strong> describe what you want, let it build, test, refine. Don't pre-design the solution – describe the outcome.</li>
+          <li><strong>Debug mode:</strong> share the error + context, then say "fix this." That's it. No need to diagnose. Let the COS triage its own failure.</li>
+          <li><strong>Upgrade mode:</strong> "here's what this currently does, here's what I want it to do better." Two sentences, one upgrade.</li>
+        </ul>
+        <div class="tip-card">
+          <div class="tip-label">The mental model</div>
+          <p>You are the product manager. The COS is the developer. You set the bar for what "done" looks like. It figures out how to hit the bar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- SECTION 3: CLAUDE CODE -->
+  <section class="block reveal">
+    <div class="block-label">The Unlock</div>
+
+    <div class="outline-section">
+      <div class="outline-header"><div class="outline-num">3</div><h3>Claude Code – What It Is and Why It Matters</h3></div>
+      <div class="outline-body">
+        <p>Non-developers now have a full-time developer. Claude Code reads your codebase, makes changes, tests them, and deploys. You describe outcomes. It figures out implementation.</p>
+        <ul class="notes-list">
+          <li><strong>It reads your code first.</strong> Before changing anything, it builds a mental model of how your COS is structured.</li>
+          <li><strong>It makes changes in plain language.</strong> "Add a contacts skill" – it edits the right files, in the right order, with the right tests.</li>
+          <li><strong>It tests and deploys.</strong> The loop closes on its own.</li>
+        </ul>
+        <div class="tip-card">
+          <div class="tip-label">The workflow</div>
+          <p>Open a terminal → run <code>claude</code> → describe what you want → review the diff → approve. That's it. No tutorials. No Stack Overflow. No syntax.</p>
+        </div>
+        <p><strong>Real use cases:</strong></p>
+        <ul class="notes-list">
+          <li>Building a contacts skill that ties phone numbers and emails to people</li>
+          <li>A custom dashboard that shows what your COS did today</li>
+          <li>A new Bland.ai prompt template tuned for a specific kind of call</li>
+        </ul>
+        <div class="warn-card">
+          <div class="warn-label">Still review the diff</div>
+          <p>Claude Code is fast, not infallible. Skim what it changed before you approve. You don't need to understand every line – just check it touched what you expected.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- SECTION 4: GROUP WINS -->
+  <section class="block reveal">
+    <div class="block-label">From the Group · Sessions 1–3 Wins</div>
+
+    <p style="font-size:16px;color:var(--gray);margin-bottom:24px;line-height:1.7">Four sessions in, here's what people in this room have actually built. None of these are theoretical.</p>
+
+    <div class="win-card">
+      <div class="win-label">YouTube Content Engine</div>
+      <p>A full automated content system that fires from a single video upload – blog post, social copy across every platform, promotional email, all dropped into a Drive folder labeled by the COS.</p>
+    </div>
+
+    <div class="win-card">
+      <div class="win-label">Email Director</div>
+      <p>The COS tells you the 3 things to focus on, drafts the first reply, and skips the inbox entirely. The assistant directs you – it doesn't send you back to sort.</p>
+    </div>
+
+    <div class="win-card">
+      <div class="win-label">Grocery Caller</div>
+      <p>Booked an RV park reservation end-to-end without picking up the phone. Instruction in chat → outbound call → confirmation back as a message.</p>
+    </div>
+
+    <div class="win-card">
+      <div class="win-label">Ideal Week Calendar</div>
+      <p>The COS analyzed 8 weeks of calendar history and built an "Ideal Week" in Google Calendar – mapping what the schedule should look like vs. what it actually does.</p>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-label">The pattern</div>
+      <p>Every one of these started with a sentence, not a spec. Describe the outcome, let the COS pick the tools, fix what breaks the same day.</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- SECTION 5: THE LIVE TEST -->
+  <section class="block reveal">
+    <div class="block-label">The Test</div>
+
+    <div class="outline-section">
+      <div class="outline-header"><div class="outline-num">4</div><h3>The Live Test – End-to-End Autonomy</h3></div>
+      <div class="outline-body">
+        <p>This is the test you run to know your COS is real. Four legs. If all four work, you have an autonomous system.</p>
+        <ul class="notes-list">
+          <li><strong>Leg 1:</strong> COS receives an instruction via Telegram</li>
+          <li><strong>Leg 2:</strong> drafts and sends an email</li>
+          <li><strong>Leg 3:</strong> schedules and makes a phone call</li>
+          <li><strong>Leg 4:</strong> generates an intel brief and delivers the result back to Telegram</li>
+        </ul>
+        <div class="tip-card">
+          <div class="tip-label">How to run it</div>
+          <p>Give it a real task, not a test task. "Reach out to [vendor] about [thing], call them if they don't reply, summarize what happens." A test task fails to surface the friction. A real task surfaces every gap.</p>
+        </div>
+        <div class="warn-card">
+          <div class="warn-label">If a leg breaks</div>
+          <p>Don't restart. Don't rebuild. Fix the leg. The point of the test isn't a clean run – it's to find the broken leg and fix it the same day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- SECTION 6: WHAT TO BUILD NEXT -->
+  <section class="block reveal">
+    <div class="block-label">What's Next · Build Ideas</div>
+
+    <div class="outline-section">
+      <div class="outline-header"><div class="outline-num">5</div><h3>What to Build Next</h3></div>
+      <div class="outline-body">
+        <p>Six directions to take your COS further. Pick one. Don't pick all six.</p>
+
+        <div class="idea-grid">
+          <div class="idea-card">
+            <div class="idea-name">Grocery Agent</div>
+            <p>Order from Kroger or Instacart on command. Talk to your COS, list goes through, groceries show up.</p>
+          </div>
+          <div class="idea-card">
+            <div class="idea-name">CRM Brief</div>
+            <p>Stripe + HubSpot data turned into a weekly revenue narrative. Numbers become a story you actually read.</p>
+          </div>
+          <div class="idea-card">
+            <div class="idea-name">Competitive Watcher</div>
+            <p>Monitor a competitor or person. Flag new activity, content, hires, or product launches the moment they happen.</p>
+          </div>
+          <div class="idea-card">
+            <div class="idea-name">Outbound System</div>
+            <p>Follow-up calls at scale via Bland. Lead lists, status checks, re-engagement – run by the agent, not by you.</p>
+          </div>
+          <div class="idea-card">
+            <div class="idea-name">Document Builder</div>
+            <p>Proposals, SOWs, briefs – generated from a prompt with your tone, your structure, your boilerplate baked in.</p>
+          </div>
+          <div class="idea-card">
+            <div class="idea-name">Health Tracker</div>
+            <p>Workouts, sleep, and meals synthesized into a weekly health narrative. Patterns you'd never notice manually.</p>
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-label">Pick by friction, not novelty</div>
+          <p>The best next build is the one tied to the thing that annoys you most right now. Don't build the shiny one. Build the painful one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- SECTION 7: GRADUATION -->
+  <section class="block reveal">
+    <div class="block-label">Graduation</div>
+
+    <div class="outline-section">
+      <div class="outline-header"><div class="outline-num">6</div><h3>You Built Something Most Operators Never Will</h3></div>
+      <div class="outline-body">
+        <p>Take a second to register this. Most people who say they want AI in their workflow never get past the chat window. You have a system.</p>
+        <p><strong>What your COS now owns:</strong></p>
+        <ul class="notes-list">
+          <li>Email triage – sorting, drafting, directing your attention</li>
+          <li>Voice calls – inbound screening and outbound execution</li>
+          <li>Meeting intel – briefs before, summaries after, action items captured</li>
+          <li>Weekly narrative – the story of your business and your life, written by the system that watched it happen</li>
+        </ul>
+        <p>What you expand next is up to you. The system is alive – it learns every time you use it. The more you push it, the smarter it gets.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- SECTION 8: WHAT COMES NEXT -->
+  <section class="block reveal">
+    <div class="block-label">After the Course</div>
+
+    <div class="outline-section">
+      <div class="outline-header"><div class="outline-num">7</div><h3>What Comes Next</h3></div>
+      <div class="outline-body">
+        <ul class="notes-list">
+          <li><strong>Cohort 2 is forming.</strong> The next group is being assembled now. If you know someone who should be in it, send them.</li>
+          <li><strong>Weekly office hours.</strong> Drop in, ask questions, share what you built, get unstuck.</li>
+          <li><strong>Keep building, keep sharing.</strong> The wins in this room came from people posting what worked – and what didn't.</li>
+        </ul>
+        <div class="tip-card">
+          <div class="tip-label">The one thing</div>
+          <p>The best thing you can do after this course is go use your COS on a real problem. Not a test. Not a demo. A real, annoying, recurring problem you have. That's when the system stops being a project and starts being infrastructure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- HOMEWORK -->
+  <section class="block reveal">
+    <div class="block-label">Final Homework</div>
+    <div class="homework-card">
+      <p><strong>Before you stop: run one real end-to-end task right now. Don't wait.</strong></p>
+      <p>Open Telegram. Give your COS a task that touches all four legs – instruction, email, call, intel brief back to you. Whatever breaks, fix the same day. Whatever works, leave alone.</p>
+      <p>That's the loop. That's the whole job from here forward.</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <nav class="session-nav">
+    <a class="nav-btn" href="week3-notes.html">← Session 3 Notes</a>
+    <div class="nav-next">
+      <span class="nav-label">Back to</span>
+      <a class="nav-title" href="index.html">Course Overview</a>
+      <a class="nav-btn" href="index.html">Go to overview →</a>
+    </div>
+  </nav>
+
+</div>
+</main>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') });
+}, {threshold:.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

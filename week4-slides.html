@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 4 – Full Autonomy | AI Chief of Staff</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0B0C0B;--volt:#D5FF02;--white:#F5F5F3;--gray:#999;--dim:#666;
+  --dark-card:#141514;--border:#1E1F1E;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+}
+html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var(--sans)}
+.deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+.scale-wrap{width:1920px;height:1080px;position:relative;transform-origin:center center}
+.slide{
+  position:absolute;inset:0;background:var(--black);display:none;
+  padding:80px 100px;flex-direction:column;justify-content:center;
+}
+.slide.active{display:flex}
+
+/* ── NAV ── */
+.nav{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:16px;z-index:999;
+  background:rgba(11,12,11,.85);border:1px solid var(--border);
+  border-radius:40px;padding:10px 20px;backdrop-filter:blur(12px)}
+.nav button{background:none;border:none;cursor:pointer;color:var(--gray);
+  font-size:20px;padding:4px 8px;transition:color .2s}
+.nav button:hover{color:var(--volt)}
+.nav-count{font-family:var(--sans);font-size:13px;color:var(--dim);min-width:52px;text-align:center}
+.nav-hint{font-size:11px;color:var(--dim);letter-spacing:.05em}
+
+/* ── SHARED ── */
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--volt);margin-bottom:20px}
+.serif{font-family:var(--serif)}
+.volt{color:var(--volt)}
+.dim{color:var(--dim)}
+.gray{color:var(--gray)}
+.card{background:var(--dark-card);border:1px solid var(--border);border-radius:14px;padding:32px}
+.card-volt{border-color:rgba(213,255,2,.25)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
+.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:20px}
+
+/* ── SECTION DIVIDER ── */
+.section-slide{justify-content:center;align-items:flex-start}
+.section-slide .part{font-size:13px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--volt);margin-bottom:24px}
+.section-slide h1{font-family:var(--serif);font-size:96px;line-height:1.0;
+  letter-spacing:-.03em;color:var(--white);margin-bottom:28px}
+.section-slide .sub{font-size:22px;color:var(--gray);max-width:680px;line-height:1.6}
+
+/* ── SLIDE 1 TITLE ── */
+.title-slide h1{font-family:var(--serif);font-size:84px;line-height:1.0;
+  letter-spacing:-.03em;color:var(--white);margin-bottom:24px}
+.title-slide .tagline{font-size:24px;color:var(--gray);max-width:760px;line-height:1.6;margin-bottom:40px}
+.title-slide .meta{font-size:15px;color:var(--dim)}
+.byline{position:absolute;bottom:80px;right:100px;
+  display:flex;align-items:center;gap:10px;
+  font-size:15px;color:var(--dim)}
+.byline::before{content:'';width:8px;height:8px;background:var(--volt);
+  border-radius:50%;display:inline-block}
+
+/* ── CONTENT SLIDES ── */
+.slide-title{font-size:48px;font-family:var(--serif);color:var(--white);
+  letter-spacing:-.02em;margin-bottom:48px;line-height:1.1}
+
+/* CHECKLIST */
+.checklist{list-style:none;display:flex;flex-direction:column;gap:0}
+.check-row{display:flex;align-items:flex-start;gap:20px;
+  padding:24px 0;border-bottom:1px solid var(--border);font-size:22px;color:var(--gray);line-height:1.5}
+.check-row:first-child{border-top:1px solid var(--border)}
+.check-icon{color:var(--volt);font-size:22px;font-weight:700;flex-shrink:0;padding-top:2px}
+.check-row.active-row{color:var(--white)}
+.check-row.active-row .check-icon{color:var(--volt)}
+
+/* TWO-COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.col-head{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  margin-bottom:24px}
+.col-volt{color:var(--volt)}
+.col-white{color:var(--white)}
+.bullet-list{list-style:none;display:flex;flex-direction:column;gap:18px}
+.bullet-list li{font-size:20px;color:var(--gray);display:flex;align-items:flex-start;gap:14px;line-height:1.5}
+.bullet-list li::before{content:'–';color:var(--volt);flex-shrink:0;font-weight:600}
+
+/* STEP LIST */
+.step-list{list-style:none;display:flex;flex-direction:column;gap:4px}
+.step-row{display:grid;grid-template-columns:60px 1fr;
+  padding:22px 0;border-bottom:1px solid var(--border);align-items:center}
+.step-row:first-child{border-top:1px solid var(--border)}
+.step-num{font-size:32px;font-weight:700;color:var(--volt);font-family:var(--serif)}
+.step-text{font-size:21px;color:var(--white)}
+.cta-box{background:rgba(213,255,2,.07);border:1px solid rgba(213,255,2,.2);
+  border-radius:10px;padding:20px 28px;margin-top:32px;
+  font-size:18px;color:var(--volt);font-weight:600}
+
+/* PROMPT BLOCK */
+.prompt-block{background:#08090A;border:1px solid rgba(213,255,2,.2);border-radius:12px;
+  padding:32px 36px;font-size:18px;color:var(--gray);line-height:1.8;max-width:1400px}
+.prompt-block .p-label{font-size:11px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--volt);margin-bottom:16px;font-family:var(--sans)}
+.prompt-block .p-line{color:var(--white)}
+.prompt-block .p-fill{color:rgba(213,255,2,.5)}
+
+/* HOMEWORK CARD */
+.hw-card{background:var(--dark-card);border:1px solid rgba(213,255,2,.2);
+  border-radius:16px;padding:40px 48px;max-width:980px}
+.hw-card p{font-size:22px;color:var(--gray);line-height:1.7;margin-bottom:16px}
+.hw-card p:last-child{margin-bottom:0}
+.hw-card strong{color:var(--white);font-weight:500}
+
+/* OPEN FLOOR */
+.open-col h3{font-family:var(--serif);font-size:32px;color:var(--white);margin-bottom:12px}
+.open-col p{font-size:18px;color:var(--gray);line-height:1.6}
+.wa-link{display:inline-block;margin-top:32px;font-size:17px;font-weight:600;
+  color:var(--black);background:var(--volt);padding:14px 28px;border-radius:8px}
+
+/* KEYBOARD HINT */
+.keyboard-hint{position:absolute;bottom:80px;left:100px;
+  font-size:13px;color:var(--dim);display:flex;gap:20px}
+.key{display:inline-block;border:1px solid var(--border);border-radius:5px;
+  padding:3px 8px;font-size:12px;color:var(--dim);margin:0 2px}
+
+/* WORKFLOW PIPELINE (Claude Code slide) */
+.flow{display:flex;align-items:stretch;gap:18px;flex-wrap:nowrap}
+.flow-step{flex:1;background:var(--dark-card);border:1px solid var(--border);
+  border-radius:14px;padding:28px 24px;position:relative}
+.flow-step .fs-num{font-size:12px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--volt);margin-bottom:14px}
+.flow-step .fs-title{font-family:var(--serif);font-size:30px;color:var(--white);margin-bottom:10px;line-height:1.1}
+.flow-step .fs-desc{font-size:15px;color:var(--gray);line-height:1.5}
+.flow-arrow{display:flex;align-items:center;justify-content:center;color:var(--volt);
+  font-size:28px;flex-shrink:0;width:24px}
+</style>
+</head>
+<body>
+
+<div class="deck">
+<div class="scale-wrap" id="scaleWrap">
+
+<!-- SLIDE 1: TITLE -->
+<div class="slide title-slide active" data-slide="1">
+  <div class="eyebrow">Session 4 &nbsp;·&nbsp; AI Chief of Staff Cohort 1</div>
+  <h1>Full<br>Autonomy</h1>
+  <p class="tagline">Everything you've built now runs without you.</p>
+  <p class="meta">Session 4 &nbsp;·&nbsp; Full Autonomy</p>
+  <div class="keyboard-hint">
+    <span><span class="key">←</span><span class="key">→</span> navigate</span>
+    <span><span class="key">F</span> fullscreen</span>
+  </div>
+  <div class="byline">Russ Perry</div>
+</div>
+
+<!-- SLIDE 2: WHERE WE ARE -->
+<div class="slide" data-slide="2">
+  <div class="eyebrow">Progress Check</div>
+  <div class="slide-title">Where We Are</div>
+  <ul class="checklist">
+    <li class="check-row"><span class="check-icon">✓</span> Session 1 – COS installed &amp; running on your machine</li>
+    <li class="check-row"><span class="check-icon">✓</span> Session 2 – Voice agent live, your COS has a phone number</li>
+    <li class="check-row"><span class="check-icon">✓</span> Session 3 – Intelligence layer: contacts, prep, weekly synthesis</li>
+    <li class="check-row active-row"><span class="check-icon">→</span> Session 4: Full Autonomy</li>
+  </ul>
+</div>
+
+<!-- SLIDE 3: THE MAINTENANCE MINDSET -->
+<div class="slide" data-slide="3">
+  <div class="eyebrow">The Mindset</div>
+  <div class="slide-title" style="max-width:1300px">Wrong and fast<br>&gt; <span class="volt">right and perfect.</span></div>
+  <div class="two-col" style="margin-top:8px">
+    <div>
+      <div class="col-head col-white">The Reality</div>
+      <ul class="bullet-list">
+        <li>Your COS will break</li>
+        <li>A prompt that worked last week will misfire</li>
+        <li>An API will change, a permission will lapse</li>
+        <li>That's normal – it's a living system, not a product</li>
+      </ul>
+    </div>
+    <div>
+      <div class="col-head col-volt">The Habit</div>
+      <ul class="bullet-list">
+        <li>Fix fast – don't avoid the failure</li>
+        <li>Ship the messy version, then iterate</li>
+        <li>Every bug is a chance to make it sharper</li>
+        <li>Maintenance is the work now</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: HOW TO EXTEND YOUR COS -->
+<div class="slide" data-slide="4">
+  <div class="eyebrow">The Three Modes</div>
+  <div class="slide-title">How to Extend Your COS</div>
+  <div class="grid3">
+    <div class="card card-volt">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:14px">Mode 1 · New Skill</div>
+      <p style="font-size:22px;font-family:var(--serif);color:var(--white);margin-bottom:12px;line-height:1.2">Describe what you want.</p>
+      <p style="font-size:17px;color:var(--gray);line-height:1.6">Tell your COS the outcome – the trigger, the inputs, the output. Let it build the command end-to-end. You don't spec the code, you spec the result.</p>
+    </div>
+    <div class="card card-volt">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:14px">Mode 2 · Debug</div>
+      <p style="font-size:22px;font-family:var(--serif);color:var(--white);margin-bottom:12px;line-height:1.2">Share the error. Say fix this.</p>
+      <p style="font-size:17px;color:var(--gray);line-height:1.6">Paste the error, paste the context, name what you were trying to do. Your COS will diagnose, patch, and test. No guessing required from you.</p>
+    </div>
+    <div class="card card-volt">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:14px">Mode 3 · Upgrade</div>
+      <p style="font-size:22px;font-family:var(--serif);color:var(--white);margin-bottom:12px;line-height:1.2">"Here's what I want this to do better."</p>
+      <p style="font-size:17px;color:var(--gray);line-height:1.6">Point at an existing command. Tell it what's missing, what's noisy, what should change. Let it refactor – then run the new version live.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: CLAUDE CODE -->
+<div class="slide" data-slide="5">
+  <div class="eyebrow">The Superpower</div>
+  <div class="slide-title" style="max-width:1300px">Claude Code – built for people<br>who <span class="volt">don't write code.</span></div>
+  <p style="font-size:21px;color:var(--gray);margin-bottom:40px;max-width:1100px;line-height:1.6">You describe outcomes. It writes, tests, and deploys the system. The workflow is the same every time:</p>
+  <div class="flow">
+    <div class="flow-step">
+      <div class="fs-num">01</div>
+      <div class="fs-title">Describe</div>
+      <div class="fs-desc">Plain English. What you want it to do, what data it touches, where it sends the result.</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="fs-num">02</div>
+      <div class="fs-title">Generate</div>
+      <div class="fs-desc">Claude Code writes the script, wires the integrations, and explains what it built.</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="fs-num">03</div>
+      <div class="fs-title">Test</div>
+      <div class="fs-desc">Fire a dry run. Read the output. If it's wrong, you tell it what's off and it fixes itself.</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="fs-num">04</div>
+      <div class="fs-title">Deploy</div>
+      <div class="fs-desc">Schedule it, trigger it, or wire it to a command. From idea to running system in minutes.</div>
+    </div>
+  </div>
+  <div class="cta-box">You don't write code. You describe outcomes.</div>
+</div>
+
+<!-- SLIDE 6: WHAT TO BUILD NEXT -->
+<div class="slide" data-slide="6">
+  <div class="eyebrow">The Backlog</div>
+  <div class="slide-title">What to Build Next</div>
+  <div class="grid3" style="gap:20px">
+    <div class="card">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:10px">Idea 01</div>
+      <div style="font-size:24px;font-family:var(--serif);color:var(--white);margin-bottom:10px;line-height:1.15">Grocery + Errand Agent</div>
+      <p style="font-size:15px;color:var(--gray);line-height:1.6">Voice it your list, it places the Instacart order, books the dry cleaner, and pings you when it's done.</p>
+    </div>
+    <div class="card">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:10px">Idea 02</div>
+      <div style="font-size:24px;font-family:var(--serif);color:var(--white);margin-bottom:10px;line-height:1.15">Custom CRM Briefing</div>
+      <p style="font-size:15px;color:var(--gray);line-height:1.6">Your Stripe and HubSpot data, synthesized into a weekly brief. Revenue, pipeline, what's slipping – one message.</p>
+    </div>
+    <div class="card">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:10px">Idea 03</div>
+      <div style="font-size:24px;font-family:var(--serif);color:var(--white);margin-bottom:10px;line-height:1.15">Proactive Research</div>
+      <p style="font-size:15px;color:var(--gray);line-height:1.6">Point it at a competitor, a person, or a topic. It watches the web and pings you only when something matters.</p>
+    </div>
+    <div class="card">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:10px">Idea 04</div>
+      <div style="font-size:24px;font-family:var(--serif);color:var(--white);margin-bottom:10px;line-height:1.15">Business Call System</div>
+      <p style="font-size:15px;color:var(--gray);line-height:1.6">Outbound follow-up at scale. Your COS runs the calls, logs the outcomes, and queues the next action.</p>
+    </div>
+    <div class="card">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:10px">Idea 05</div>
+      <div style="font-size:24px;font-family:var(--serif);color:var(--white);margin-bottom:10px;line-height:1.15">Document Builder</div>
+      <p style="font-size:15px;color:var(--gray);line-height:1.6">Proposals, SOWs, one-pagers – generated from a prompt, in your voice, formatted and ready to send.</p>
+    </div>
+    <div class="card">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:10px">Idea 06</div>
+      <div style="font-size:24px;font-family:var(--serif);color:var(--white);margin-bottom:10px;line-height:1.15">Personal Health Tracker</div>
+      <p style="font-size:15px;color:var(--gray);line-height:1.6">Workouts, sleep, meals – logged by voice, surfaced as patterns. Your COS becomes your coach.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: THE LIVE TEST -->
+<div class="slide section-slide" data-slide="7">
+  <div class="part">The Live Test</div>
+  <h1>Email. Call. Brief.<br>End to end. <span class="volt">No hands.</span></h1>
+  <p class="sub" style="max-width:900px">An inbound email gets triaged. A call comes in and gets handled. The brief lands on your phone before the next meeting. You don't touch any of it.</p>
+  <p class="sub" style="margin-top:24px;font-size:18px">If all three fire clean – you're done. The system is yours.</p>
+</div>
+
+<!-- SLIDE 8: GRADUATION -->
+<div class="slide" data-slide="8">
+  <div class="eyebrow">Graduation</div>
+  <div class="slide-title">You Built Something Real.</div>
+  <div class="two-col" style="gap:60px">
+    <div>
+      <div class="col-head col-volt">What Your COS Now Owns</div>
+      <ul class="bullet-list">
+        <li>Your inbox – triaged, drafted, replied</li>
+        <li>Your phone line – inbound + outbound calls</li>
+        <li>Your meeting prep – every event, every time</li>
+        <li>Your weekly synthesis – Fridays, automatic</li>
+        <li>Your contacts – context that compounds</li>
+      </ul>
+    </div>
+    <div>
+      <div class="col-head col-white">What You Expand Next</div>
+      <ul class="bullet-list" style="--volt:#F5F5F3">
+        <li>The first custom command only your business needs</li>
+        <li>One agent that handles a recurring chore</li>
+        <li>One data source you wire in this month</li>
+        <li>One workflow you stop doing by hand</li>
+        <li>The next thing on your backlog</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 9: WHAT COMES NEXT -->
+<div class="slide" data-slide="9">
+  <div class="eyebrow">What Comes Next</div>
+  <div class="slide-title">Keep Going.</div>
+  <div class="grid3">
+    <div class="card card-volt">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:14px">Keep Building</div>
+      <p style="font-size:18px;color:var(--gray);line-height:1.6">The hard part is over. You know the loop now – describe, generate, test, deploy. Pick the next thing on your list and ship it.</p>
+    </div>
+    <div class="card card-volt">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:14px">Come Back to Cohort Calls</div>
+      <p style="font-size:18px;color:var(--gray);line-height:1.6">The cohort doesn't end here. Drop into the calls, share what broke, share what worked. The group sharpens everyone's system.</p>
+    </div>
+    <div class="card card-volt">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:14px">Cohort 2 Is Forming</div>
+      <p style="font-size:18px;color:var(--gray);line-height:1.6">If you know someone who needs this, send them in. Cohort 2 is filling now – earlier seats, deeper builds, more custom work.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 10: CLOSER -->
+<div class="slide section-slide" data-slide="10" style="justify-content:center;align-items:center;text-align:center">
+  <div class="part" style="margin-bottom:24px">End of Session 4 &nbsp;·&nbsp; End of Cohort 1</div>
+  <h1 style="font-size:120px;text-align:center;line-height:1.0">The COS<br>never stops<br>learning.</h1>
+  <p class="sub" style="text-align:center;margin:0 auto;font-size:26px;color:var(--white)">Neither do you.</p>
+  <p style="margin-top:48px;font-size:18px;color:var(--volt);font-weight:600;letter-spacing:.08em">russperry.co</p>
+</div>
+
+</div><!-- /scale-wrap -->
+</div><!-- /deck -->
+
+<!-- NAV -->
+<div class="nav">
+  <button onclick="prev()" title="Previous">&#8592;</button>
+  <span class="nav-count" id="navCount">1 / 10</span>
+  <button onclick="next()" title="Next">&#8594;</button>
+  <span class="nav-hint">← → keys &nbsp;·&nbsp; F fullscreen</span>
+</div>
+
+<script>
+const TOTAL = 10;
+let current = parseInt(localStorage.getItem('s4slide') || '1');
+
+function go(n) {
+  n = Math.max(1, Math.min(TOTAL, n));
+  document.querySelector('.slide.active')?.classList.remove('active');
+  document.querySelector(`[data-slide="${n}"]`)?.classList.add('active');
+  document.getElementById('navCount').textContent = n + ' / ' + TOTAL;
+  current = n;
+  localStorage.setItem('s4slide', n);
+}
+function next() { go(current + 1); }
+function prev() { go(current - 1); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); next(); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prev(); }
+  if (e.key === 'f' || e.key === 'F') {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+    else document.exitFullscreen?.();
+  }
+});
+
+document.addEventListener('click', e => {
+  if (e.target.closest('.nav') || e.target.closest('a') || e.target.closest('button')) return;
+  next();
+});
+
+function scale() {
+  const wrap = document.getElementById('scaleWrap');
+  const s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+  wrap.style.transform = `scale(${s})`;
+}
+window.addEventListener('resize', scale);
+scale();
+go(current);
+</script>
+</body>
+</html>
