@@ -1,31 +1,39 @@
 /**
  * Cloudflare Pages Function: /auth/verify
- * Proxies magic link verification to the auth worker.
- * The worker sets the session cookie and redirects to the course.
+ * Calls the auth worker's /auth/validate endpoint (returns JSON),
+ * then sets the session cookie directly on members.russperry.co.
+ * This avoids the cross-domain Set-Cookie stripping issue.
  */
 
 const AUTH_WORKER = 'https://cos-auth-worker.russ-2da.workers.dev';
+const COOKIE_NAME = 'cos_session';
+const COOKIE_TTL = 60 * 60 * 24 * 30; // 30 days
 
 export async function onRequest(context) {
   const { request } = context;
   const url = new URL(request.url);
 
-  // Forward the full query string to the worker
-  const workerUrl = `${AUTH_WORKER}/auth/verify${url.search}`;
+  // Ask the worker to validate the token and return session info as JSON
+  const validateUrl = `${AUTH_WORKER}/auth/validate${url.search}`;
+  let data;
 
-  const res = await fetch(workerUrl, {
-    method: 'GET',
-    redirect: 'manual', // Let the worker's redirect pass through unchanged
-  });
-
-  // Manually copy all headers (including Set-Cookie) to avoid silent drops
-  const responseHeaders = new Headers();
-  for (const [key, value] of res.headers.entries()) {
-    responseHeaders.append(key, value);
+  try {
+    const res = await fetch(validateUrl, { method: 'GET' });
+    data = await res.json();
+  } catch (e) {
+    return Response.redirect(`${url.origin}/login?error=worker-unreachable`, 302);
   }
 
-  return new Response(res.body, {
-    status: res.status,
-    headers: responseHeaders,
+  if (!data.ok) {
+    return Response.redirect(`${url.origin}/login?error=${data.error || 'invalid'}`, 302);
+  }
+
+  // Set cookie on the Pages domain and redirect to course
+  return new Response(null, {
+    status: 302,
+    headers: {
+      'Location': data.dest,
+      'Set-Cookie': `${COOKIE_NAME}=${data.cookieValue}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${COOKIE_TTL}`,
+    },
   });
 }
