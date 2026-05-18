@@ -1,7 +1,7 @@
 # Session 3 – Starter Prompts
 ## The Intelligence Layer
 
-Use these prompts directly in your AI COS to complete each step tonight. Copy, paste, fill in the brackets, and let your COS do the work.
+Use these prompts directly in your AI COS to complete each step. Copy, paste, fill in the brackets, and let your COS do the work.
 
 ---
 
@@ -109,7 +109,7 @@ The narrative should cover:
 
 Under 300 words. Written like a sharp chief of staff briefing me on Monday morning. No fluff.
 
-Set it up, confirm when it's live, and fire a test run right now so I can see what Friday's report looks like tonight.
+Set it up, confirm when it's live, and fire a test run so I can see what the report looks like.
 ```
 
 ---

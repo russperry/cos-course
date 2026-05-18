@@ -1,7 +1,7 @@
 # Session 4 – Starter Prompts
 ## Make It Yours — Full Autonomy & Pressure Testing
 
-Use these prompts directly in your AI COS to complete each step tonight. Copy, paste, fill in the brackets, and let your COS do the work.
+Use these prompts directly in your AI COS to complete each step. Copy, paste, fill in the brackets, and let your COS do the work.
 
 ---
 
@@ -142,7 +142,7 @@ Constraints:
 Scope it first and tell me what you're going to build before you start. Then build it. Then show me a live run.
 ```
 
-> **The loop never ends:** Scope → Build → Test → Upgrade. The curriculum ends tonight but this loop is how your COS keeps getting better every week.
+> **The loop never ends:** Scope → Build → Test → Upgrade. The curriculum ends here but this loop is how your COS keeps getting better every week.
 
 ---
 

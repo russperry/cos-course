@@ -1,6 +1,5 @@
 # Session 2 – Call Notes & Recap
 ## Give Your COS a Voice
-**Date:** Sunday, May 10 · 7:00 – 9:00 PM MST
 
 ---
 
@@ -8,7 +7,7 @@
 
 This came up early and it's worth anchoring on before anything else.
 
-The AI space moves fast. Whatever tool we use tonight may not be the tool in 3–4 months. That's fine. The trap is letting that create decision paralysis – endlessly comparing options, following hype, losing time to "which one is best?"
+The AI space moves fast. Whatever tool we use in this session may not be the tool in 3–4 months. That's fine. The trap is letting that create decision paralysis – endlessly comparing options, following hype, losing time to "which one is best?"
 
 **The better question is always:** what's the outcome I want? What's the simplest path to get there?
 
@@ -134,7 +133,7 @@ Call data lives in Bland's database, accessible via API. Your COS can pull call 
 ---
 
 ## Homework Before Session 3
-**Use your COS phone number for one real interaction before tomorrow.**
+**Use your COS phone number for one real interaction.**
 
 Screen a call. Make an outbound call. Book something. Send yourself a test call. Just use it once.
 
@@ -142,8 +141,8 @@ Come to Session 3 ready to share what happened.
 
 ---
 
-## Session 3 – Tomorrow (Monday, May 11 · 7:00 – 9:00 PM MST)
-**The Intelligence Layer** – making your COS smarter. The portal unlocks at 7 AM.
+## Session 3 – Up Next
+**The Intelligence Layer** – making your COS smarter.
 
 ---
 

@@ -1,7 +1,7 @@
 # Session 2 – Starter Prompts
 ## Give Your COS a Voice
 
-Use these prompts directly in Hermes to complete each step tonight. Copy, paste, and go.
+Use these prompts directly in Hermes to complete each step. Copy, paste, and go.
 
 ---
 
@@ -117,4 +117,4 @@ My pathway ID is: [YOUR PATHWAY ID]
 
 *Tip: Fill in every [BRACKET] before sending. The more context you give, the better the output.*
 
-*Session 3 tomorrow – The Intelligence Layer. Use your number for one real interaction tonight.*
+*Session 3 – The Intelligence Layer. Use your number for one real interaction.*
