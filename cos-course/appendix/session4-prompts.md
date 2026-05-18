@@ -66,7 +66,7 @@ This is the real test. Chain every tool together — contacts, email, voice, Tel
 ```
 I'm giving you a real task — not a drill. Use every capability you have.
 
-The task: [e.g., "Confirm Thursday's meeting with [NAME], get them on the phone if they don't reply by EOD, prep me for the conversation, and brief me on Telegram"]
+The task: [e.g., "Confirm the meeting with [NAME], get them on the phone if they don't reply by EOD, prep me for the conversation, and brief me on Telegram"]
 
 I expect you to:
 1. Draft and send the email (run contacts-lookup first)
@@ -106,7 +106,7 @@ Stop monitoring dashboards. Build one focused weekly brief on the one competitor
 ```
 Build me a competitive watcher for [COMPANY NAME or TOPIC].
 
-Every Monday at 8 AM, send me a Telegram message with:
+Every week on a schedule you set, send me a Telegram message with:
 - What they shipped, announced, or changed in the last 7 days
 - Any press, funding, or partnership news
 - One sentence on what it means for me, if anything
@@ -118,7 +118,7 @@ Hard constraints:
 
 Sources to pull from: their blog, press releases, LinkedIn, Google News, and any RSS feeds you can find.
 
-Set it up, confirm the schedule, and run a test report right now so I can see what Monday's brief will look like.
+Set it up, confirm the schedule, and run a test report right now so I can see what the brief will look like.
 ```
 
 ---

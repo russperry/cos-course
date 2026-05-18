@@ -33,7 +33,7 @@ Walk me through exactly what to set in the Bland dashboard:
 - What timezone and business hours to set
 - Any other settings I should configure before going live
 
-My business hours are [YOUR HOURS, e.g. 9 AM – 6 PM MST Monday–Friday].
+My business hours are [YOUR HOURS, e.g. 9 AM – 6 PM weekdays].
 ```
 
 ---
@@ -71,7 +71,7 @@ Set up a webhook or cron that:
 Make an outbound call on my behalf using Bland.ai.
 
 Call: [PHONE NUMBER]
-Purpose: [e.g. "Follow up on the proposal I sent last Tuesday. Ask if they had a chance to review it and what questions they have."]
+Purpose: [e.g. "Follow up on the proposal I sent recently. Ask if they had a chance to review it and what questions they have."]
 My name: [YOUR NAME]
 My Bland API key: [YOUR BLAND API KEY]
 My outbound number: [YOUR BLAND PHONE NUMBER]

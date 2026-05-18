@@ -93,7 +93,7 @@ Create a contacts/[first-last].md file for each one using my standard template. 
 ### Prompt 5 – Build the Weekly Narrative
 
 ```
-Set up a weekly synthesis that runs every Friday at 4 PM and delivers a briefing to my Telegram.
+Set up a weekly synthesis that runs on a schedule you choose and delivers a briefing to my Telegram.
 
 Synthesize the week by pulling from:
 - Google Calendar (meetings I had)
@@ -107,7 +107,7 @@ The narrative should cover:
 - Top 3 priorities for next week
 - One thing I should not let slip
 
-Under 300 words. Written like a sharp chief of staff briefing me on Monday morning. No fluff.
+Under 300 words. Written like a sharp chief of staff briefing me at the start of the week. No fluff.
 
 Set it up, confirm when it's live, and fire a test run so I can see what the report looks like.
 ```
@@ -159,4 +159,4 @@ Test it now on someone I've emailed recently. Show me the result from each layer
 
 *Fill in every [BRACKET] before sending. The more context you give, the better the output.*
 
-*Session 4 next week – Make It Yours. Come with one thing you want to build that isn't on the curriculum.*
+*Session 4 – Make It Yours. Come with one thing you want to build that isn't on the curriculum.*

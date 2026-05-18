@@ -127,7 +127,7 @@ async function init() {
     document.getElementById('welcome-heading').textContent = `Welcome back${firstName ? ', ' + firstName.charAt(0).toUpperCase() + firstName.slice(1) : ''}.`;
 
     if (data.access === 'mastermind') {
-      document.getElementById('access-desc').textContent = 'You have full mastermind access — all courses, live calls, and the private community.';
+      document.getElementById('access-desc').textContent = 'You have full mastermind access — all courses, group calls, and the private community.';
       document.getElementById('community-section').style.display = '';
       renderCommunity();
     } else if (data.access === 'course') {
