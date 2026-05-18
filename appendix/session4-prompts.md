@@ -1,18 +1,20 @@
 # Session 4 – Starter Prompts
-## Full Autonomy
+## Make It Yours — Full Autonomy & Pressure Testing
 
-Use these prompts directly in your AI COS to finish the course strong. By now your system is real — email, voice, contacts, narrative, prep. This session is about pressure-testing it, upgrading it, and making it yours. Copy, paste, fill in the brackets, and let your COS do the work.
+Use these prompts directly in your AI COS to complete each step tonight. Copy, paste, fill in the brackets, and let your COS do the work.
 
 ---
 
 ### Prompt 1 – The Maintenance Check
 
+Before adding anything new, audit what you built. Most broken systems fail silently — this catches them.
+
 ```
 Audit yourself.
 
 Run a full health check across every system we've built:
-- Email sweep
-- Voice calls
+- Email triage
+- Voice calls (Bland.ai)
 - Contacts system
 - Weekly narrative
 - Meeting prep
@@ -24,142 +26,148 @@ For each one, tell me:
 4. What's broken, flaky, or silently failing
 5. What hasn't been touched in 7+ days and may be dead weight
 
-Then give me a prioritized fix list: top 3 things to repair or retire before we add anything new. Be honest — I'd rather kill a system than carry a broken one.
+Then give me a prioritized fix list: the top 3 things to repair or retire before we add anything new.
 ```
 
-**Why this matters:** Most personal AI stacks rot quietly. Things stop firing, cron jobs die, API keys expire, and you don't notice until you need them. A scheduled self-audit is the single best habit for keeping a COS alive past month one.
+> **The rule:** I'd rather kill a system than carry a broken one. A scheduled self-audit is the single best habit for long-term COS viability.
 
 ---
 
-### Prompt 2 – Build a Custom Command with Claude Code
+### Prompt 2 – Build a Custom Command
+
+Custom commands are what transform your COS from a generic assistant into something that thinks like you. Pick one that saves you time every single day.
 
 ```
-I want to add a new custom command to my COS. Here's the idea in plain language:
+Build me a custom command called "[COMMAND NAME]".
 
-Command name: [SHORT NAME, e.g. "digest" or "brief" or "status"]
-What it should do: [DESCRIBE IN ONE OR TWO SENTENCES]
-What I want back: [TELEGRAM MESSAGE / FILE / SPOKEN ANSWER / ETC.]
-When I'd use it: [MORNING / BEFORE MEETINGS / ON DEMAND]
+When I type "[COMMAND NAME]", do the following:
+[DESCRIBE EXACTLY WHAT IT SHOULD DO — step by step]
 
-Scope it first — tell me exactly what you'll build, what data sources it touches, and what could go wrong. Then build it via Claude Code, test it end-to-end, and confirm it's live. Show me a real run.
+Output format: [Telegram message / file saved to russ-os / email draft / etc.]
+Constraints: [e.g., under 200 words, bullets only, no fluff]
 
-Some ideas if I'm stuck:
-- "digest" → daily content brief from my feeds + saved links
-- "brief [person]" → pull everything I know about someone in one card
-- "status" → what's open across email, calendar, and contacts right now
+When it's built:
+1. Save it as a skill so it persists across sessions
+2. Run it once right now so I can see the output
+3. Tell me if anything is missing before I use it for real
 ```
 
-**Why this matters:** Custom commands are where your COS stops being a generic assistant and starts being yours. The friction of building one in Claude Code is now lower than the friction of doing the task manually — that's the whole point.
+**Examples to try:**
+- `digest` — pull my top 5 unread articles and summarize each in 2 sentences
+- `brief [person]` — full contact card + recent email history + what to know before talking to them
+- `status` — current snapshot: email backlog, today's calendar, open tasks
 
 ---
 
 ### Prompt 3 – End-to-End Live Test
 
+This is the real test. Chain every tool together — contacts, email, voice, Telegram — on one actual task with stakes.
+
 ```
 I'm giving you a real task — not a drill. Use every capability you have.
 
-The task: [DESCRIBE A REAL THING ON YOUR PLATE — e.g. "Confirm Thursday's meeting with [NAME], get them on the phone if they don't reply by EOD, prep me for the conversation, and brief me on Telegram"]
+The task: [e.g., "Confirm Thursday's meeting with [NAME], get them on the phone if they don't reply by EOD, prep me for the conversation, and brief me on Telegram"]
 
 I expect you to:
-1. Draft and send the email (use the contacts lookup — never guess an address)
-2. Make or schedule the phone call
-3. Generate a meeting prep card for the conversation
-4. Deliver a clean summary to my Telegram when it's all in motion
+1. Draft and send the email (run contacts-lookup first)
+2. Make or schedule the follow-up phone call via Bland.ai
+3. Generate a meeting prep card
+4. Deliver a clean summary to my Telegram when it's all done
 
-Move. Tell me what you did, what's pending, and what needs my input.
+Report back on what you did and flag anything that required my input.
 ```
 
-**Why this matters:** Until you point your COS at something real with stakes, you don't actually know if it works. The test isn't whether each tool runs — it's whether they chain together without you babysitting.
+> **Why this matters:** Anyone can build individual tools. The COS earns its keep when it can chain them together without you babysitting each step.
 
 ---
 
-### Prompt 4 – Upgrade Something That's Already Working
+### Prompt 4 – The 10x Upgrade
+
+Pick one system that's running but annoying you — wrong tone, too noisy, fires at the wrong time. Second versions are almost always 10x better because now you know what's actually missing.
 
 ```
-Pick one system that's already running for me and make it sharper.
+I want to upgrade my [NAME THE SYSTEM — e.g., "weekly narrative" or "meeting prep command"].
 
-System to upgrade: [EMAIL TRIAGE / VOICE AGENT / WEEKLY NARRATIVE / MEETING PREP / OTHER]
+Here's what's wrong with the current version:
+[BE SPECIFIC — e.g., "it's too long", "the tone is too formal", "it misses context from my contact files", "it fires too early"]
 
-What it does today:
-[ONE OR TWO SENTENCES]
+Here's what I want instead:
+[DESCRIBE THE BETTER BEHAVIOR]
 
-What I wish it did differently:
-[THE GAP — too long, too generic, missing a source, wrong tone, fires at the wrong time, etc.]
-
-Propose the upgrade first: what you'd change, what you'd leave alone, and what the new output would look like. Once I approve, build it, swap it in, and run it live so I can see the difference.
+Keep the same core function — just fix the gap. Show me a before/after comparison so I can confirm the upgrade is worth keeping.
 ```
-
-**Why this matters:** The second version of any system is almost always 10x better than the first, because now you know what you actually wanted. Upgrades compound — neglected systems decay.
 
 ---
 
-### Prompt 5 – Build the Grocery/Errand Agent
+### Prompt 5 – Build a Competitive Watcher
+
+Stop monitoring dashboards. Build one focused weekly brief on the one competitor or topic you actually care about.
 
 ```
-Build me a grocery and errand agent.
+Build me a competitive watcher for [COMPANY NAME or TOPIC].
 
-Connect to [KROGER API / INSTACART API / WHICHEVER IS SIMPLER TO GET WORKING].
+Every Monday at 8 AM, send me a Telegram message with:
+- What they shipped, announced, or changed in the last 7 days
+- Any press, funding, or partnership news
+- One sentence on what it means for me, if anything
 
-The command: I say "order [ITEM]" or "order [LIST]" and you handle the rest — find the item, add it to my cart, confirm the total, and either place the order or hand me back a one-tap confirm link.
+Hard constraints:
+- Under 200 words
+- Bullets only, with source links
+- "Nothing notable this week" is a valid and preferred output over filler
 
-Rules:
-- Keep it simple. As few tools and as little infrastructure as possible.
-- Prefer one API and one command over a clever multi-vendor router.
-- If you can't find an item, ask once and move on — don't stall.
-- Default to my usual store, my usual delivery window, my usual payment method.
+Sources to pull from: their blog, press releases, LinkedIn, Google News, and any RSS feeds you can find.
 
-Scope it, build it, test it on a real order of [ITEM]. Confirm it's live.
+Set it up, confirm the schedule, and run a test report right now so I can see what Monday's brief will look like.
 ```
-
-**Why this matters:** This is the "Russ's rule" prompt — keep it simple, as few tools as possible. The grocery agent is small on purpose: it proves that the boring, repetitive parts of life can be one command away without overengineering.
 
 ---
 
-### Prompt 6 – Build a Competitive Watcher
+### Prompt 6 – Build the One Thing You've Been Wanting
 
-```
-Build me a weekly watcher.
-
-Target: [ONE COMPETITOR, PERSON, OR TOPIC — be specific, just one]
-
-Every week, monitor and report on:
-- New content they published (blog, podcast, posts, press)
-- New hires or org changes
-- Pricing or product changes
-- Anything else genuinely notable (funding, partnerships, public moves)
-
-Deliver the report to my Telegram every Monday morning. Keep it under 200 words, bullets only, with links. If nothing happened, say "nothing notable this week" — don't pad.
-
-Set it up, confirm when it's scheduled, and fire one test run right now so I can see the format.
-```
-
-**Why this matters:** A focused watcher beats a noisy dashboard. One target, one report, one day a week — and you'll know more about them than they know about themselves within a month.
-
----
-
-### Prompt 7 – Write Your Own Prompt
-
-This one is blank on purpose. Think back to Session 1 — what's the one thing you've wanted your COS to do that hasn't shown up on the curriculum? Fill it in. Be specific. The bracket structure is just scaffolding; rewrite it however you need.
+Since Session 1 you've had something in the back of your head you wanted to build. This is the prompt for that. Use the scaffold below — scope it first, then build, then test.
 
 ```
 Build me [THE THING YOU'VE BEEN WANTING SINCE SESSION 1].
 
 What it should do:
-[DESCRIBE THE BEHAVIOR]
+[DESCRIBE THE BEHAVIOR — what triggers it, what it does, what it outputs]
 
 What I want back:
-[OUTPUT FORMAT AND WHERE IT GOES]
+[OUTPUT FORMAT AND WHERE IT GOES — Telegram, file, email, etc.]
 
 Constraints:
-[KEEP IT SIMPLE — fewest tools, fewest dependencies, smallest scope that's still useful]
+[KEEP IT SIMPLE — fewest tools, fewest dependencies. If you need more than 3 integrations to make it work, scope it down.]
 
-Scope it first, then build it, then show me a live run.
+Scope it first and tell me what you're going to build before you start. Then build it. Then show me a live run.
 ```
 
-**Why this matters:** The whole point of a personal COS is that the curriculum runs out and you keep going. If you can write the prompt, your COS can build it — that's the loop you're leaving this course with.
+> **The loop never ends:** Scope → Build → Test → Upgrade. The curriculum ends tonight but this loop is how your COS keeps getting better every week.
 
 ---
 
-*Fill in every [BRACKET] before sending. The more context you give, the better the output.*
+### Prompt 7 – The Grocery / Errand Agent (Bonus)
 
-*Cohort 2 is forming. Keep building — the systems you've stood up this month only get sharper from here. Don't let them go quiet.*
+The simplest possible real-world delegation test. One API, one task, one tap to confirm.
+
+```
+Build me a simple errand agent.
+
+When I say "order [ITEM]", do the following:
+1. Search [Kroger / Instacart / whatever you use] for the item
+2. Add it to my cart
+3. Send me a one-tap confirmation link on Telegram
+
+Constraints:
+- Connect to one API only — don't overcomplicate it
+- If the item isn't found, ask me once for a substitute and move on
+- Never place an order without my confirmation tap
+
+Start with the API connection and show me a test run before wiring up the full flow.
+```
+
+---
+
+*Fill in every [BRACKET] before sending. The more specific you are, the better the output.*
+
+*You built this. Now run it for real.*
