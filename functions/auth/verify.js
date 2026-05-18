@@ -18,9 +18,14 @@ export async function onRequest(context) {
     redirect: 'manual', // Let the worker's redirect pass through unchanged
   });
 
-  // Pass worker response (including Set-Cookie + Location redirect) straight back
+  // Manually copy all headers (including Set-Cookie) to avoid silent drops
+  const responseHeaders = new Headers();
+  for (const [key, value] of res.headers.entries()) {
+    responseHeaders.append(key, value);
+  }
+
   return new Response(res.body, {
     status: res.status,
-    headers: res.headers,
+    headers: responseHeaders,
   });
 }
