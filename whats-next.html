@@ -1,13 +1,231 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; url=/cos-course/whats-next.html">
-  <link rel="canonical" href="/cos-course/whats-next.html">
-  <title>Redirecting...</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What's Next | AI Chief of Staff</title>
+<meta name="theme-color" content="#0B0C0B">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#0B0C0B;--volt:#D5FF02;--white:#F5F5F3;--gray:#999;--dim:#666;--dark-card:#141514;--border:#1E1F1E;--serif:'Instrument Serif',Georgia,serif;--sans:'Inter',system-ui,-apple-system,sans-serif;--max-w:720px}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--black);color:var(--white);font-family:var(--sans);font-weight:300;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--volt);color:var(--black)}
+a{color:var(--volt);text-decoration:none;transition:opacity .2s}
+a:hover{opacity:.8}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+.portal-header{border-bottom:1px solid var(--border);padding:20px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;background:rgba(11,12,11,.95);backdrop-filter:blur(12px)}
+.portal-wordmark{font-family:var(--serif);font-size:19px;letter-spacing:-.02em;color:var(--white)}
+.back-link{font-size:14px;color:var(--dim);display:flex;align-items:center;gap:6px}
+.back-link:hover{color:var(--white);opacity:1}
+hr{border:none;border-top:1px solid var(--border);margin:48px 0}
+.block{margin-bottom:56px}
+.block-label{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--volt);margin-bottom:20px}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+
+/* HERO */
+.hero{padding:72px 0 56px;text-align:center}
+.hero-eyebrow{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--volt);margin-bottom:20px}
+.hero h1{font-family:var(--serif);font-size:clamp(42px,7vw,72px);line-height:1.0;letter-spacing:-.03em;color:var(--white);margin-bottom:24px}
+.hero h1 em{color:var(--volt);font-style:italic}
+.hero-sub{font-size:18px;color:var(--gray);line-height:1.65;max-width:520px;margin:0 auto 40px}
+.hero-divider{width:40px;height:2px;background:var(--volt);margin:0 auto}
+
+/* MASTERMIND CARD */
+.mastermind-card{background:var(--dark-card);border:1px solid rgba(213,255,2,.25);border-radius:16px;padding:40px 36px;margin-bottom:16px;position:relative;overflow:hidden}
+.mastermind-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--volt);border-radius:0 2px 2px 0}
+.mastermind-launch{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--volt);background:rgba(213,255,2,.08);border:1px solid rgba(213,255,2,.2);padding:6px 14px;border-radius:100px;margin-bottom:20px}
+.mastermind-card h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,38px);line-height:1.1;letter-spacing:-.02em;color:var(--white);margin-bottom:20px}
+.mastermind-card .tagline{font-size:15px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--volt);margin-bottom:20px}
+.includes-list{list-style:none;margin-bottom:0}
+.includes-list li{border-bottom:1px solid var(--border);padding:13px 0;font-size:16px;color:var(--gray);display:flex;align-items:flex-start;gap:12px;line-height:1.55}
+.includes-list li:first-child{border-top:1px solid var(--border)}
+.includes-list li .check{color:var(--volt);font-size:16px;font-weight:600;flex-shrink:0;line-height:1.55}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.price-card{background:var(--dark-card);border:1px solid var(--border);border-radius:12px;padding:28px 26px}
+.price-card.featured{border-color:rgba(213,255,2,.35);background:rgba(213,255,2,.03)}
+.price-card .price-label{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--volt);margin-bottom:14px}
+.price-card .price-amount{font-family:var(--serif);font-size:clamp(36px,4vw,48px);line-height:1.0;color:var(--white);letter-spacing:-.02em;margin-bottom:4px}
+.price-card .price-term{font-size:13px;color:var(--dim);margin-bottom:16px}
+.price-card .price-desc{font-size:14px;color:var(--gray);line-height:1.6}
+.price-card .price-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--volt);color:var(--black);padding:4px 10px;border-radius:100px;margin-bottom:14px}
+
+/* TESTIMONIAL CTA */
+.testi-card{background:var(--dark-card);border:1px solid var(--border);border-radius:12px;padding:32px;margin-top:4px}
+.testi-card h3{font-family:var(--serif);font-size:24px;letter-spacing:-.01em;color:var(--white);margin-bottom:10px}
+.testi-card p{font-size:15px;color:var(--gray);line-height:1.65;margin-bottom:0}
+.testi-card strong{color:var(--white)}
+.deadline-chip{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--black);background:var(--volt);padding:5px 12px;border-radius:100px;margin-bottom:16px}
+
+/* TEAMS */
+.teams-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.team-card{background:var(--dark-card);border:1px solid var(--border);border-radius:12px;padding:26px}
+.team-card .team-label{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--volt);margin-bottom:12px}
+.team-card .team-price{font-family:var(--serif);font-size:30px;line-height:1.0;color:var(--white);letter-spacing:-.02em;margin-bottom:4px}
+.team-card .team-term{font-size:13px;color:var(--dim);margin-bottom:12px}
+.team-card .team-desc{font-size:14px;color:var(--gray);line-height:1.6}
+
+/* FINAL */
+.final-card{background:var(--dark-card);border:1px solid rgba(213,255,2,.2);border-radius:16px;padding:48px 40px;text-align:center;margin-bottom:0}
+.final-card h2{font-family:var(--serif);font-size:clamp(32px,4.5vw,48px);line-height:1.1;letter-spacing:-.02em;color:var(--white);margin-bottom:28px}
+.final-steps{list-style:none;display:flex;flex-direction:column;gap:0;max-width:440px;margin:0 auto 32px;text-align:left}
+.final-steps li{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid var(--border);font-size:16px;color:var(--gray);line-height:1.55}
+.final-steps li:first-child{border-top:1px solid var(--border)}
+.final-steps .step-num{width:26px;height:26px;border-radius:50%;background:rgba(213,255,2,.1);border:1px solid rgba(213,255,2,.3);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--volt);flex-shrink:0;margin-top:2px}
+.final-steps strong{color:var(--white);font-weight:500}
+
+.footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center}
+.footer-copy{font-size:13px;color:var(--dim)}
+
+@media(max-width:600px){
+  .pricing-grid{grid-template-columns:1fr}
+  .teams-grid{grid-template-columns:1fr}
+  .mastermind-card{padding:28px 22px}
+  .final-card{padding:36px 24px}
+  .hero{padding:56px 0 40px}
+}
+</style>
 </head>
 <body>
-  <script>window.location.replace("/cos-course/whats-next.html");</script>
-  <p>Redirecting to <a href="/cos-course/whats-next.html">/cos-course/whats-next.html</a>...</p>
+
+<header class="portal-header">
+  <div class="portal-wordmark">AI Chief of Staff</div>
+  <a class="back-link" href="index.html">← Back to Portal</a>
+</header>
+
+<main>
+  <div class="container">
+
+    <!-- HERO -->
+    <section class="hero reveal">
+      <div class="hero-eyebrow">Session 4 · You Made It</div>
+      <h1>Go <em>build.</em></h1>
+      <div class="hero-divider"></div>
+      <p class="hero-sub">Seriously. You have the skills and the AI assistant to create. The only thing left is to use it.</p>
+      <div style="font-size:clamp(20px,3vw,28px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--white);margin-top:8px">Filter the noise from the necessary.</div>
+    </section>
+
+    <!-- VIDEO -->
+    <div class="reveal" style="margin:40px 0 0;display:flex;justify-content:center">
+      <div style="position:relative;width:100%;max-width:720px;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid var(--border)">
+        <iframe src="https://share.descript.com/embed/bPRgfnI1yp7" style="position:absolute;inset:0;width:100%;height:100%;border:0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- MASTERMIND -->
+    <section class="block reveal">
+      <div class="block-label">What's Next</div>
+
+      <div class="mastermind-card">
+        <div class="mastermind-launch">🚀 Launching Memorial Day Weekend</div>
+        <h2>AI for Operators Mastermind</h2>
+        <div class="tagline">Filter the noise from the necessary.</div>
+        <ul class="includes-list">
+          <li><span class="check">✓</span> Monthly live calls (times will vary — real schedules, real life)</li>
+          <li><span class="check">✓</span> Tool reviews — what's actually worth adding vs. what's hype</li>
+          <li><span class="check">✓</span> Private Telegram group — direct access, no algorithms</li>
+          <li><span class="check">✓</span> Free access to every course I build going forward</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- PRICING -->
+    <section class="block reveal">
+      <div class="block-label">Founding Member Pricing</div>
+
+      <div class="pricing-grid">
+        <div class="price-card featured">
+          <div class="price-badge">Cohort 1</div>
+          <div class="price-amount">$100</div>
+          <div class="price-term">per month · paid quarterly</div>
+          <div class="price-desc">Lock in founding member pricing before it goes up. This rate doesn't come back.</div>
+        </div>
+
+        <div class="price-card">
+          <div class="price-label">Or earn it</div>
+          <div class="price-amount">Free</div>
+          <div class="price-term">1-year membership</div>
+          <div class="price-desc">Send me a vertical iPhone testimonial. Share why this course is different and why someone should sign up. Sell the shit out of me. 😉</div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <h3>How to submit your testimonial</h3>
+        <p>Record a vertical video on your iPhone. Tell me: <strong>why this course is different</strong> and <strong>why someone should sign up</strong>. Send it via iMessage or Telegram. Auto-enrolled if accepted.</p>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- FOR YOUR TEAMS -->
+    <section class="block reveal">
+      <div class="block-label">For Your Teams</div>
+      <p style="font-size:16px;color:var(--gray);margin-bottom:24px;line-height:1.65">Want to get your team up to speed? Two options — wherever they're starting from.</p>
+
+      <div class="teams-grid">
+        <div class="team-card">
+          <div class="team-label">1:1 Training</div>
+          <div class="team-price">$1,500</div>
+          <div class="team-term">4-hour day session · per person</div>
+          <div class="team-desc">Intensive hands-on training. We meet them wherever they are and get them fully operational.</div>
+        </div>
+        <div class="team-card">
+          <div class="team-label">Team Membership</div>
+          <div class="team-price">$400</div>
+          <div class="team-term">per month · up to 5 people · paid quarterly</div>
+          <div class="team-desc">Full mastermind access for your whole team. Tools, calls, Telegram — everyone on the same page.</div>
+        </div>
+      </div>
+
+      <p style="font-size:14px;color:var(--dim);margin-top:16px;text-align:center">Interested in 1:1 or team training? Message me directly.</p>
+    </section>
+
+    <hr>
+
+    <!-- FINAL SLIDE -->
+    <section class="block reveal">
+      <div class="final-card">
+        <h2>Ready to keep going?</h2>
+        <ol class="final-steps">
+          <li>
+            <div class="step-num">1</div>
+            <div><strong>Send a testimonial</strong> — auto-enrolled, 1-year free membership</div>
+          </li>
+          <li>
+            <div class="step-num">2</div>
+            <div><strong>DM me on iMessage or Telegram</strong> if you want 1:1 or team training</div>
+          </li>
+        </ol>
+        <p style="font-size:14px;color:var(--dim);line-height:1.65">See you on the other side. 🥒</p>
+      </div>
+    </section>
+
+    <div style="height:64px"></div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <p class="footer-copy">© Russ Perry · AI Chief of Staff · Cohort 1</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>
