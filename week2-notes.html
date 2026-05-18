@@ -1,13 +1,363 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; url=/cos-course/week2-notes.html">
-  <link rel="canonical" href="/cos-course/week2-notes.html">
-  <title>Redirecting...</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 2 Notes & Recap | AI Chief of Staff</title>
+<meta name="theme-color" content="#0B0C0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0B0C0B;--volt:#D5FF02;--white:#F5F5F3;--gray:#999;--dim:#666;
+  --dark-card:#141514;--border:#1E1F1E;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+  --max-w:720px;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--black);color:var(--white);font-family:var(--sans);font-weight:300;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--volt);color:var(--black)}
+a{color:var(--volt);text-decoration:none;transition:opacity .2s}
+a:hover{opacity:.8}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+.portal-header{border-bottom:1px solid var(--border);padding:20px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;background:rgba(11,12,11,.95);backdrop-filter:blur(12px)}
+.portal-wordmark{font-family:var(--serif);font-size:19px;letter-spacing:-.02em;color:var(--white)}
+.back-link{font-size:14px;color:var(--dim);display:flex;align-items:center;gap:6px}
+.back-link:hover{color:var(--white);opacity:1}
+.hero{padding:64px 0 48px}
+.session-meta{font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--volt);margin-bottom:16px}
+.hero h1{font-family:var(--serif);font-size:clamp(32px,5vw,50px);line-height:1.1;letter-spacing:-.03em;color:var(--white);margin-bottom:14px}
+.hero-sub{font-size:17px;color:var(--gray);line-height:1.6;max-width:560px}
+hr{border:none;border-top:1px solid var(--border);margin:48px 0}
+.block{margin-bottom:52px}
+.block-label{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--volt);margin-bottom:18px}
+.block h2{font-family:var(--serif);font-size:26px;letter-spacing:-.02em;color:var(--white);margin-bottom:18px;line-height:1.2}
+.block h3{font-size:17px;font-weight:600;color:var(--white);margin-bottom:10px;margin-top:28px}
+.block p{font-size:16px;color:var(--gray);line-height:1.7;margin-bottom:14px}
+.block p:last-child{margin-bottom:0}
+.block strong{color:var(--white);font-weight:500}
+.outline-section{margin-bottom:40px}
+.outline-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(213,255,2,.1);border:1px solid rgba(213,255,2,.2);font-size:12px;font-weight:700;color:var(--volt);flex-shrink:0;margin-top:2px}
+.outline-header{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+.outline-header h3{margin:0;font-size:18px;font-weight:600;color:var(--white)}
+.outline-body{padding-left:42px}
+.outline-body p{font-size:15px;color:var(--gray);line-height:1.7;margin-bottom:10px}
+ul.notes-list{list-style:none;display:flex;flex-direction:column;gap:8px;padding-left:42px;margin-bottom:16px}
+ul.notes-list li{font-size:15px;color:var(--gray);line-height:1.6;position:relative;padding-left:16px}
+ul.notes-list li::before{content:'—';position:absolute;left:0;color:var(--dim);font-size:13px;top:1px}
+ul.notes-list li strong{color:var(--white);font-weight:500}
+.tip-card{background:rgba(213,255,2,.04);border:1px solid rgba(213,255,2,.15);border-radius:10px;padding:18px 22px;margin:16px 0}
+.tip-card .tip-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--volt);margin-bottom:6px}
+.tip-card p{font-size:15px;color:var(--gray);line-height:1.65;margin:0}
+.warn-card{background:rgba(255,180,0,.04);border:1px solid rgba(255,180,0,.2);border-radius:10px;padding:18px 22px;margin:16px 0}
+.warn-card .warn-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#ffb400;margin-bottom:6px}
+.warn-card p{font-size:15px;color:var(--gray);line-height:1.65;margin:0}
+code{background:#1a1b1a;border:1px solid var(--border);border-radius:4px;padding:2px 7px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;color:var(--volt)}
+pre{background:#0a0a0a;border:1px solid var(--border);border-radius:8px;padding:16px 20px;overflow-x:auto;margin:14px 0;font-family:'SF Mono','Fira Code',monospace;font-size:13px;line-height:1.6;color:#d4d4d4}
+.homework-card{background:var(--dark-card);border:1px solid rgba(213,255,2,.15);border-radius:12px;padding:28px 32px}
+.homework-card p{color:var(--gray);font-size:16px;line-height:1.7;margin-bottom:14px}
+.homework-card p:last-child{margin-bottom:0}
+.homework-card strong{color:var(--white);font-weight:500}
+.win-card{background:var(--dark-card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-bottom:14px}
+.win-card .win-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+.win-card p{font-size:15px;color:var(--gray);line-height:1.65;margin:0}
+.session-nav{border-top:1px solid var(--border);padding:40px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.nav-next{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.nav-label{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.nav-title{font-family:var(--serif);font-size:18px;color:var(--white)}
+.nav-btn{font-size:14px;color:var(--volt);font-weight:500}
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;border:1px solid var(--border);margin-bottom:48px}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+@media(max-width:600px){
+  .session-nav{flex-direction:column;gap:20px;align-items:flex-start}
+  .nav-next{align-items:flex-start}
+  ul.notes-list,.outline-body{padding-left:20px}
+}
+</style>
 </head>
 <body>
-  <script>window.location.replace("/cos-course/week2-notes.html");</script>
-  <p>Redirecting to <a href="/cos-course/week2-notes.html">/cos-course/week2-notes.html</a>...</p>
+
+<header class="portal-header">
+  <div class="portal-wordmark">AI Chief of Staff</div>
+  <a class="back-link" href="week2.html">← Session 2</a>
+</header>
+
+<main>
+<div class="container">
+
+  <section class="hero reveal">
+    <div class="session-meta">Session 2 &nbsp;·&nbsp; Notes & Recap</div>
+    <h1>Give Your COS a Voice</h1>
+    <p class="hero-sub">Key principles, Bland.ai walkthrough, wins from the group, and everything you need to catch up or pick up where you left off.</p>
+  </section>
+
+  <hr>
+
+  <!-- SECTION 1: PRINCIPLE 1 -->
+  <section class="block reveal">
+    <div class="block-label">Principle 1</div>
+
+    <div class="outline-section">
+      <div class="outline-header"><div class="outline-num">1</div><h3>Tools Don't Matter – Outcomes Do</h3></div>
+      <div class="outline-body">
+        <p>This was the most important thing said all night. The AI space moves fast. Whatever tool we use today may not be the tool in 3–4 months. The trap is letting that create decision paralysis – endlessly comparing options, following hype, losing time to "which one is best?"</p>
+        <div class="tip-card">
+          <div class="tip-label">Russ's framing</div>
+          <p>"The way that I do this will likely not be the way I do this in three or four months. There's going to be some better thing. Don't get lost in it."</p>
+        </div>
+        <ul class="notes-list">
+          <li><strong>The better question is always:</strong> what's the outcome I want? What's the simplest path to get there?</li>
+          <li><strong>Let your COS guide the technical decision.</strong> Give it the goal, not the solution. It knows more about available tools than you do.</li>
+          <li><strong>Emphasize simplicity upfront.</strong> Add "keep this as simple as possible, use as few tools as you can" to your initial prompt. Otherwise it'll build a spaceship when you need a bicycle.</li>
+          <li><strong>Be clear on outcomes, loose on requirements.</strong> The more specific you are about HOW to solve it, the worse the result. Describe WHAT you want done.</li>
+          <li><strong>Cost is a valid filter.</strong> Tell your COS if you want something free or cheap. It'll factor that in.</li>
+        </ul>
+        <div class="tip-card">
+          <div class="tip-label">How to prompt for this</div>
+          <p>"Here's what I want to do. Here's what I want the outcome to be. Keep it simple. Use as few tools as possible. Find something free or cheap. Solve this for me."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="outline-section">
+      <div class="outline-header"><div class="outline-num">2</div><h3>When Someone Asks "X vs Y"</h3></div>
+      <div class="outline-body">
+        <p>People in this space – and people who will come to you as you get better at this – will constantly debate tools. The right response is always: does it accomplish the outcome? Is it the simplest path? If yes, build it. You can swap the tool later.</p>
+        <p>As you get further along, you'll start to see the obvious. The complexity drops away. That's the point.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- SECTION 2: TAILSCALE -->
+  <section class="block reveal">
+    <div class="block-label">Principle 2</div>
+
+    <div class="outline-section">
+      <div class="outline-header"><div class="outline-num">3</div><h3>Tailscale – Why It's Worth Setting Up</h3></div>
+      <div class="outline-body">
+        <p>Tailscale creates a private, encrypted network between all your devices. Free for up to 3 devices. It came up early in the session because it solves a real problem as your setup gets more advanced.</p>
+        <ul class="notes-list">
+          <li><strong>Security:</strong> private layer when accessing your home computer remotely</li>
+          <li><strong>Remote access:</strong> approve permissions, move files, troubleshoot your home Mac from anywhere – phone, hotel, car</li>
+          <li><strong>Screen sharing:</strong> the ultimate escape hatch. Log in and literally control your home machine when something isn't working</li>
+          <li><strong>Local web apps:</strong> build dashboards that live on your Mac but are accessible only through your Tailscale network</li>
+        </ul>
+        <div class="tip-card">
+          <div class="tip-label">Real example from session</div>
+          <p>Russ was driving home, had an idea to build grocery ordering for his COS, but hit a Mac permissions issue he couldn't resolve remotely. Tailscale would have let him connect deep enough to approve it on the spot.</p>
+        </div>
+        <p><strong>Setup order:</strong></p>
+        <ul class="notes-list">
+          <li>Install Tailscale on your Mac → <a href="https://tailscale.com" target="_blank">tailscale.com</a></li>
+          <li>Install on your iPhone</li>
+          <li>Sign in with the same account on both</li>
+          <li>Enable SSH: System Settings → General → Sharing</li>
+        </ul>
+        <div class="warn-card">
+          <div class="warn-label">Permissions required after setup</div>
+          <p>Grant <strong>Full Disk Access</strong> and <strong>Screen Recording</strong> in System Settings → Privacy & Security. Without these, remote file access and screen sharing won't work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- SECTION 3: WINS -->
+  <section class="block reveal">
+    <div class="block-label">From the Group · Session 1 Wins</div>
+
+    <p style="font-size:16px;color:var(--gray);margin-bottom:24px;line-height:1.7">People shared what they built in the week since Session 1. This is what happens when you start playing:</p>
+
+    <div class="win-card">
+      <div class="win-label">Content Engine</div>
+      <p>Built a YouTube content engine: any video uploaded to the channel automatically generates a blog post, Instagram copy, Facebook copy, Twitter copy, and a promotional email – all stored in a new Google Drive folder created by the COS. Built entirely from a description of the goal.</p>
+    </div>
+
+    <div class="win-card">
+      <div class="win-label">Ideal Week Calendar</div>
+      <p>Asked the COS to analyze 8 weeks of calendar history, create a new Google Calendar called "Ideal Week," and map out what the schedule should look like vs. what it currently looks like. Done automatically.</p>
+    </div>
+
+    <div class="win-card">
+      <div class="win-label">Email from Labels to Action</div>
+      <p>Evolved from labeling emails by priority to having the COS just say "here are the 3 things to focus on this hour, here's a draft for the first one." Skipped the inbox entirely. The assistant directs rather than sorts.</p>
+    </div>
+
+    <div class="win-card">
+      <div class="win-label">Self-Managing Inbox</div>
+      <p>A cleanup scheduler that checks weekly for old flagged/unread emails and archives anything that's been sitting around without action – with a check-in on anything uncertain. The inbox manages itself.</p>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-label">The pattern</div>
+      <p>Every win above came from: describe what you want done → let the COS figure out how. Not from over-specifying the solution.</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- SECTION 4: AI VOICE -->
+  <section class="block reveal">
+    <div class="block-label">Part 1 · AI Voice</div>
+
+    <div class="outline-section">
+      <div class="outline-header"><div class="outline-num">4</div><h3>Why the Phone Is Underused Leverage</h3></div>
+      <div class="outline-body">
+        <p>The phone is one of the most annoying, time-consuming, and easy-to-forget parts of getting things done. Most of us either ignore calls, forget to make them, or just find them frustrating. Your COS can own that entirely.</p>
+        <ul class="notes-list">
+          <li>Screen inbound calls – know who's calling and why before you pick up</li>
+          <li>Book meetings – check your calendar, offer times, confirm on the spot</li>
+          <li>Make outbound calls – follow-ups, reservations, vendor calls, check-ins</li>
+          <li>Log and summarize every call back into your main brain</li>
+        </ul>
+        <div class="tip-card">
+          <div class="tip-label">Real examples from the session</div>
+          <p>Called a Korean BBQ restaurant the night before at 11:30 PM – got back confirmation at 11:30 AM when they opened. Replaced a $2,000+/month phone service with an AI-handled equivalent for ~$20/month. Called RV parks during summer trip planning – many phone-only – without picking up the phone once.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="outline-section">
+      <div class="outline-header"><div class="outline-num">5</div><h3>What Your COS Should Own vs. Escalate</h3></div>
+      <div class="outline-body">
+        <ul class="notes-list">
+          <li><strong>COS owns:</strong> cold/unknown callers, scheduling requests, status updates, vendor follow-ups, intake and triage</li>
+          <li><strong>Escalate to you:</strong> existing clients with urgent issues, VIPs, emotional/sensitive conversations, decisions only you can make</li>
+        </ul>
+        <p>Note on IVRs (phone trees): Bland has to learn the tree before it can navigate it. For complex ones, your COS may actually push back and suggest you just call yourself. That's a valid outcome – it's doing its job.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- SECTION 5: BLAND SETUP -->
+  <section class="block reveal">
+    <div class="block-label">Part 2 · Bland.ai Setup</div>
+
+    <div class="outline-section">
+      <div class="outline-header"><div class="outline-num">6</div><h3>Getting Your Account and API Key</h3></div>
+      <div class="outline-body">
+        <p>Sign up at <a href="https://bland.ai" target="_blank">bland.ai</a> using your real phone number – this is your login credential, not a public-facing number.</p>
+        <ul class="notes-list">
+          <li>Go to <strong>Settings → API Keys</strong></li>
+          <li>Create a new key (don't use the default they provide)</li>
+          <li>Copy it temporarily to a notepad</li>
+          <li>Bland has a free plan – start there, then add credits as needed (~$0.09/min usage-based)</li>
+        </ul>
+        <div class="tip-card">
+          <div class="tip-label">Pro tip</div>
+          <p>Give your COS the Bland API docs link: <code>https://docs.bland.ai</code> – tell it to read and get familiar with the API. Saves time and gets better results than explaining it yourself. Your COS almost always already knows how to use the tool if it recommends it.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="outline-section">
+      <div class="outline-header"><div class="outline-num">7</div><h3>Creating Your Agent Persona</h3></div>
+      <div class="outline-body">
+        <p>In the Bland dashboard, go to <strong>Agents</strong> and create a Persona. This is the global brain for your voice agent. Everything you want to control goes here.</p>
+        <ul class="notes-list">
+          <li>Who it is: name, role ("AI assistant for [Your Name]")</li>
+          <li>Inbound direction: how to handle incoming calls</li>
+          <li>Outbound direction: general behavior when making calls on your behalf</li>
+          <li>What info it can and can't share by default</li>
+          <li>VIP handling: who gets through immediately vs. screened</li>
+          <li>Escalation triggers: keywords or conditions that notify you directly</li>
+        </ul>
+        <div class="warn-card">
+          <div class="warn-label">Don't forget</div>
+          <p>Hit <strong>Publish</strong> after saving – changes don't go live until published. Easy to miss.</p>
+        </div>
+        <p>Keep the persona tight. You can always refine later. Per-call specifics (who to call, what to say) get layered on top of the global persona at the time of the call.</p>
+      </div>
+    </div>
+
+    <div class="outline-section">
+      <div class="outline-header"><div class="outline-num">8</div><h3>Getting a Dedicated Phone Number</h3></div>
+      <div class="outline-body">
+        <p>Under the Numbers section in Bland, you can purchase a dedicated number (~$1–2/month). Available area codes are limited – major metros often aren't available. Don't overthink it. Pick what you can and connect it to your Persona under <strong>Modalities</strong>.</p>
+        <p>Once the number is linked, inbound calls go through your Persona automatically. For outbound, your COS uses this number as the caller ID.</p>
+      </div>
+    </div>
+
+    <div class="outline-section">
+      <div class="outline-header"><div class="outline-num">9</div><h3>Making Your First Call</h3></div>
+      <div class="outline-body">
+        <p>Once set up, just tell your COS in chat. The specifics you provide per-call layer on top of the global Persona:</p>
+        <div class="tip-card">
+          <div class="tip-label">Example prompt</div>
+          <p>"Call [name] at [number]. Purpose: follow up on the proposal I sent last Tuesday. Ask if they had a chance to review it and what questions they have. Keep it under 2 minutes. Send me a summary when done."</p>
+        </div>
+        <p>The big unlock: at night when you think of something you need to handle tomorrow – you don't have to remember it. You just tell your COS now and it handles it when the time is right.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- SECTION 6: ELEVENLABS -->
+  <section class="block reveal">
+    <div class="block-label">Bonus · Voice Identity</div>
+
+    <div class="outline-section">
+      <div class="outline-header"><div class="outline-num">10</div><h3>Giving Your COS a Voice with ElevenLabs</h3></div>
+      <div class="outline-body">
+        <p>If you want your COS to have a consistent voice identity for things like voice notes, morning briefs, or any audio outside of phone calls – ElevenLabs is the go-to.</p>
+        <ul class="notes-list">
+          <li>Sign up at <a href="https://elevenlabs.io" target="_blank">elevenlabs.io</a></li>
+          <li>Create an API key</li>
+          <li>Give the key to your COS and pick a voice by voice ID</li>
+          <li>Cost is minimal – usage-based, effectively cents at normal volume</li>
+        </ul>
+        <p>Bland's built-in voices are good enough to get started on calls. ElevenLabs is for when you want a consistent identity across everything – the same voice in your morning brief and on the phone.</p>
+        <div class="tip-card">
+          <div class="tip-label">Advanced: clone your own voice</div>
+          <p>ElevenLabs lets you upload audio to clone your voice. Your COS could then make outbound calls that sound like you. Russ hasn't tested this yet – but it's there when you're ready.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- SECTION 7: HOMEWORK -->
+  <section class="block reveal">
+    <div class="block-label">Before Session 3</div>
+    <div class="homework-card">
+      <p><strong>Use your COS phone number for one real interaction.</strong> Screen a call. Make an outbound call. Book something. Send yourself a test call. Just use it once.</p>
+      <p>Note what worked, what didn't, and where the gaps are. That's the raw material for Session 3 – The Intelligence Layer.</p>
+      <p><strong>Session 3: Session 3</strong></p>
+    </div>
+  </section>
+
+  <div class="session-nav reveal">
+    <div>
+      <div class="nav-label">Previous</div>
+      <a class="nav-btn" href="week1-notes.html">← Session 1 Notes</a>
+    </div>
+    <div class="nav-next">
+      <div class="nav-label">Next Session</div>
+      <div class="nav-title">Session 3 – The Intelligence Layer</div>
+      <a class="nav-btn" href="week3.html">View Session →</a>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>

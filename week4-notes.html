@@ -1,13 +1,335 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; url=/cos-course/week4-notes.html">
-  <link rel="canonical" href="/cos-course/week4-notes.html">
-  <title>Redirecting...</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 4 Notes & Recap | AI Chief of Staff</title>
+<meta name="theme-color" content="#0B0C0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0B0C0B;--volt:#D5FF02;--white:#F5F5F3;--gray:#999;--dim:#666;
+  --dark-card:#141514;--border:#1E1F1E;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+  --max-w:720px;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--black);color:var(--white);font-family:var(--sans);font-weight:300;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--volt);color:var(--black)}
+a{color:var(--volt);text-decoration:none;transition:opacity .2s}
+a:hover{opacity:.8}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+.portal-header{border-bottom:1px solid var(--border);padding:20px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;background:rgba(11,12,11,.95);backdrop-filter:blur(12px)}
+.portal-wordmark{font-family:var(--serif);font-size:19px;letter-spacing:-.02em;color:var(--white)}
+.back-link{font-size:14px;color:var(--dim);display:flex;align-items:center;gap:6px}
+.back-link:hover{color:var(--white);opacity:1}
+.hero{padding:64px 0 48px}
+.session-meta{font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--volt);margin-bottom:16px}
+.hero h1{font-family:var(--serif);font-size:clamp(32px,5vw,50px);line-height:1.1;letter-spacing:-.03em;color:var(--white);margin-bottom:14px}
+.hero-sub{font-size:17px;color:var(--gray);line-height:1.6;max-width:560px}
+hr{border:none;border-top:1px solid var(--border);margin:48px 0}
+.block{margin-bottom:52px}
+.block-label{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--volt);margin-bottom:18px}
+.block h2{font-family:var(--serif);font-size:26px;letter-spacing:-.02em;color:var(--white);margin-bottom:18px;line-height:1.2}
+.block h3{font-size:17px;font-weight:600;color:var(--white);margin-bottom:10px;margin-top:28px}
+.block p{font-size:16px;color:var(--gray);line-height:1.7;margin-bottom:14px}
+.block p:last-child{margin-bottom:0}
+.block strong{color:var(--white);font-weight:500}
+.outline-section{margin-bottom:40px}
+.outline-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(213,255,2,.1);border:1px solid rgba(213,255,2,.2);font-size:12px;font-weight:700;color:var(--volt);flex-shrink:0;margin-top:2px}
+.outline-header{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+.outline-header h3{margin:0;font-size:18px;font-weight:600;color:var(--white)}
+.outline-body{padding-left:42px}
+.outline-body p{font-size:15px;color:var(--gray);line-height:1.7;margin-bottom:10px}
+ul.notes-list{list-style:none;display:flex;flex-direction:column;gap:8px;padding-left:42px;margin-bottom:16px}
+ul.notes-list li{font-size:15px;color:var(--gray);line-height:1.6;position:relative;padding-left:16px}
+ul.notes-list li::before{content:'—';position:absolute;left:0;color:var(--dim);font-size:13px;top:1px}
+ul.notes-list li strong{color:var(--white);font-weight:500}
+.tip-card{background:rgba(213,255,2,.04);border:1px solid rgba(213,255,2,.15);border-radius:10px;padding:18px 22px;margin:16px 0}
+.tip-card .tip-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--volt);margin-bottom:6px}
+.tip-card p{font-size:15px;color:var(--gray);line-height:1.65;margin:0}
+.warn-card{background:rgba(255,180,0,.04);border:1px solid rgba(255,180,0,.2);border-radius:10px;padding:18px 22px;margin:16px 0}
+.warn-card .warn-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#ffb400;margin-bottom:6px}
+.warn-card p{font-size:15px;color:var(--gray);line-height:1.65;margin:0}
+code{background:#1a1b1a;border:1px solid var(--border);border-radius:4px;padding:2px 7px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;color:var(--volt)}
+pre{background:#0a0a0a;border:1px solid var(--border);border-radius:8px;padding:16px 20px;overflow-x:auto;margin:14px 0;font-family:'SF Mono','Fira Code',monospace;font-size:13px;line-height:1.6;color:#d4d4d4}
+.homework-card{background:var(--dark-card);border:1px solid rgba(213,255,2,.15);border-radius:12px;padding:28px 32px}
+.homework-card p{color:var(--gray);font-size:16px;line-height:1.7;margin-bottom:14px}
+.homework-card p:last-child{margin-bottom:0}
+.homework-card strong{color:var(--white);font-weight:500}
+.win-card{background:var(--dark-card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-bottom:14px}
+.win-card .win-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+.win-card p{font-size:15px;color:var(--gray);line-height:1.65;margin:0}
+.session-nav{border-top:1px solid var(--border);padding:40px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.nav-prev{display:flex;flex-direction:column;gap:4px}
+.nav-label{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.nav-title{font-family:var(--serif);font-size:18px;color:var(--white)}
+.nav-btn{font-size:14px;color:var(--volt);font-weight:500}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+@media(max-width:600px){
+  .session-nav{flex-direction:column;gap:20px;align-items:flex-start}
+  ul.notes-list,.outline-body{padding-left:20px}
+}
+</style>
 </head>
 <body>
-  <script>window.location.replace("/cos-course/week4-notes.html");</script>
-  <p>Redirecting to <a href="/cos-course/week4-notes.html">/cos-course/week4-notes.html</a>...</p>
+
+<header class="portal-header">
+  <div class="portal-wordmark">AI Chief of Staff</div>
+  <a class="back-link" href="index.html">← Back to Portal</a>
+</header>
+
+<main>
+  <div class="container">
+
+    <section class="hero reveal">
+      <div class="session-meta">Session 4 · Notes & Recap</div>
+      <h1>Make It Yours</h1>
+      <p class="hero-sub">The final session. Less curriculum, more autonomy. The skills are yours — what matters now is whether you keep building.</p>
+    </section>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:48px" class="reveal">
+      <span style="font-size:14px;color:var(--dim)">Session 4 · Full Recording</span>
+      <a style="font-size:13px;font-weight:600;background:var(--volt);color:var(--black);padding:9px 18px;border-radius:7px;white-space:nowrap;flex-shrink:0" href="week4-slides.html" target="_blank">Open Slides →</a>
+    </div>
+
+    <hr>
+
+    <!-- SECTION 1: HOUSEKEEPING -->
+    <section class="block reveal">
+      <div class="block-label">Housekeeping</div>
+      <div class="outline-section">
+        <div class="outline-header">
+          <div class="outline-num">1</div>
+          <h3>Keep Your Tools Updated</h3>
+        </div>
+        <div class="outline-body">
+          <p>One thing that won't happen automatically: keeping Hermes and Claude updated. Run this about once or twice a week from your terminal:</p>
+          <pre>hermes update</pre>
+          <pre>claude update</pre>
+          <p>Updates fix bugs, patch security issues, and often ship new capabilities. When you run it, you'll see a changelog — that changelog is a source of creative inspiration for what to build next.</p>
+        </div>
+        <div class="tip-card" style="margin-left:42px">
+          <div class="tip-label">Pro Tip</div>
+          <p>You can ask your COS to check for updates automatically and notify you if there's a new version — a simple cron job that checks the version number weekly.</p>
+        </div>
+      </div>
+
+      <div class="outline-section">
+        <div class="outline-header">
+          <div class="outline-num">2</div>
+          <h3>The Cost Question</h3>
+        </div>
+        <div class="outline-body">
+          <p>Token costs spike during the building phase — that's normal and expected. The AI labs shifted from flat-rate to usage-based billing when they realized people were maxing out subscriptions with agents. A few things to know:</p>
+        </div>
+        <ul class="notes-list">
+          <li><strong>Building costs more.</strong> Once something's built and running, switch to cheaper models (Sonnet vs. Opus, open-source alternatives) for daily operations.</li>
+          <li><strong>Opus for planning, Sonnet for running.</strong> Use the heavy model when you're designing something new. Use the lighter model once it's working.</li>
+          <li><strong>Ask your COS to optimize.</strong> One prompt — "review what we've built and find ways to reduce our token usage without breaking anything" — can cut costs 40–70%.</li>
+          <li><strong>Don't extreme-coupon it.</strong> Spending hours optimizing to save $40 is a bad trade. Occasional tune-ups are fine. Obsessing over it isn't.</li>
+          <li><strong>The math still works.</strong> A human EA/CoS runs $80K+/year plus benefits. Even at high daily usage, you're way ahead.</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- SECTION 2: THE THREE MODES -->
+    <section class="block reveal">
+      <div class="block-label">The Three Operating Modes</div>
+      <p style="font-size:16px;color:var(--gray);line-height:1.7;margin-bottom:32px">Every interaction with your COS falls into one of three modes. Knowing which mode you're in changes how you prompt.</p>
+
+      <div class="outline-section">
+        <div class="outline-header">
+          <div class="outline-num">1</div>
+          <h3>Build Mode</h3>
+        </div>
+        <div class="outline-body">
+          <p>You're creating something new. Think in terms of: <strong>trigger → inputs/objects → outcome.</strong> What sets it off? What does it need? What do you want back? Don't over-specify the "how" — that's the AI's job.</p>
+          <p>The further you can distill it to those three things without getting lost in implementation details, the better the output. This is also how you discover new tools — describe the outcome you want and let the COS find the path.</p>
+        </div>
+        <div class="tip-card" style="margin-left:42px">
+          <div class="tip-label">Example</div>
+          <p>"I have a lead form. When someone fills it out, I want a meeting booked with them automatically. I use Google Calendar and the Bland phone system we built. Output: meeting on calendar, no involvement from me."</p>
+        </div>
+      </div>
+
+      <div class="outline-section">
+        <div class="outline-header">
+          <div class="outline-num">2</div>
+          <h3>Fix Mode</h3>
+        </div>
+        <div class="outline-body">
+          <p>Something's broken. Copy, paste, screenshot — inject whatever isn't working and let it figure it out. Key command: <strong>"Fix it for me."</strong> Challenge it to do everything it can before asking for your input. Nine times out of ten the only thing it needs from you is an API key reset or a permission change in another app.</p>
+        </div>
+        <div class="warn-card" style="margin-left:42px">
+          <div class="warn-label">Watch for this</div>
+          <p>When you start getting massive copy-paste walls of code or instructions — pause. Say: "Do everything you can until you absolutely need my input." It usually can do more than it's letting on.</p>
+        </div>
+      </div>
+
+      <div class="outline-section">
+        <div class="outline-header">
+          <div class="outline-num">3</div>
+          <h3>Improve Mode</h3>
+        </div>
+        <div class="outline-body">
+          <p>Something works but it's not great. The second version of any system is almost always 10x better because now you know the specific gap. Push it: <strong>"Make this 10x better."</strong> Or: <strong>"Scour the internet for the most cutting-edge ways to solve this problem."</strong> The level of creativity you inject into the planning phase determines the quality of what you get back.</p>
+          <p>Constraints matter too — "accomplish this without increasing my monthly bill" vs. "cost is no limit, give me the best" will give you completely different solutions.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- SECTION 3: HERMES VS CLAUDE DIRECTLY -->
+    <section class="block reveal">
+      <div class="block-label">Hermes vs. Claude Directly</div>
+      <div class="outline-section">
+        <div class="outline-header">
+          <div class="outline-num">→</div>
+          <h3>When to use which</h3>
+        </div>
+        <div class="outline-body">
+          <p><strong>Use Hermes</strong> when you're building something that extends what you've already built — it has your context, your contacts, your email, your calendar, your tools. It knows you.</p>
+          <p><strong>Go straight to Claude</strong> when you have a brand new idea completely outside your existing setup — a new app, a tool for your company, something that doesn't need your personal context yet. Same three-step framework (trigger, inputs, outcome) — just a clean slate.</p>
+          <p>You could rebuild everything in Claude directly without Hermes — but then you'd own the maintenance burden too. Hermes abstracts that. The open-source community keeps it working. When you go off-road and build custom things, that's when breakage goes up.</p>
+        </div>
+        <div class="tip-card" style="margin-left:42px">
+          <div class="tip-label">Model tip</div>
+          <p>Use <strong>Opus</strong> for building and planning — it's more thoughtful and better at figuring out how to do something new. Use <strong>Sonnet</strong> for running established systems — it's faster and cheaper. Switch back to Opus any time you're designing something new.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- SECTION 4: THE MAINTENANCE CHECK -->
+    <section class="block reveal">
+      <div class="block-label">The Maintenance Check</div>
+      <div class="outline-section">
+        <div class="outline-header">
+          <div class="outline-num">→</div>
+          <h3>Systems fail silently. This catches them.</h3>
+        </div>
+        <div class="outline-body">
+          <p>The single most useful habit for long-term COS viability: a regular self-audit. Schedule it weekly — Sunday morning is a good default. Here's the prompt to set it up:</p>
+        </div>
+        <pre style="margin-left:42px">I want you to run a systems review every Sunday at 10 AM.
+
+Check every automation and tool we've built together. For each one:
+1. Is it currently running? (live / broken / never finished)
+2. When did it last fire?
+3. What's working well
+4. What's broken, flaky, or silently failing
+5. What hasn't been touched in 7+ days and may be dead weight
+
+Give me a prioritized fix list: top 3 things to repair or retire.
+
+Send the report to my Telegram.</pre>
+        <div class="warn-card" style="margin-left:42px">
+          <div class="warn-label">The rule</div>
+          <p>I'd rather kill a system than carry a broken one. A scheduled self-audit is the best habit you can build into your COS from day one.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- SECTION 5: WHAT TO BUILD NEXT -->
+    <section class="block reveal">
+      <div class="block-label">Ideas to Build Next</div>
+      <p style="font-size:16px;color:var(--gray);line-height:1.7;margin-bottom:28px">These came up in session as directions to explore. None of these are homework — they're seeds.</p>
+
+      <div class="win-card">
+        <div class="win-label">Idea</div>
+        <p><strong>Contacts auto-build from email.</strong> Scan your most-emailed contacts and auto-generate contact files with names, emails, relationships, and last contact date. Meeting prep goes from 5% coverage to 80% overnight.</p>
+      </div>
+      <div class="win-card">
+        <div class="win-label">Idea</div>
+        <p><strong>Outbound call agent.</strong> Most of you set up inbound only. The next frontier: trigger outbound calls based on form fills, follow-up schedules, or lead activity. Bland handles this — the trigger/input/outcome framework applies directly.</p>
+      </div>
+      <div class="win-card">
+        <div class="win-label">Idea</div>
+        <p><strong>Competitive / industry watcher.</strong> Set a weekly cron to search one topic — a competitor, an industry trend, a technology — and deliver a brief every Monday morning. Under 200 words, bullets only, links included.</p>
+      </div>
+      <div class="win-card">
+        <div class="win-label">Idea</div>
+        <p><strong>Document updater.</strong> Old onboarding manuals, SOPs, presentations. Have your COS interview you about what's changed section by section, then rebuild the document. Big piles of old Google Docs become current in one session.</p>
+      </div>
+      <div class="win-card">
+        <div class="win-label">Idea</div>
+        <p><strong>Health dashboard.</strong> Pipe your Oura, Apple Watch, or other wearable APIs into a single local dashboard. Use LLM analysis to give you customized recommendations based on your actual goals — not generic advice.</p>
+      </div>
+      <div class="win-card">
+        <div class="win-label">Idea</div>
+        <p><strong>Cron job dashboard.</strong> Once you have 20+ automations running, you need a local dashboard to track what's live, when it last fired, and what the result was. Ask Claude to build it — takes five minutes.</p>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- SECTION 6: KEY QUOTES -->
+    <section class="block reveal">
+      <div class="block-label">From the Session</div>
+
+      <div class="tip-card">
+        <div class="tip-label">On complexity</div>
+        <p>"The more complex you make things, the more likely they're going to break, the more likely they're going to get outdated, the more likely they're not going to work. Always think about building blocks of complexity rather than trying to replace your whole company with AI bots."</p>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-label">On the AI labs' incentives</div>
+        <p>"Think about the motivations of the AI labs — they want you to spend tokens. So sometimes the COS will go down a complicated path because building more means more money. Reel it in. Ask: can we find a simpler path, or use what we've already built?"</p>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-label">On breakage</div>
+        <p>"When things break, you won't always know. You're not sitting at a software dashboard all day. When things break — copy and paste it in, it'll figure out the fix. The number one thing that breaks my system? The power going out."</p>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-label">On what this really is</div>
+        <p>"Your real ability isn't just about what we do here — it's about what you then go and create. The tools, the things, all of this is changing so fast. There's no way to keep up unless you're just in the weeds with it."</p>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- WHAT'S NEXT CALLOUT -->
+    <section class="block reveal">
+      <div class="homework-card">
+        <p><strong>You're done with the curriculum.</strong> But the loop never ends: Scope → Build → Test → Improve. The skills you built here apply to everything — your COS, your company, your team.</p>
+        <p>The mastermind is launching Memorial Day weekend. <strong>Send a testimonial for a free year.</strong> Or join at $100/month (Cohort 1 pricing).</p>
+        <p><a href="whats-next.html">See what's next →</a></p>
+      </div>
+    </section>
+
+    <div class="session-nav reveal">
+      <div class="nav-prev">
+        <span class="nav-label">Previous</span>
+        <span class="nav-title">Session 3 — The Intelligence Layer</span>
+        <a class="nav-btn" href="week3-notes.html">← View Notes</a>
+      </div>
+    </div>
+
+    <div style="height:48px"></div>
+
+  </div>
+</main>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>

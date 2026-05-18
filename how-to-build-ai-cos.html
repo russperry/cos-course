@@ -1,13 +1,284 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; url=/cos-course/how-to-build-ai-cos.html">
-  <link rel="canonical" href="/cos-course/how-to-build-ai-cos.html">
-  <title>Redirecting...</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Build an AI Chief of Staff</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0B0C0B;--volt:#D5FF02;--white:#F5F5F3;--gray:#888;--dim:#555;
+  --dark-card:#141514;--border:#222;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+}
+
+@page{size:letter;margin:0}
+
+body{
+  background:var(--black);color:var(--white);
+  font-family:var(--sans);font-weight:300;font-size:11px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  width:8.5in;min-height:11in;
+  margin:0 auto;
+  padding:0.55in 0.65in 0.45in;
+  display:flex;flex-direction:column;
+}
+
+/* Header */
+.page-header{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding-bottom:18px;border-bottom:1px solid var(--border);
+  margin-bottom:24px;
+}
+.header-left{}
+.eyebrow{
+  font-size:8.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--volt);margin-bottom:7px;
+}
+.page-title{
+  font-family:var(--serif);font-size:28px;line-height:1.05;
+  letter-spacing:-.02em;color:var(--white);
+}
+.page-title em{color:var(--volt);font-style:normal}
+.byline{font-size:10px;color:var(--gray);margin-top:8px}
+
+.header-right{text-align:right}
+.cost-callout{
+  background:rgba(213,255,2,.08);border:1px solid rgba(213,255,2,.2);
+  border-radius:8px;padding:12px 16px;
+}
+.cost-label{font-size:8px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:4px}
+.cost-amount{font-family:var(--serif);font-size:22px;color:var(--white)}
+.cost-sub{font-size:9px;color:var(--gray);margin-top:2px}
+
+/* Tagline */
+.tagline{
+  font-family:var(--serif);font-size:13px;color:var(--gray);
+  font-style:italic;line-height:1.5;
+  padding:14px 0 18px;border-bottom:1px solid var(--border);
+  margin-bottom:22px;
+  max-width:80%;
+}
+
+/* Two-col layout */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:22px}
+.full-col{margin-bottom:22px}
+
+/* Section */
+.section-label{
+  font-size:8px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--volt);margin-bottom:10px;
+}
+.section-title{
+  font-family:var(--serif);font-size:16px;letter-spacing:-.01em;
+  color:var(--white);margin-bottom:12px;line-height:1.2;
+}
+
+/* Stack grid */
+.stack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stack-card{
+  background:var(--dark-card);border:1px solid var(--border);
+  border-radius:7px;padding:12px 14px;
+}
+.stack-name{font-weight:600;font-size:11px;color:var(--white);margin-bottom:3px}
+.stack-role{
+  font-size:8.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--volt);margin-bottom:5px;
+}
+.stack-desc{font-size:10px;color:var(--gray);line-height:1.55}
+.stack-cost{font-size:9px;color:var(--dim);margin-top:6px}
+
+/* Build list */
+.build-list{list-style:none}
+.build-item{
+  border-bottom:1px solid var(--border);padding:10px 0;
+  display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:flex-start;
+}
+.build-item:first-child{border-top:1px solid var(--border)}
+.build-num{
+  font-family:var(--serif);font-size:16px;color:var(--volt);
+  line-height:1.1;font-style:italic;
+}
+.build-title{font-weight:600;font-size:11px;color:var(--white);margin-bottom:3px}
+.build-desc{font-size:10px;color:var(--gray);line-height:1.55}
+.build-tag{
+  display:inline-block;margin-top:5px;
+  font-size:8px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  background:rgba(213,255,2,.08);color:var(--volt);
+  border:1px solid rgba(213,255,2,.2);border-radius:4px;padding:2px 7px;
+}
+
+/* Mindset callout */
+.mindset{
+  background:var(--dark-card);border-left:3px solid var(--volt);
+  border-radius:0 8px 8px 0;
+  padding:16px 20px;
+}
+.mindset-quote{
+  font-family:var(--serif);font-size:15px;color:var(--white);
+  line-height:1.4;letter-spacing:-.01em;margin-bottom:6px;
+}
+.mindset-sub{font-size:10px;color:var(--gray);line-height:1.55}
+
+/* Proof point */
+.proof{
+  background:rgba(213,255,2,.04);border:1px solid rgba(213,255,2,.1);
+  border-radius:8px;padding:14px 18px;
+}
+.proof-label{font-size:8px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--volt);margin-bottom:8px}
+.proof-quote{
+  font-size:11px;color:var(--white);line-height:1.6;
+  font-style:italic;margin-bottom:6px;
+}
+.proof-attr{font-size:9px;color:var(--dim)}
+
+/* CTA footer */
+.cta-footer{
+  margin-top:auto;
+  border-top:1px solid var(--border);
+  padding-top:16px;
+  display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;
+}
+.cta-left{}
+.cta-eyebrow{font-size:8px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--volt);margin-bottom:5px}
+.cta-headline{font-family:var(--serif);font-size:16px;color:var(--white);letter-spacing:-.01em;margin-bottom:5px}
+.cta-sub{font-size:10px;color:var(--gray);line-height:1.5}
+.cta-right{text-align:right}
+.cta-code-box{
+  background:var(--volt);border-radius:7px;
+  padding:10px 16px;display:inline-block;margin-bottom:6px;
+}
+.cta-code{font-weight:700;font-size:14px;color:var(--black);letter-spacing:.06em}
+.cta-savings{font-size:9px;color:var(--black);margin-top:2px;font-weight:500}
+.cta-url{font-size:8.5px;color:var(--volt);display:block;margin-top:6px;word-break:break-all}
+.cta-expire{font-size:8.5px;color:var(--dim);margin-top:4px}
+
+@media print{
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
 </head>
 <body>
-  <script>window.location.replace("/cos-course/how-to-build-ai-cos.html");</script>
-  <p>Redirecting to <a href="/cos-course/how-to-build-ai-cos.html">/cos-course/how-to-build-ai-cos.html</a>...</p>
+
+<!-- HEADER -->
+<div class="page-header">
+  <div class="header-left">
+    <div class="eyebrow">A Practical Guide</div>
+    <div class="page-title">How to Build an<br><em>AI Chief of Staff</em></div>
+    <div class="byline">By Russ Perry – Founder & CEO, Design Pickle</div>
+  </div>
+  <div class="header-right">
+    <div class="cost-callout">
+      <div class="cost-label">Total Ongoing Cost</div>
+      <div class="cost-amount">~$20/mo</div>
+      <div class="cost-sub">Claude Pro. That's it.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TAGLINE -->
+<div class="tagline">
+  "You're not automating tasks. You're replacing a role. The inbox, the phone, the morning briefing – 
+  these are jobs. Give them to an AI and get your time back."
+</div>
+
+<!-- STACK + WHAT TO BUILD -->
+<div class="two-col">
+
+  <!-- LEFT: The Stack -->
+  <div>
+    <div class="section-label">The Stack</div>
+    <div class="section-title">3 tools.<br>One integrated system.</div>
+    <div class="stack-grid" style="grid-template-columns:1fr;gap:8px">
+      <div class="stack-card">
+        <div class="stack-role">The Runtime</div>
+        <div class="stack-name">Hermes Agent</div>
+        <div class="stack-desc">The operating system your AI lives inside. Connects to email, calendar, phone, and custom commands. Runs 24/7 on your machine.</div>
+        <div class="stack-cost"><a href="https://hermes-agent.nousresearch.com" style="color:var(--volt)">hermes-agent.nousresearch.com</a> – free</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-role">The Brain</div>
+        <div class="stack-name">Claude Pro (Anthropic)</div>
+        <div class="stack-desc">Powers every decision your COS makes. Reads context, drafts in your voice, prioritizes what matters.</div>
+        <div class="stack-cost"><a href="https://claude.ai" style="color:var(--volt)">claude.ai</a> – ~$20/mo</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-role">The Voice</div>
+        <div class="stack-name">Bland.ai</div>
+        <div class="stack-desc">Gives your COS a dedicated phone number. Screens inbound calls, handles scheduling, makes outbound calls on your behalf.</div>
+        <div class="stack-cost"><a href="https://bland.ai" style="color:var(--volt)">bland.ai</a> – usage-based</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: What to Build First -->
+  <div>
+    <div class="section-label">Build These First</div>
+    <div class="section-title">The 3 highest-leverage things to deploy.</div>
+    <ul class="build-list">
+      <li class="build-item">
+        <div class="build-num">1</div>
+        <div>
+          <div class="build-title">Email Triage</div>
+          <div class="build-desc">A 3-tier sort that runs every 30 minutes. Tier 1 gets flagged for your attention. Tier 2 is held. Tier 3 is archived. You only touch what matters.</div>
+          <span class="build-tag">Saves 1–2 hrs/day</span>
+        </div>
+      </li>
+      <li class="build-item">
+        <div class="build-num">2</div>
+        <div>
+          <div class="build-title">Morning Brief</div>
+          <div class="build-desc">Every morning, a personalized summary hits your phone. Today's meetings, top priorities, and the one thing that actually needs your decision.</div>
+          <span class="build-tag">Replaces the morning scroll</span>
+        </div>
+      </li>
+      <li class="build-item">
+        <div class="build-num">3</div>
+        <div>
+          <div class="build-title">Voice Agent</div>
+          <div class="build-desc">A dedicated phone number your COS answers. Screens callers, collects info, books meetings directly into your calendar.</div>
+          <span class="build-tag">Replaces a virtual receptionist</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- MINDSET + PROOF -->
+<div class="two-col" style="margin-bottom:20px">
+  <div class="mindset">
+    <div class="mindset-quote">"You're not automating tasks.<br>You're replacing a role."</div>
+    <div class="mindset-sub">Most people use AI to do things faster. The real unlock is using it to own an entire function – inbox management, call screening, relationship intel – so you never have to touch it again. That's a Chief of Staff, not a productivity hack.</div>
+  </div>
+  <div class="proof">
+    <div class="proof-label">Real-World Proof</div>
+    <div class="proof-quote">"I just scheduled your carpet cleaning with what I assume was your AI assistant... that was extremely cool and I would like to learn more about how you created your assistant."</div>
+    <div class="proof-attr">– Jayden, Coconut Cleaning (texted Russ after booking with Pin, his AI COS)</div>
+  </div>
+</div>
+
+<!-- CTA FOOTER -->
+<div class="cta-footer">
+  <div class="cta-left">
+    <div class="cta-eyebrow">Want to build this with me?</div>
+    <div class="cta-headline">AI Chief of Staff – Course</div>
+    <div class="cta-sub">4 sessions. You build your own system start-to-finish.</div>
+  </div>
+  <div class="cta-right">
+    <div class="cta-code-box">
+      <div class="cta-code">CREATIVECEO</div>
+      <div class="cta-savings">$300 off at checkout</div>
+    </div>
+    <a class="cta-url" href="https://buy.stripe.com/6oU00l7fIbg6g9Y1zFbEA01?prefilled_promo_code=CREATIVECEO">
+      buy.stripe.com/6oU00l7fIbg6g9Y1zFbEA01?prefilled_promo_code=CREATIVECEO
+    </a>
+  </div>
+</div>
+
 </body>
 </html>

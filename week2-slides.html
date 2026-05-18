@@ -1,13 +1,524 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; url=/cos-course/week2-slides.html">
-  <link rel="canonical" href="/cos-course/week2-slides.html">
-  <title>Redirecting...</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 2 – Give Your COS a Voice | AI Chief of Staff</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0B0C0B;--volt:#D5FF02;--white:#F5F5F3;--gray:#999;--dim:#666;
+  --dark-card:#141514;--border:#1E1F1E;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+}
+html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:var(--sans)}
+.deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+.scale-wrap{width:1920px;height:1080px;position:relative;transform-origin:center center}
+.slide{
+  position:absolute;inset:0;background:var(--black);display:none;
+  padding:80px 100px;flex-direction:column;justify-content:center;
+}
+.slide.active{display:flex}
+
+/* ── NAV ── */
+.nav{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:16px;z-index:999;
+  background:rgba(11,12,11,.85);border:1px solid var(--border);
+  border-radius:40px;padding:10px 20px;backdrop-filter:blur(12px)}
+.nav button{background:none;border:none;cursor:pointer;color:var(--gray);
+  font-size:20px;padding:4px 8px;transition:color .2s}
+.nav button:hover{color:var(--volt)}
+.nav-count{font-family:var(--sans);font-size:13px;color:var(--dim);min-width:52px;text-align:center}
+.nav-hint{font-size:11px;color:var(--dim);letter-spacing:.05em}
+
+/* ── SHARED ── */
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--volt);margin-bottom:20px}
+.serif{font-family:var(--serif)}
+.volt{color:var(--volt)}
+.dim{color:var(--dim)}
+.gray{color:var(--gray)}
+.card{background:var(--dark-card);border:1px solid var(--border);border-radius:14px;padding:32px}
+.card-volt{border-color:rgba(213,255,2,.25)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:20px}
+
+/* ── SECTION DIVIDER ── */
+.section-slide{justify-content:center;align-items:flex-start}
+.section-slide .part{font-size:13px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--volt);margin-bottom:24px}
+.section-slide h1{font-family:var(--serif);font-size:96px;line-height:1.0;
+  letter-spacing:-.03em;color:var(--white);margin-bottom:28px}
+.section-slide .sub{font-size:22px;color:var(--gray);max-width:680px;line-height:1.6}
+
+/* ── SLIDE 1 TITLE ── */
+.title-slide h1{font-family:var(--serif);font-size:84px;line-height:1.0;
+  letter-spacing:-.03em;color:var(--white);margin-bottom:24px}
+.title-slide .tagline{font-size:24px;color:var(--gray);max-width:760px;line-height:1.6;margin-bottom:40px}
+.title-slide .meta{font-size:15px;color:var(--dim)}
+.byline{position:absolute;bottom:80px;right:100px;
+  display:flex;align-items:center;gap:10px;
+  font-size:15px;color:var(--dim)}
+.byline::before{content:'';width:8px;height:8px;background:var(--volt);
+  border-radius:50%;display:inline-block}
+
+/* ── CONTENT SLIDES ── */
+.slide-title{font-size:48px;font-family:var(--serif);color:var(--white);
+  letter-spacing:-.02em;margin-bottom:48px;line-height:1.1}
+
+/* AGENDA */
+.agenda{list-style:none;display:flex;flex-direction:column;gap:0}
+.agenda-row{display:grid;grid-template-columns:160px 1fr;
+  border-bottom:1px solid var(--border);padding:24px 0;align-items:baseline}
+.agenda-row:first-child{border-top:1px solid var(--border)}
+.agenda-time{font-size:15px;font-weight:500;color:var(--volt)}
+.agenda-body strong{font-size:20px;font-weight:500;color:var(--white);display:block;margin-bottom:4px}
+.agenda-body span{font-size:16px;color:var(--dim)}
+
+/* CHECKLIST */
+.checklist{list-style:none;display:flex;flex-direction:column;gap:0}
+.check-row{display:flex;align-items:flex-start;gap:20px;
+  padding:24px 0;border-bottom:1px solid var(--border);font-size:22px;color:var(--gray);line-height:1.5}
+.check-row:first-child{border-top:1px solid var(--border)}
+.check-icon{color:var(--volt);font-size:22px;font-weight:700;flex-shrink:0;padding-top:2px}
+
+/* TWO-COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.col-head{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  margin-bottom:24px}
+.col-volt{color:var(--volt)}
+.col-white{color:var(--white)}
+.bullet-list{list-style:none;display:flex;flex-direction:column;gap:18px}
+.bullet-list li{font-size:20px;color:var(--gray);display:flex;align-items:flex-start;gap:14px;line-height:1.5}
+.bullet-list li::before{content:'–';color:var(--volt);flex-shrink:0;font-weight:600}
+
+/* FLOW */
+.flow{display:flex;align-items:center;gap:0;margin:40px 0}
+.flow-node{background:var(--dark-card);border:1px solid var(--border);
+  border-radius:10px;padding:20px 24px;font-size:17px;color:var(--white);
+  text-align:center;flex:1}
+.flow-arrow{color:var(--volt);font-size:28px;font-weight:300;flex-shrink:0;padding:0 8px}
+.flow-split{display:flex;flex-direction:column;gap:12px;flex:1}
+.flow-yes{background:rgba(213,255,2,.08);border:1px solid rgba(213,255,2,.3);
+  border-radius:10px;padding:16px 20px;font-size:16px;color:var(--volt)}
+.flow-no{background:var(--dark-card);border:1px solid var(--border);
+  border-radius:10px;padding:16px 20px;font-size:16px;color:var(--gray)}
+
+/* STEP LIST */
+.step-list{list-style:none;display:flex;flex-direction:column;gap:4px}
+.step-row{display:grid;grid-template-columns:60px 1fr;
+  padding:22px 0;border-bottom:1px solid var(--border);align-items:center}
+.step-row:first-child{border-top:1px solid var(--border)}
+.step-num{font-size:32px;font-weight:700;color:var(--volt);font-family:var(--serif)}
+.step-text{font-size:21px;color:var(--white)}
+.cta-box{background:rgba(213,255,2,.07);border:1px solid rgba(213,255,2,.2);
+  border-radius:10px;padding:20px 28px;margin-top:32px;
+  font-size:18px;color:var(--volt);font-weight:600}
+
+/* HOMEWORK CARD */
+.hw-card{background:var(--dark-card);border:1px solid rgba(213,255,2,.2);
+  border-radius:16px;padding:40px 48px;max-width:900px}
+.hw-card p{font-size:22px;color:var(--gray);line-height:1.7;margin-bottom:16px}
+.hw-card p:last-child{margin-bottom:0}
+.hw-card strong{color:var(--white);font-weight:500}
+
+/* OPEN FLOOR */
+.open-col h3{font-family:var(--serif);font-size:32px;color:var(--white);margin-bottom:12px}
+.open-col p{font-size:18px;color:var(--gray);line-height:1.6}
+.wa-link{display:inline-block;margin-top:32px;font-size:17px;font-weight:600;
+  color:var(--black);background:var(--volt);padding:14px 28px;border-radius:8px}
+
+/* VOLT CALLOUT */
+.volt-big{font-size:72px;font-family:var(--serif);color:var(--volt);line-height:1.1;margin-bottom:16px}
+
+/* KEYBOARD HINT */
+.keyboard-hint{position:absolute;bottom:80px;left:100px;
+  font-size:13px;color:var(--dim);display:flex;gap:20px}
+.key{display:inline-block;border:1px solid var(--border);border-radius:5px;
+  padding:3px 8px;font-size:12px;color:var(--dim);margin:0 2px}
+</style>
 </head>
 <body>
-  <script>window.location.replace("/cos-course/week2-slides.html");</script>
-  <p>Redirecting to <a href="/cos-course/week2-slides.html">/cos-course/week2-slides.html</a>...</p>
+
+<div class="deck">
+<div class="scale-wrap" id="scaleWrap">
+
+<!-- SLIDE 1: TITLE -->
+<div class="slide title-slide active" data-slide="1">
+  <div class="eyebrow">Session 2 &nbsp;·&nbsp; AI Chief of Staff Cohort 1</div>
+  <h1>Give Your COS<br>a Voice</h1>
+  <p class="tagline">This session your COS gets a phone number. It screens calls, handles inbound, and books meetings – without you.</p>
+  <div class="keyboard-hint">
+    <span><span class="key">←</span><span class="key">→</span> navigate</span>
+    <span><span class="key">F</span> fullscreen</span>
+  </div>
+  <div class="byline">Russ Perry</div>
+</div>
+
+
+<!-- SLIDE 2: TOOLS DON'T MATTER — OUTCOMES DO -->
+<div class="slide" data-slide="2">
+  <div class="eyebrow">Before We Build Anything</div>
+  <div class="slide-title" style="max-width:900px">The tools don't matter.<br>The outcome does.</div>
+  <div class="two-col" style="gap:60px;margin-top:8px">
+    <div>
+      <ul class="bullet-list" style="gap:24px">
+        <li style="font-size:21px">Tools change. Bland today, something else in 6 months. That's fine.</li>
+        <li style="font-size:21px">Technical paralysis is real. Don't let "which tool is best" stop you from building anything.</li>
+        <li style="font-size:21px">Hype is louder than signal right now. Ignore 90% of it.</li>
+        <li style="font-size:21px">The question is never "which AI phone tool should I use?" – it's "what should my COS own on the phone?"</li>
+      </ul>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div class="card card-volt" style="padding:28px">
+        <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Let Your COS Guide the Build</div>
+        <p style="font-size:18px;color:var(--gray);line-height:1.6">Tell your COS the outcome you want. Push back on requirements. Ask it to simplify. It will tell you what you actually need.</p>
+      </div>
+      <div class="card" style="padding:28px">
+        <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:12px">When someone asks "X vs Y"</div>
+        <p style="font-size:18px;color:var(--gray);line-height:1.6">Ask yourself: does it accomplish the outcome? Is it the simplest path? If yes – build it. You can swap the tool later.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: TAILSCALE -->
+<div class="slide" data-slide="3">
+  <div class="eyebrow">Infrastructure Tip</div>
+  <div class="slide-title">Tailscale – Access Your COS Anywhere</div>
+  <div class="two-col" style="gap:60px">
+    <div>
+      <p style="font-size:19px;color:var(--gray);line-height:1.7;margin-bottom:28px">Your COS runs on your machine. Tailscale gives you a private, encrypted tunnel back to it – from your phone, a hotel room, anywhere.</p>
+      <ul class="bullet-list" style="gap:20px">
+        <li style="font-size:19px">Access your files and system remotely without exposing anything to the public internet</li>
+        <li style="font-size:19px">Share screen or control your Mac from anywhere once it's set up</li>
+        <li style="font-size:19px">Essential once you start building automations that run 24/7</li>
+        <li style="font-size:19px">Free for personal use, works across Mac, iPhone, Windows</li>
+      </ul>
+      <div style="margin-top:32px">
+        <a href="https://tailscale.com" target="_blank" style="font-size:16px;font-weight:600;color:var(--volt)">tailscale.com →</a>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div class="card card-volt" style="padding:28px">
+        <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Setup Order</div>
+        <ol style="list-style:none;display:flex;flex-direction:column;gap:14px">
+          <li style="font-size:17px;color:var(--gray);display:flex;gap:12px"><span style="color:var(--volt);font-weight:700;flex-shrink:0">1.</span> Install Tailscale on your Mac</li>
+          <li style="font-size:17px;color:var(--gray);display:flex;gap:12px"><span style="color:var(--volt);font-weight:700;flex-shrink:0">2.</span> Install on your iPhone</li>
+          <li style="font-size:17px;color:var(--gray);display:flex;gap:12px"><span style="color:var(--volt);font-weight:700;flex-shrink:0">3.</span> Sign in with the same account on both</li>
+          <li style="font-size:17px;color:var(--gray);display:flex;gap:12px"><span style="color:var(--volt);font-weight:700;flex-shrink:0">4.</span> Enable SSH on your Mac (System Settings → General → Sharing)</li>
+        </ol>
+      </div>
+      <div style="background:rgba(255,200,0,.06);border:1px solid rgba(255,200,0,.2);border-radius:12px;padding:22px 26px">
+        <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#f0c040;margin-bottom:10px">⚠ Permissions Disclaimer</div>
+        <p style="font-size:16px;color:var(--gray);line-height:1.6">Once Tailscale is installed, you must grant <strong style="color:var(--white)">Full Disk Access</strong> and <strong style="color:var(--white)">Screen Recording</strong> permissions in System Settings → Privacy &amp; Security – otherwise remote access to files and screen share will not work.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: HOMEWORK CHECK (was 2) -->
+<div class="slide" data-slide="4">
+  <div class="eyebrow">Quick Recap</div>
+  <div class="slide-title">Last Week's Homework</div>
+  <p style="font-size:22px;color:var(--gray);margin-bottom:48px;max-width:700px;line-height:1.6">You were asked to write down 3 things you want your COS to handle that you currently handle yourself.</p>
+  <div class="volt-big">Who brought their list?</div>
+  <p style="font-size:20px;color:var(--gray)">We're building those this session.</p>
+</div>
+
+<!-- SLIDE 3: OBJECTIVES -->
+<div class="slide" data-slide="5">
+  <div class="eyebrow">Session Outcomes</div>
+  <div class="slide-title">By The End of This Session You Will Have:</div>
+  <ul class="checklist">
+    <li class="check-row"><span class="check-icon">✓</span> A dedicated phone number for your COS (via Bland.ai)</li>
+    <li class="check-row"><span class="check-icon">✓</span> An inbound call handler – screens callers, collects info, routes appropriately</li>
+    <li class="check-row"><span class="check-icon">✓</span> Basic outbound scripting so your COS can call on your behalf</li>
+    <li class="check-row"><span class="check-icon">✓</span> Live tested it – called your own COS number and it worked</li>
+  </ul>
+</div>
+
+<!-- SLIDE 4: AGENDA -->
+<div class="slide" data-slide="6">
+  <div class="eyebrow">This Session</div>
+  <div class="slide-title">Agenda</div>
+  <ul class="agenda">
+    <li class="agenda-row">
+      <span class="agenda-time">Part 1</span>
+      <div class="agenda-body"><strong>How AI Voice Works</strong><span>30 min &nbsp;·&nbsp; What's happening under the hood and what your COS should own</span></div>
+    </li>
+    <li class="agenda-row">
+      <span class="agenda-time">Part 2</span>
+      <div class="agenda-body"><strong>Bland.ai Setup + Phone Number</strong><span>20 min &nbsp;·&nbsp; Live number in your hands</span></div>
+    </li>
+    <li class="agenda-row">
+      <span class="agenda-time">Part 3</span>
+      <div class="agenda-body"><strong>Build the Inbound Handler</strong><span>25 min &nbsp;·&nbsp; Screening logic, calendar link, escalation path</span></div>
+    </li>
+    <li class="agenda-row">
+      <span class="agenda-time">Part 4</span>
+      <div class="agenda-body"><strong>Live Test</strong><span>15 min &nbsp;·&nbsp; Everyone calls their own COS number</span></div>
+    </li>
+    <li class="agenda-row">
+      <span class="agenda-time">Part 5</span>
+      <div class="agenda-body"><strong>Outbound Script + Open Support</strong><span>30 min &nbsp;·&nbsp; Stretch goal + questions, wins, troubleshooting</span></div>
+    </li>
+  </ul>
+</div>
+
+<!-- SLIDE 5: SECTION – PART 1 -->
+<div class="slide section-slide" data-slide="7">
+  <div class="part">Part 1</div>
+  <h1>How AI Voice<br>Works</h1>
+  <p class="sub">What's happening under the hood – and what your COS should own vs. escalate</p>
+</div>
+
+<!-- SLIDE 6: THE PHONE PROBLEM -->
+<div class="slide" data-slide="8">
+  <div class="two-col" style="align-items:center">
+    <div>
+      <div class="eyebrow">The Problem</div>
+      <div class="slide-title" style="margin-bottom:32px">The Phone is<br>Still Broken</div>
+      <ul class="bullet-list">
+        <li>Most calls are low-value interruptions</li>
+        <li>You answer anyway – because what if it's important?</li>
+        <li>Voicemail is dead. Nobody leaves them. Nobody checks them.</li>
+        <li>Scheduling a call is a 6-email thread waiting to happen</li>
+      </ul>
+    </div>
+    <div style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:48px">
+      <p style="font-size:52px;font-family:var(--serif);color:var(--volt);line-height:1.2">Your COS should<br>own the phone.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: WHAT BLAND DOES -->
+<div class="slide" data-slide="9">
+  <div class="eyebrow">Bland.ai Capabilities</div>
+  <div class="slide-title">What Your COS Can Do On the Phone</div>
+  <div class="grid2">
+    <div class="card">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Screen Inbound Calls</div>
+      <p style="font-size:18px;color:var(--gray);line-height:1.6">Know who's calling and why before you ever pick up</p>
+    </div>
+    <div class="card">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Book Meetings</div>
+      <p style="font-size:18px;color:var(--gray);line-height:1.6">Check your calendar and offer times on the spot – no back and forth</p>
+    </div>
+    <div class="card">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Make Outbound Calls</div>
+      <p style="font-size:18px;color:var(--gray);line-height:1.6">Follow up, confirm, request info – in your voice, on your behalf</p>
+    </div>
+    <div class="card">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Take Intelligent Messages</div>
+      <p style="font-size:18px;color:var(--gray);line-height:1.6">Not just voicemail – structured data you can search and act on</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: COS VS ESCALATE -->
+<div class="slide" data-slide="10">
+  <div class="eyebrow">Decision Framework</div>
+  <div class="slide-title">What Your COS Owns vs. What It Escalates</div>
+  <div class="two-col">
+    <div>
+      <div class="col-head col-volt">COS Owns</div>
+      <ul class="bullet-list">
+        <li>Cold or unknown callers</li>
+        <li>Scheduling requests</li>
+        <li>Status updates ("is X done?")</li>
+        <li>Vendor follow-ups</li>
+        <li>Intake and triage</li>
+      </ul>
+    </div>
+    <div>
+      <div class="col-head col-white">Escalate to You</div>
+      <ul class="bullet-list" style="--volt:#F5F5F3">
+        <li>Existing clients with urgent issues</li>
+        <li>Anyone you've flagged as VIP</li>
+        <li>Emotional or sensitive conversations</li>
+        <li>Decisions only you can make</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 9: SECTION – PART 2 -->
+<div class="slide section-slide" data-slide="11">
+  <div class="part">Part 2</div>
+  <h1>Bland.ai Setup +<br>Your Phone Number</h1>
+  <p class="sub">You'll have a live number in the next 20 minutes</p>
+</div>
+
+<!-- SLIDE 10: SETUP STEPS -->
+<div class="slide" data-slide="12">
+  <div class="eyebrow">Live Setup</div>
+  <div class="slide-title">4 Steps to Your Number</div>
+  <ol class="step-list">
+    <li class="step-row"><span class="step-num">1</span><span class="step-text">Create your Bland.ai account at <span class="volt">bland.ai</span></span></li>
+    <li class="step-row"><span class="step-num">2</span><span class="step-text">Add a payment method &nbsp;·&nbsp; <span style="color:var(--dim)">usage-based, ~$0.09/min</span></span></li>
+    <li class="step-row"><span class="step-num">3</span><span class="step-text">Purchase a phone number &nbsp;·&nbsp; <span style="color:var(--dim)">$1.15/month</span></span></li>
+    <li class="step-row"><span class="step-num">4</span><span class="step-text">Create your first Pathway – we'll do this live together</span></li>
+  </ol>
+  <div class="cta-box">Open bland.ai now ↗</div>
+</div>
+
+<!-- SLIDE 11: SECTION – PART 3 -->
+<div class="slide section-slide" data-slide="13">
+  <div class="part">Part 3</div>
+  <h1>Build the Inbound<br>Handler</h1>
+  <p class="sub">Screening logic, calendar link, escalation path – built live</p>
+</div>
+
+<!-- SLIDE 12: INBOUND FLOW -->
+<div class="slide" data-slide="14">
+  <div class="eyebrow">The Flow</div>
+  <div class="slide-title">What Happens When Someone Calls</div>
+  <div class="flow">
+    <div class="flow-node">Call<br>Comes In</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">COS<br>Answers</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">Collects Name<br>+ Reason</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node" style="border-color:rgba(213,255,2,.3)">Priority<br>Caller?</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-split">
+      <div class="flow-yes">YES → Notify Russ via SMS</div>
+      <div class="flow-no">NO → Take message / Book meeting</div>
+    </div>
+  </div>
+  <p style="font-size:18px;color:var(--dim);margin-top:8px">We're building this pathway live right now.</p>
+</div>
+
+<!-- SLIDE 13: PATHWAY NODES -->
+<div class="slide" data-slide="15">
+  <div class="eyebrow">Pathway Building Blocks</div>
+  <div class="slide-title">The 4 Nodes You Need</div>
+  <div class="grid4">
+    <div class="card">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Greeting</div>
+      <p style="font-size:17px;color:var(--gray);line-height:1.6">"Hi, you've reached [Name]'s office. This is their AI assistant..."</p>
+    </div>
+    <div class="card">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Question</div>
+      <p style="font-size:17px;color:var(--gray);line-height:1.6">Collect caller name, company, and reason for calling</p>
+    </div>
+    <div class="card">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Decision</div>
+      <p style="font-size:17px;color:var(--gray);line-height:1.6">Route based on: VIP list, urgency keywords, time of day</p>
+    </div>
+    <div class="card">
+      <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--volt);margin-bottom:12px">Handoff</div>
+      <p style="font-size:17px;color:var(--gray);line-height:1.6">Send SMS / book calendar slot / take structured message</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 14: SECTION – LIVE TEST -->
+<div class="slide section-slide" data-slide="16">
+  <div class="part">Part 4</div>
+  <h1>Live Test</h1>
+  <div style="font-size:72px;font-family:var(--serif);color:var(--volt);margin:24px 0 20px">Call your own number right now.</div>
+  <p class="sub">We fix it live if it breaks. That's the point.</p>
+</div>
+
+<!-- SLIDE 15: SECTION – OUTBOUND -->
+<div class="slide section-slide" data-slide="17">
+  <div class="part">Part 5 – Stretch Goal</div>
+  <h1>Outbound: Your COS<br>Makes the Call</h1>
+  <p class="sub">If we have time – and we'll try</p>
+</div>
+
+<!-- SLIDE 16: OUTBOUND USE CASES -->
+<div class="slide" data-slide="18">
+  <div class="eyebrow">Outbound</div>
+  <div class="slide-title">Where Outbound Pays Off Immediately</div>
+  <ul class="bullet-list" style="gap:22px;max-width:860px">
+    <li style="font-size:22px">Appointment reminders – no-show rate drops ~40%</li>
+    <li style="font-size:22px">Lead follow-up – "You filled out our form – can I get you 15 min with Russ?"</li>
+    <li style="font-size:22px">Client check-ins – "How's everything going with the project?"</li>
+    <li style="font-size:22px">Vendor coordination – "Confirming delivery for Thursday"</li>
+    <li style="font-size:22px">Reference calls – "Quick 5-min call to verify before we move forward?"</li>
+  </ul>
+</div>
+
+<!-- SLIDE 17: HOMEWORK -->
+<div class="slide" data-slide="19">
+  <div class="eyebrow">Before Session 3</div>
+  <div class="slide-title" style="margin-bottom:36px">Homework</div>
+  <div class="hw-card">
+    <p><strong>One task:</strong> Use your COS phone number for one real interaction before Session 3.</p>
+    <p>Screen a call, book a meeting, or make an outbound call. Come ready to share what happened – what worked, what didn't.</p>
+    <p style="color:var(--volt);font-weight:500">Session 3: The Intelligence Layer</p>
+  </div>
+</div>
+
+<!-- SLIDE 18: OPEN FLOOR -->
+<div class="slide" data-slide="20">
+  <div class="eyebrow">Open Floor</div>
+  <div class="slide-title" style="font-size:68px;margin-bottom:48px">Questions. Wins. Stuck?</div>
+  <div class="grid2" style="gap:40px;max-width:1200px">
+    <div>
+      <div class="open-col">
+        <h3>Ask Anything</h3>
+        <p>Drop questions in the chat or unmute now. No such thing as a dumb question here.</p>
+      </div>
+    </div>
+    <div>
+      <div class="open-col">
+        <h3>Share a Win</h3>
+        <p>Session 1 breakthrough? Something your COS did this week that surprised you? We want to hear it.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /scale-wrap -->
+</div><!-- /deck -->
+
+<!-- NAV -->
+<div class="nav">
+  <button onclick="prev()" title="Previous">&#8592;</button>
+  <span class="nav-count" id="navCount">1 / 18</span>
+  <button onclick="next()" title="Next">&#8594;</button>
+  <span class="nav-hint">← → keys &nbsp;·&nbsp; F fullscreen</span>
+</div>
+
+<script>
+const TOTAL = 20;
+let current = parseInt(localStorage.getItem('s2slide') || '1');
+
+function go(n) {
+  n = Math.max(1, Math.min(TOTAL, n));
+  document.querySelector('.slide.active')?.classList.remove('active');
+  document.querySelector(`[data-slide="${n}"]`)?.classList.add('active');
+  document.getElementById('navCount').textContent = n + ' / ' + TOTAL;
+  current = n;
+  localStorage.setItem('s2slide', n);
+}
+function next() { go(current + 1); }
+function prev() { go(current - 1); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); next(); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prev(); }
+  if (e.key === 'f' || e.key === 'F') {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+    else document.exitFullscreen?.();
+  }
+});
+
+function scale() {
+  const wrap = document.getElementById('scaleWrap');
+  const s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+  wrap.style.transform = `scale(${s})`;
+}
+window.addEventListener('resize', scale);
+scale();
+go(current);
+</script>
 </body>
 </html>
