@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Member Portal | AI for Operators</title>
+<title>Members Only</title>
 <meta name="robots" content="noindex,nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -50,7 +50,7 @@ a{color:inherit;text-decoration:none}
 <body>
 
 <header class="header">
-  <div class="logo">AI for<em>Operators</em></div>
+  <div class="logo">Members<em>Only</em></div>
   <div class="user-bar">
     <span class="user-email" id="user-email"></span>
     <button class="logout-btn" onclick="logout()">Sign out</button>
@@ -60,7 +60,7 @@ a{color:inherit;text-decoration:none}
 <main class="container">
 
   <div class="welcome">
-    <div class="eyebrow">Member Portal</div>
+    <div class="eyebrow">Members Only</div>
     <h1 id="welcome-heading">Welcome back.</h1>
     <p id="access-desc">Loading…</p>
   </div>
@@ -72,7 +72,7 @@ a{color:inherit;text-decoration:none}
       <div class="card">
         <a class="card-link" href="/cos-course/"></a>
         <div class="card-icon">🤖</div>
-        <div class="card-title">AI Chief of Staff</div>
+        <div class="card-title">AI Chief of Staff Course</div>
         <div class="card-desc">Build your own AI COS in 4 sessions. Email triage, voice calls, intelligence layer, and full autonomy.</div>
         <div class="card-tag">4 Sessions · Lifetime Access</div>
       </div>
@@ -131,7 +131,7 @@ async function init() {
       document.getElementById('community-section').style.display = '';
       renderCommunity();
     } else if (data.access === 'course') {
-      document.getElementById('access-desc').textContent = 'You have lifetime access to the AI Chief of Staff course.';
+      document.getElementById('access-desc').textContent = 'You have lifetime access to the AI Chief of Staff Course.';
     }
 
   } catch (e) {
