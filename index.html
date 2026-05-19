@@ -8,43 +8,80 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--black:#0B0C0B;--volt:#D5FF02;--white:#F5F5F3;--gray:#999;--dim:#555;--card:#141514;--border:#1E1F1E;--serif:'Instrument Serif',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
+:root{--black:#0B0C0B;--volt:#D5FF02;--white:#F5F5F3;--gray:#999;--dim:#555;--card:#141514;--border:#1E1F1E;--serif:'Instrument Serif',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--green:#2ecc71}
 body{background:var(--black);color:var(--white);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;min-height:100vh}
 a{color:inherit;text-decoration:none}
+/* Header */
 .header{border-bottom:1px solid var(--border);padding:18px 32px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;background:rgba(11,12,11,.95);backdrop-filter:blur(12px)}
-.logo{font-family:var(--serif);font-size:19px;letter-spacing:-.02em}
-.logo em{color:var(--volt);font-style:normal}
+.logo{font-family:var(--serif);font-size:19px;letter-spacing:-.02em}.logo em{color:var(--volt);font-style:normal}
 .user-bar{display:flex;align-items:center;gap:16px}
 .user-email{font-size:13px;color:var(--dim)}
+.header-actions{display:flex;align-items:center;gap:10px}
 .logout-btn{color:var(--gray);font-size:12px;cursor:pointer;background:none;border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-family:var(--sans);transition:border-color .2s}
 .logout-btn:hover{border-color:rgba(213,255,2,.3);color:var(--volt)}
+.admin-link{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--volt);border:1px solid rgba(213,255,2,.3);border-radius:6px;padding:5px 12px;display:none}
+.admin-link:hover{background:rgba(213,255,2,.07)}
+/* Layout */
 .container{max-width:960px;margin:0 auto;padding:56px 32px 80px}
-.welcome{margin-bottom:56px}
+/* Welcome */
+.welcome{margin-bottom:52px}
 .eyebrow{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--volt);margin-bottom:12px}
-.welcome h1{font-family:var(--serif);font-size:clamp(36px,5vw,52px);line-height:1.08;letter-spacing:-.025em;margin-bottom:12px}
-.welcome p{font-size:16px;color:var(--gray);max-width:540px}
+.welcome h1{font-family:var(--serif);font-size:clamp(34px,5vw,50px);line-height:1.08;letter-spacing:-.025em;margin-bottom:10px}
+.welcome-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.welcome-desc{font-size:15px;color:var(--gray)}
+.member-since{font-size:12px;color:var(--dim);border-left:1px solid var(--border);padding-left:16px}
+/* Section */
 .section{margin-bottom:52px}
 .section-label{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Mastermind Hero */
+.mm-hero{background:linear-gradient(135deg,rgba(213,255,2,.06) 0%,rgba(213,255,2,.02) 100%);border:1px solid rgba(213,255,2,.2);border-radius:16px;padding:32px 28px;margin-bottom:52px}
+.mm-hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:24px}
+.mm-hero-title{font-family:var(--serif);font-size:26px;letter-spacing:-.02em;margin-bottom:4px}
+.mm-hero-sub{font-size:14px;color:var(--gray);max-width:480px}
+.mm-status{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--volt)}
+.mm-dot{width:8px;height:8px;border-radius:50%;background:var(--volt);box-shadow:0 0 8px var(--volt);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.mm-links{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.mm-link-card{background:rgba(213,255,2,.04);border:1px solid rgba(213,255,2,.12);border-radius:12px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;transition:border-color .2s}
+.mm-link-card:hover{border-color:rgba(213,255,2,.3)}
+.mm-link-title{font-size:14px;font-weight:500;color:var(--white)}
+.mm-link-desc{font-size:12px;color:var(--gray);margin-top:2px}
+.mm-link-btn{font-size:11px;font-weight:700;color:var(--black);background:var(--volt);padding:6px 14px;border-radius:100px;white-space:nowrap;flex-shrink:0;transition:opacity .2s}
+.mm-link-btn:hover{opacity:.85}
+/* Mastermind CTA (non-subscribers) */
+.mm-cta{border:1px solid var(--border);border-radius:16px;padding:32px 28px;margin-bottom:52px}
+.mm-cta-title{font-family:var(--serif);font-size:24px;letter-spacing:-.02em;margin-bottom:8px}
+.mm-cta-sub{font-size:14px;color:var(--gray);margin-bottom:28px;max-width:500px}
+.mm-props{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:28px}
+.mm-prop{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 16px}
+.mm-prop-icon{font-size:20px;margin-bottom:8px}
+.mm-prop-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:4px}
+.mm-prop-desc{font-size:12px;color:var(--gray);line-height:1.5}
+.mm-cta-btn{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--black);background:var(--volt);border-radius:100px;padding:12px 24px;transition:opacity .2s;letter-spacing:.02em}
+.mm-cta-btn:hover{opacity:.88}
+/* Course cards */
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px 22px;display:flex;flex-direction:column;gap:10px;transition:border-color .25s;position:relative;overflow:hidden}
 .card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--volt);opacity:0;transition:opacity .25s}
-.card:hover{border-color:rgba(213,255,2,.25)}
-.card:hover::before{opacity:1}
+.card:hover{border-color:rgba(213,255,2,.25)}.card:hover::before{opacity:1}
 .card a.card-link{position:absolute;inset:0}
 .card-icon{font-size:22px;line-height:1}
 .card-title{font-family:var(--serif);font-size:21px;line-height:1.15;color:var(--white)}
 .card-desc{font-size:13px;color:var(--gray);line-height:1.55}
 .card-tag{display:inline-flex;align-items:center;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--volt);border:1px solid rgba(213,255,2,.2);padding:3px 10px;border-radius:100px;margin-top:2px;width:fit-content}
-.link-list{display:flex;flex-direction:column}
-.link-row{display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--border);gap:16px}
-.link-row:first-child{border-top:1px solid var(--border)}
-.link-row-left{display:flex;flex-direction:column;gap:3px}
-.link-row-title{font-size:15px;font-weight:500;color:var(--white)}
-.link-row-desc{font-size:13px;color:var(--gray)}
-.link-row-btn{font-size:12px;font-weight:700;color:var(--black);background:var(--volt);padding:7px 16px;border-radius:100px;white-space:nowrap;flex-shrink:0;transition:opacity .2s}
-.link-row-btn:hover{opacity:.85}
-.badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:rgba(213,255,2,.08);border:1px solid rgba(213,255,2,.2);color:var(--volt);padding:5px 12px;border-radius:100px;margin-bottom:24px}
-@media(max-width:600px){.container{padding:40px 20px 60px}.header{padding:14px 20px}.cards{grid-template-columns:1fr}.user-email{display:none}}
+.card-new{position:absolute;top:16px;right:16px;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--volt);color:var(--black);padding:3px 8px;border-radius:100px}
+/* Account section */
+.account-row{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--border)}
+.account-row:first-child{border-top:1px solid var(--border)}
+.account-row-label{font-size:14px;color:var(--white)}
+.account-row-value{font-size:13px;color:var(--gray)}
+.account-btn{font-size:12px;font-weight:600;color:var(--gray);border:1px solid var(--border);border-radius:6px;padding:5px 14px;cursor:pointer;background:none;font-family:var(--sans);transition:all .2s}
+.account-btn:hover{border-color:rgba(255,107,107,.4);color:var(--red)}
+.account-btn.manage{color:var(--volt);border-color:rgba(213,255,2,.3)}
+.account-btn.manage:hover{background:rgba(213,255,2,.06)}
+/* Upgrade flash banner */
+.upgrade-banner{background:rgba(213,255,2,.1);border:1px solid rgba(213,255,2,.3);border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:12px;margin-bottom:28px;font-size:14px;color:var(--volt);font-weight:500}
+@media(max-width:600px){.container{padding:40px 20px 60px}.header{padding:14px 20px}.cards{grid-template-columns:1fr}.user-email{display:none}.mm-hero-top{flex-direction:column}.mm-links{grid-template-columns:1fr}.account-row{flex-direction:column;align-items:flex-start;gap:10px}}
 </style>
 </head>
 <body>
@@ -53,67 +90,130 @@ a{color:inherit;text-decoration:none}
   <div class="logo">Members<em>Only</em></div>
   <div class="user-bar">
     <span class="user-email" id="user-email"></span>
-    <button class="logout-btn" onclick="logout()">Sign out</button>
+    <div class="header-actions">
+      <a href="/admin.html" class="admin-link" id="admin-link">Admin</a>
+      <button class="logout-btn" onclick="logout()">Sign out</button>
+    </div>
   </div>
 </header>
 
-<main class="container">
+<main class="container" id="main" style="display:none">
 
+  <!-- Upgrade success banner -->
+  <div class="upgrade-banner" id="upgrade-banner" style="display:none">
+    🎉 Welcome to the Mastermind! Your access is now active.
+  </div>
+
+  <!-- Welcome -->
   <div class="welcome">
     <div class="eyebrow">Members Only</div>
     <h1 id="welcome-heading">Welcome back.</h1>
-    <p id="access-desc">Loading…</p>
-  </div>
-
-  <!-- Courses -->
-  <div class="section">
-    <div class="section-label">Your Courses</div>
-    <div class="cards" id="courses-grid">
-      <div class="card">
-        <a class="card-link" href="/cos-course/"></a>
-        <div class="card-icon">🤖</div>
-        <div class="card-title">AI Chief of Staff Course</div>
-        <div class="card-desc">Build your own AI COS in 4 sessions. Email triage, voice calls, intelligence layer, and full autonomy.</div>
-        <div class="card-tag">4 Sessions · Lifetime Access</div>
-      </div>
+    <div class="welcome-meta">
+      <div class="welcome-desc" id="access-desc"></div>
+      <div class="member-since" id="member-since" style="display:none"></div>
     </div>
   </div>
 
-  <!-- Community — mastermind only -->
-  <div class="section" id="community-section" style="display:none">
-    <div class="section-label">Community</div>
-    <div class="link-list" id="community-links"></div>
+  <!-- MASTERMIND HERO (active subscribers only) -->
+  <div id="mm-hero-section" style="display:none">
+    <div class="mm-hero">
+      <div class="mm-hero-top">
+        <div>
+          <div class="mm-hero-title">Mastermind</div>
+          <div class="mm-hero-sub">Live calls, private community, and everything being built in the open.</div>
+        </div>
+        <div class="mm-status"><span class="mm-dot"></span>Active</div>
+      </div>
+      <div class="mm-links" id="mm-links"></div>
+    </div>
+  </div>
+
+  <!-- MASTERMIND CTA (course-only members) -->
+  <div id="mm-cta-section" style="display:none">
+    <div class="mm-cta">
+      <div class="mm-cta-title">Upgrade to the Mastermind</div>
+      <div class="mm-cta-sub">Go deeper. Monthly live calls with Russ, a private community of operators, and early access to everything being built.</div>
+      <div class="mm-props">
+        <div class="mm-prop">
+          <div class="mm-prop-icon">📞</div>
+          <div class="mm-prop-title">Monthly Live Calls</div>
+          <div class="mm-prop-desc">Build in the open with Russ. Bring your questions, wins, and hard problems.</div>
+        </div>
+        <div class="mm-prop">
+          <div class="mm-prop-icon">💬</div>
+          <div class="mm-prop-title">Private Community</div>
+          <div class="mm-prop-desc">Telegram group of serious operators. No fluff, just real systems and results.</div>
+        </div>
+        <div class="mm-prop">
+          <div class="mm-prop-icon">🔓</div>
+          <div class="mm-prop-title">All Courses Included</div>
+          <div class="mm-prop-desc">Every course — current and future — included with your subscription.</div>
+        </div>
+      </div>
+      <a href="https://buy.stripe.com/eVqfZj8jMesi1f42DJbEA03" class="mm-cta-btn" target="_blank">
+        Join the Mastermind — $300/qtr →
+      </a>
+    </div>
+  </div>
+
+  <!-- COURSES -->
+  <div class="section" id="courses-section">
+    <div class="section-label">Your Courses</div>
+    <div class="cards" id="courses-grid"></div>
+  </div>
+
+  <!-- ACCOUNT -->
+  <div class="section" id="account-section">
+    <div class="section-label">Account</div>
+    <div id="account-rows"></div>
   </div>
 
 </main>
 
 <script>
 const AUTH_WORKER = '';
+const MASTERMIND_LINK = 'https://buy.stripe.com/eVqfZj8jMesi1f42DJbEA03';
 
 const COMMUNITY_LINKS = [
   {
-    title: 'Private Telegram Community',
-    desc: 'Async discussion, tool reviews, wins, and questions — the core of the mastermind.',
-    url: 'https://t.me/placeholder',
-    btn: 'Open Telegram →'
+    title: 'Private Community',
+    desc:  'Telegram — async discussion, wins, and questions.',
+    url:   'https://t.me/placeholder',
+    btn:   'Open →',
   },
   {
-    title: 'Monthly Mastermind Call',
-    desc: 'Live call with Russ — building in the open, what\'s working, what\'s not. Times posted in Telegram.',
-    url: 'https://t.me/placeholder',
-    btn: 'See Schedule →'
+    title: 'Monthly Call',
+    desc:  'Live with Russ — schedule posted in the group.',
+    url:   'https://t.me/placeholder',
+    btn:   'Schedule →',
   },
   {
-    title: 'AI for Operators — What\'s Next',
-    desc: 'Roadmap, upcoming courses, and what\'s coming in the mastermind.',
-    url: '/cos-course/whats-next.html',
-    btn: 'View →'
+    title: "What's Next",
+    desc:  'Roadmap and upcoming courses.',
+    url:   '/cos-course/whats-next.html',
+    btn:   'View →',
+  },
+];
+
+const ALL_COURSES = [
+  {
+    id:    'ai-cos',
+    title: 'AI Chief of Staff Course',
+    desc:  'Build your own AI COS in 4 sessions. Email triage, voice calls, intelligence layer, and full autonomy.',
+    icon:  '🤖',
+    tag:   '4 Sessions · Lifetime Access',
+    path:  '/cos-course/',
+    launched: '2026-05-01',
   },
 ];
 
 async function init() {
+  // Phase 4: detect upgrade redirect
+  const params  = new URLSearchParams(location.search);
+  const upgraded = params.get('upgraded') === 'true';
+
   try {
-    const res = await fetch(`${AUTH_WORKER}/auth/check`, { credentials: 'include' });
+    const res  = await fetch(`${AUTH_WORKER}/auth/check`, { credentials: 'include' });
     const data = await res.json();
 
     if (!data.authenticated || data.access === 'none') {
@@ -121,35 +221,161 @@ async function init() {
       return;
     }
 
-    const email = data.email || '';
+    const email     = data.email || '';
     const firstName = email.split('@')[0].split('.')[0];
-    document.getElementById('user-email').textContent = email;
-    document.getElementById('welcome-heading').textContent = `Welcome back${firstName ? ', ' + firstName.charAt(0).toUpperCase() + firstName.slice(1) : ''}.`;
+    const access    = data.access;
 
-    if (data.access === 'mastermind') {
-      document.getElementById('access-desc').textContent = 'You have full mastermind access — all courses, group calls, and the private community.';
-      document.getElementById('community-section').style.display = '';
-      renderCommunity();
-    } else if (data.access === 'course') {
-      document.getElementById('access-desc').textContent = 'You have lifetime access to the AI Chief of Staff Course.';
+    document.getElementById('user-email').textContent = email;
+    document.getElementById('welcome-heading').textContent =
+      `Welcome back${firstName ? ', ' + firstName.charAt(0).toUpperCase() + firstName.slice(1) : ''}.`;
+
+    // Member since
+    if (data.enrolled_at) {
+      const since = new Date(data.enrolled_at).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+      const el    = document.getElementById('member-since');
+      el.textContent  = `Member since ${since}`;
+      el.style.display = '';
     }
+
+    // Admin link
+    if (data.is_admin) document.getElementById('admin-link').style.display = '';
+
+    // Upgrade banner
+    if (upgraded && access === 'mastermind') {
+      document.getElementById('upgrade-banner').style.display = '';
+      // Clean URL
+      window.history.replaceState({}, '', '/');
+    }
+
+    // Access desc
+    const descMap = {
+      mastermind: 'Full mastermind access — all courses, live calls, and the private community.',
+      course:     'Lifetime access to the AI Chief of Staff Course.',
+    };
+    document.getElementById('access-desc').textContent = descMap[access] || '';
+
+    // Mastermind sections
+    if (access === 'mastermind') {
+      document.getElementById('mm-hero-section').style.display = '';
+      renderMastermindLinks();
+    } else {
+      document.getElementById('mm-cta-section').style.display = '';
+    }
+
+    // Courses
+    renderCourses(data.purchased_courses || [], access);
+
+    // Account
+    renderAccount(data);
+
+    document.getElementById('main').style.display = '';
 
   } catch (e) {
     window.location.href = '/login.html';
   }
 }
 
-function renderCommunity() {
-  const container = document.getElementById('community-links');
-  container.innerHTML = COMMUNITY_LINKS.map(item => `
-    <div class="link-row">
-      <div class="link-row-left">
-        <div class="link-row-title">${item.title}</div>
-        <div class="link-row-desc">${item.desc}</div>
+function renderMastermindLinks() {
+  document.getElementById('mm-links').innerHTML = COMMUNITY_LINKS.map(item => `
+    <a href="${item.url}" target="_blank" class="mm-link-card">
+      <div>
+        <div class="mm-link-title">${item.title}</div>
+        <div class="mm-link-desc">${item.desc}</div>
       </div>
-      <a href="${item.url}" target="_blank" class="link-row-btn">${item.btn}</a>
-    </div>
+      <span class="mm-link-btn">${item.btn}</span>
+    </a>
   `).join('');
+}
+
+function renderCourses(purchasedIds, access) {
+  const grid = document.getElementById('courses-grid');
+
+  // Mastermind gets all courses; course members get purchased ones
+  const visible = access === 'mastermind'
+    ? ALL_COURSES
+    : ALL_COURSES.filter(c => purchasedIds.includes(c.id));
+
+  if (!visible.length) {
+    grid.innerHTML = `<div style="color:var(--dim);font-size:14px;padding:8px 0">No courses yet. <a href="${MASTERMIND_LINK}" style="color:var(--volt)">Browse available courses →</a></div>`;
+    return;
+  }
+
+  const now = Date.now();
+  grid.innerHTML = visible.map(c => {
+    const isNew = c.launched && (now - new Date(c.launched).getTime()) < 30 * 24 * 3600 * 1000;
+    return `
+      <div class="card">
+        <a class="card-link" href="${c.path}"></a>
+        ${isNew ? `<div class="card-new">New</div>` : ''}
+        <div class="card-icon">${c.icon}</div>
+        <div class="card-title">${c.title}</div>
+        <div class="card-desc">${c.desc}</div>
+        <div class="card-tag">${c.tag}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderAccount(data) {
+  const rows = [];
+
+  rows.push(`
+    <div class="account-row">
+      <div>
+        <div class="account-row-label">Email</div>
+      </div>
+      <div class="account-row-value">${data.email}</div>
+    </div>
+  `);
+
+  rows.push(`
+    <div class="account-row">
+      <div>
+        <div class="account-row-label">Membership</div>
+      </div>
+      <div class="account-row-value" style="text-transform:capitalize">${data.access}</div>
+    </div>
+  `);
+
+  if (data.mastermind_active && data.stripe_customer_id) {
+    rows.push(`
+      <div class="account-row">
+        <div>
+          <div class="account-row-label">Billing</div>
+          <div class="account-row-value" style="font-size:12px;margin-top:2px">Manage your subscription, payment method, or cancel.</div>
+        </div>
+        <button class="account-btn manage" onclick="openBillingPortal()">Manage Billing →</button>
+      </div>
+    `);
+  }
+
+  rows.push(`
+    <div class="account-row">
+      <div>
+        <div class="account-row-label">Sign out</div>
+      </div>
+      <button class="account-btn" onclick="logout()">Sign out</button>
+    </div>
+  `);
+
+  document.getElementById('account-rows').innerHTML = rows.join('');
+}
+
+async function openBillingPortal() {
+  const btn = event.target;
+  btn.textContent = 'Opening…';
+  btn.disabled    = true;
+
+  const res  = await fetch(`${AUTH_WORKER}/auth/portal`, { credentials: 'include' });
+  const data = await res.json();
+
+  if (data.url) {
+    window.location.href = data.url;
+  } else {
+    btn.textContent = 'Manage Billing →';
+    btn.disabled    = false;
+    alert(data.error || 'Could not open billing portal. Try again.');
+  }
 }
 
 async function logout() {

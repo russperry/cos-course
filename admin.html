@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin | Members Only</title>
+<meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#0B0C0B;--volt:#D5FF02;--white:#F5F5F3;--gray:#999;--dim:#555;--card:#141514;--border:#1E1F1E;--serif:'Instrument Serif',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--red:#ff6b6b;--green:#2ecc71}
+body{background:var(--black);color:var(--white);font-family:var(--sans);font-size:14px;min-height:100vh;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.header{border-bottom:1px solid var(--border);padding:16px 28px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;background:rgba(11,12,11,.97);backdrop-filter:blur(12px)}
+.logo{font-family:var(--serif);font-size:18px;letter-spacing:-.02em}.logo em{color:var(--volt);font-style:normal}
+.badge{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--black);background:var(--volt);padding:3px 10px;border-radius:100px}
+.user-bar{display:flex;align-items:center;gap:14px}
+.logout-btn{color:var(--gray);font-size:12px;cursor:pointer;background:none;border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-family:var(--sans)}
+.logout-btn:hover{border-color:rgba(213,255,2,.3);color:var(--volt)}
+.container{max-width:1100px;margin:0 auto;padding:40px 28px 80px}
+.page-title{font-family:var(--serif);font-size:36px;letter-spacing:-.02em;margin-bottom:6px}
+.page-sub{color:var(--gray);font-size:14px;margin-bottom:36px}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:36px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px}
+.stat-num{font-family:var(--serif);font-size:32px;color:var(--volt);line-height:1}
+.stat-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:6px}
+.section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.section-title{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--dim)}
+.add-btn{font-size:12px;font-weight:700;color:var(--black);background:var(--volt);border:none;border-radius:100px;padding:7px 18px;cursor:pointer;font-family:var(--sans);transition:opacity .2s}
+.add-btn:hover{opacity:.85}
+/* Add member form */
+.add-form{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:28px;display:none}
+.add-form.visible{display:block}
+.form-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;align-items:end}
+.field label{display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:6px}
+.field input,.field select{width:100%;background:#0a0b0a;border:1px solid var(--border);border-radius:8px;padding:10px 13px;color:var(--white);font-size:13px;font-family:var(--sans);outline:none}
+.field input:focus,.field select:focus{border-color:rgba(213,255,2,.4)}
+.field select option{background:#141514}
+/* Table */
+.table-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.search-bar{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;gap:10px}
+.search-bar input{flex:1;background:#0a0b0a;border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--white);font-size:13px;font-family:var(--sans);outline:none}
+.search-bar input:focus{border-color:rgba(213,255,2,.3)}
+table{width:100%;border-collapse:collapse}
+th{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);padding:11px 16px;text-align:left;border-bottom:1px solid var(--border)}
+td{padding:13px 16px;border-bottom:1px solid #111;font-size:13px;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(255,255,255,.015)}
+.pill{display:inline-flex;align-items:center;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:100px}
+.pill-mastermind{background:rgba(213,255,2,.1);color:var(--volt);border:1px solid rgba(213,255,2,.25)}
+.pill-course{background:rgba(46,204,113,.1);color:var(--green);border:1px solid rgba(46,204,113,.25)}
+.pill-none{background:rgba(255,107,107,.08);color:var(--red);border:1px solid rgba(255,107,107,.2)}
+.pill-admin{background:rgba(213,255,2,.15);color:var(--volt);border:1px solid rgba(213,255,2,.35);margin-left:6px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.act-btn{font-size:11px;font-weight:600;cursor:pointer;border-radius:6px;padding:4px 10px;border:1px solid;font-family:var(--sans);transition:opacity .15s;white-space:nowrap}
+.act-btn:hover{opacity:.75}
+.act-grant{color:var(--volt);border-color:rgba(213,255,2,.3);background:rgba(213,255,2,.05)}
+.act-revoke{color:var(--gray);border-color:var(--border);background:transparent}
+.act-delete{color:var(--red);border-color:rgba(255,107,107,.3);background:transparent}
+.act-admin{color:#a78bfa;border-color:rgba(167,139,250,.3);background:rgba(167,139,250,.05)}
+.empty{text-align:center;padding:48px;color:var(--dim)}
+.toast{position:fixed;bottom:28px;right:28px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 18px;font-size:13px;color:var(--white);transform:translateY(80px);opacity:0;transition:all .3s;z-index:999}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.success{border-color:rgba(46,204,113,.4);color:var(--green)}
+.toast.error{border-color:rgba(255,107,107,.4);color:var(--red)}
+@media(max-width:700px){.form-row{grid-template-columns:1fr}.table-wrap{overflow-x:auto}}
+</style>
+</head>
+<body>
+<header class="header">
+  <div style="display:flex;align-items:center;gap:14px">
+    <a href="/" class="logo">Members<em>Only</em></a>
+    <span class="badge">Admin</span>
+  </div>
+  <div class="user-bar">
+    <span style="font-size:13px;color:var(--dim)" id="admin-email"></span>
+    <button class="logout-btn" onclick="logout()">Sign out</button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="page-title">Member Management</div>
+  <p class="page-sub">Add members, manage access, and track subscriptions.</p>
+
+  <div class="stats" id="stats-row">
+    <div class="stat"><div class="stat-num" id="stat-total">–</div><div class="stat-label">Total Members</div></div>
+    <div class="stat"><div class="stat-num" id="stat-mastermind">–</div><div class="stat-label">Mastermind Active</div></div>
+    <div class="stat"><div class="stat-num" id="stat-course">–</div><div class="stat-label">Course Only</div></div>
+    <div class="stat"><div class="stat-num" id="stat-admins">–</div><div class="stat-label">Admins</div></div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-title">Members</div>
+    <button class="add-btn" onclick="toggleAddForm()">+ Add Member</button>
+  </div>
+
+  <!-- Add member form -->
+  <div class="add-form" id="add-form">
+    <div class="form-row">
+      <div class="field"><label>Email</label><input type="email" id="new-email" placeholder="member@example.com"></div>
+      <div class="field">
+        <label>Access Type</label>
+        <select id="new-access">
+          <option value="course">Course (AI CoS)</option>
+          <option value="mastermind">Mastermind</option>
+          <option value="both">Both</option>
+        </select>
+      </div>
+      <div class="field"><label>Note (optional)</label><input type="text" id="new-note" placeholder="e.g. Comped, promo, etc."></div>
+      <div class="field"><label>&nbsp;</label><button class="add-btn" onclick="addMember()">Add →</button></div>
+    </div>
+  </div>
+
+  <!-- Member table -->
+  <div class="table-wrap">
+    <div class="search-bar">
+      <input type="text" id="search" placeholder="Search by email…" oninput="renderTable()">
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Member</th>
+          <th>Access</th>
+          <th>Courses</th>
+          <th>Enrolled</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="members-tbody">
+        <tr><td colspan="5" class="empty">Loading…</td></tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const AUTH_WORKER = '';
+let allMembers = [];
+
+async function init() {
+  // Auth check
+  const res  = await fetch(`${AUTH_WORKER}/auth/check`, { credentials: 'include' }).catch(() => null);
+  const data = res ? await res.json().catch(() => ({})) : {};
+  if (!data.authenticated || !data.is_admin) {
+    window.location.href = '/login.html';
+    return;
+  }
+  document.getElementById('admin-email').textContent = data.email;
+  await loadMembers();
+}
+
+async function loadMembers() {
+  const res  = await fetch(`${AUTH_WORKER}/admin/students`, { credentials: 'include' });
+  const data = await res.json();
+  allMembers = data.students || [];
+  updateStats();
+  renderTable();
+}
+
+function updateStats() {
+  const mastermind = allMembers.filter(m => m.access === 'mastermind').length;
+  const course     = allMembers.filter(m => m.access === 'course').length;
+  const admins     = allMembers.filter(m => m.is_admin).length;
+  document.getElementById('stat-total').textContent     = allMembers.length;
+  document.getElementById('stat-mastermind').textContent = mastermind;
+  document.getElementById('stat-course').textContent    = course;
+  document.getElementById('stat-admins').textContent    = admins;
+}
+
+function renderTable() {
+  const q       = (document.getElementById('search').value || '').toLowerCase();
+  const filtered = q ? allMembers.filter(m => m.email.toLowerCase().includes(q)) : allMembers;
+  const tbody   = document.getElementById('members-tbody');
+
+  if (!filtered.length) {
+    tbody.innerHTML = `<tr><td colspan="5" class="empty">${q ? 'No members match.' : 'No members yet.'}</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(m => {
+    const pillClass  = m.access === 'mastermind' ? 'pill-mastermind' : m.access === 'course' ? 'pill-course' : 'pill-none';
+    const adminBadge = m.is_admin ? `<span class="pill pill-admin">Admin</span>` : '';
+    const courses    = (m.purchased_courses || []).join(', ') || (m.course_purchased ? 'ai-cos' : '—');
+    const enrolled   = m.enrolled_at ? new Date(m.enrolled_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }) : '—';
+
+    return `<tr>
+      <td>
+        <div style="font-weight:500">${m.email}</div>
+        ${adminBadge}
+      </td>
+      <td><span class="pill ${pillClass}">${m.access}</span></td>
+      <td style="color:var(--gray)">${courses}</td>
+      <td style="color:var(--dim)">${enrolled}</td>
+      <td>
+        <div class="actions">
+          ${m.access !== 'mastermind' ? `<button class="act-btn act-grant" onclick="grant('${m.email}','mastermind')">↑ Mastermind</button>` : `<button class="act-btn act-revoke" onclick="revoke('${m.email}','mastermind')">Revoke MM</button>`}
+          ${m.access === 'none' ? `<button class="act-btn act-grant" onclick="grant('${m.email}','course')">+ Course</button>` : ''}
+          <button class="act-btn act-admin" onclick="toggleAdmin('${m.email}',${!m.is_admin})">${m.is_admin ? 'Remove Admin' : 'Make Admin'}</button>
+          <button class="act-btn act-delete" onclick="deleteMember('${m.email}')">Delete</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function toggleAddForm() {
+  document.getElementById('add-form').classList.toggle('visible');
+}
+
+async function addMember() {
+  const email  = document.getElementById('new-email').value.trim();
+  const access = document.getElementById('new-access').value;
+  const note   = document.getElementById('new-note').value.trim();
+  if (!email) return toast('Email required', 'error');
+
+  const res  = await fetch(`${AUTH_WORKER}/admin/grant`, {
+    method:      'POST',
+    credentials: 'include',
+    headers:     { 'Content-Type': 'application/json' },
+    body:        JSON.stringify({ email, access_type: access, note }),
+  });
+  const data = await res.json();
+  if (!res.ok) return toast(data.error || 'Error', 'error');
+
+  toast(`${email} added as ${access}`, 'success');
+  document.getElementById('new-email').value = '';
+  document.getElementById('new-note').value  = '';
+  document.getElementById('add-form').classList.remove('visible');
+  await loadMembers();
+}
+
+async function grant(email, type) {
+  const res  = await fetch(`${AUTH_WORKER}/admin/grant`, {
+    method:      'POST',
+    credentials: 'include',
+    headers:     { 'Content-Type': 'application/json' },
+    body:        JSON.stringify({ email, access_type: type }),
+  });
+  const data = await res.json();
+  if (!res.ok) return toast(data.error || 'Error', 'error');
+  toast(`${email} → ${type}`, 'success');
+  await loadMembers();
+}
+
+async function revoke(email, type) {
+  if (!confirm(`Revoke ${type} for ${email}?`)) return;
+  const res  = await fetch(`${AUTH_WORKER}/admin/revoke`, {
+    method:      'POST',
+    credentials: 'include',
+    headers:     { 'Content-Type': 'application/json' },
+    body:        JSON.stringify({ email, revoke_type: type }),
+  });
+  const data = await res.json();
+  if (!res.ok) return toast(data.error || 'Error', 'error');
+  toast(`${type} revoked for ${email}`, 'success');
+  await loadMembers();
+}
+
+async function deleteMember(email) {
+  if (!confirm(`Permanently delete ${email}? This cannot be undone.`)) return;
+  const res  = await fetch(`${AUTH_WORKER}/admin/delete`, {
+    method:      'POST',
+    credentials: 'include',
+    headers:     { 'Content-Type': 'application/json' },
+    body:        JSON.stringify({ email }),
+  });
+  const data = await res.json();
+  if (!res.ok) return toast(data.error || 'Error', 'error');
+  toast(`${email} deleted`, 'success');
+  await loadMembers();
+}
+
+async function toggleAdmin(email, makeAdmin) {
+  const res  = await fetch(`${AUTH_WORKER}/admin/set-admin`, {
+    method:      'POST',
+    credentials: 'include',
+    headers:     { 'Content-Type': 'application/json' },
+    body:        JSON.stringify({ email, is_admin: makeAdmin }),
+  });
+  const data = await res.json();
+  if (!res.ok) return toast(data.error || 'Error', 'error');
+  toast(`${email} ${makeAdmin ? 'is now admin' : 'admin removed'}`, 'success');
+  await loadMembers();
+}
+
+async function logout() {
+  await fetch(`${AUTH_WORKER}/auth/logout`, { method: 'POST', credentials: 'include' }).catch(() => {});
+  window.location.href = '/login.html';
+}
+
+function toast(msg, type = '') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className   = `toast ${type} show`;
+  setTimeout(() => el.classList.remove('show'), 3200);
+}
+
+init();
+</script>
+</body>
+</html>
